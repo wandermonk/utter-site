@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>utter — voice agents, built by anyone</title>
+<meta name="description" content="Utter is a no-code platform to build voice agents and voice-AI workflows. Describe it in plain words — get a live agent that answers real calls, speaks any language, runs your workflow, and hands off to a human when it matters." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231A1916'/%3E%3Ctext x='16' y='23' font-family='Inter,sans-serif' font-size='20' font-weight='800' fill='%234F46E5' text-anchor='middle'%3Eu%3C/text%3E%3C/svg%3E" />
+<meta property="og:title" content="utter — voice agents, built by anyone" />
+<meta property="og:description" content="No-code voice agents and voice-AI workflows for everyone — household to enterprise, any language, anywhere." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://utter.sh" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root{
+    --bg:#FFFFFF; --alt:#F7F6F3; --text:#37352F; --head:#1A1916;
+    --muted:#7C7A75; --line:#EAE8E3; --accent:#4F46E5; --accent-soft:#ECECFB;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent-soft)}
+  h1,h2,h3{color:var(--head);letter-spacing:-.02em}
+  .muted{color:var(--muted)} .accent{color:var(--accent)} .head{color:var(--head)}
+  .alt{background:var(--alt)}
+  .line-t{border-top:1px solid var(--line)} .line-b{border-bottom:1px solid var(--line)}
+
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+  .card.lift:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 48px -28px rgba(26,25,22,.35);border-color:#DCDAD4}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:.4rem .85rem;font-size:.75rem;font-weight:600}
+
+  .btn{border-radius:999px;font-weight:600;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
+  .btn-dark{background:var(--head);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+  .btn-dark:hover{background:#000;transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+  .btn-ghost{background:var(--bg);color:var(--head);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--alt)}
+
+  .ptab{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s ease}
+  .ptab:hover{border-color:#D7D5CF;color:var(--head)}
+  .ptab.active{background:var(--head);color:#fff;border-color:var(--head)}
+
+  .hearbtn{cursor:pointer}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .fade{transition:opacity .35s ease}
+
+  .cursor{width:9px;height:22px;background:var(--accent);display:inline-block;border-radius:2px;margin-left:3px;vertical-align:-3px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .caret{border-right:2px solid var(--accent);animation:blink 1s steps(1) infinite;padding-right:1px}
+  .wave span{display:inline-block;width:3px;margin:0 1.5px;background:var(--accent);border-radius:3px;animation:wave 1s ease-in-out infinite}
+  .wave span:nth-child(2){animation-delay:.12s}.wave span:nth-child(3){animation-delay:.24s}.wave span:nth-child(4){animation-delay:.36s}.wave span:nth-child(5){animation-delay:.48s}
+  @keyframes wave{0%,100%{height:7px}50%{height:22px}}
+  .ic{color:var(--accent)}
+  .wfstep{opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-white/85 backdrop-blur line-b">
+  <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#top" class="text-2xl font-black tracking-tight lowercase head">utter<span class="cursor"></span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm muted">
+      <a href="#how" class="hover:text-black transition">How it works</a>
+      <a href="#hear" class="hover:text-black transition">Hear it</a>
+      <a href="#everyone" class="hover:text-black transition">For everyone</a>
+      <a href="#uses" class="hover:text-black transition">Use cases</a>
+      <a href="#superpowers" class="hover:text-black transition">Superpowers</a>
+      <a href="#global" class="hover:text-black transition">Global</a>
+    </div>
+    <a data-book href="#book" class="btn btn-dark text-sm px-5 py-2">Book a demo</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-5 pt-20 md:pt-28 pb-12 text-center">
+  <a href="#how" class="pill accent mb-8 hover:bg-[var(--alt)] transition">
+    <span class="wave inline-flex items-end h-4"><span></span><span></span><span></span><span></span><span></span></span>
+    No-code voice AI · now in early access
+  </a>
+  <h1 class="text-5xl md:text-7xl font-black leading-[1.04]">
+    Voice agents,<br/>built by <span class="accent">anyone</span>.
+  </h1>
+  <p class="mt-7 text-lg md:text-xl muted max-w-2xl mx-auto leading-relaxed">
+    Describe what you want in plain words. Utter builds a live voice agent that answers
+    real calls, speaks any language, runs your workflow, and hands off to a human when it matters.
+  </p>
+  <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+    <a data-book href="#book" class="btn btn-dark px-7 py-3.5">Book a demo</a>
+    <a href="#how" class="btn btn-ghost px-7 py-3.5">See how it works</a>
+  </div>
+
+  <!-- INTERACTIVE SHOWCASE: pick a persona or type your own → watch Utter build -->
+  <div class="mt-14 max-w-4xl mx-auto reveal">
+    <div class="flex flex-wrap justify-center gap-2 mb-4" id="tabs">
+      <button class="ptab active" data-i="0">Priya · home</button>
+      <button class="ptab" data-i="1">Sam · café</button>
+      <button class="ptab" data-i="2">Dr. Rao · clinic</button>
+      <button class="ptab" data-i="3">Maria · support</button>
+      <button class="ptab" data-own>✎ Your own</button>
+    </div>
+
+    <div id="ownBox" class="hidden mb-4 flex gap-2 max-w-xl mx-auto">
+      <input id="ownInput" type="text" maxlength="90" placeholder="Describe your agent… e.g. Book appointments for my salon"
+        class="flex-1 rounded-full px-5 py-3 text-sm outline-none" style="border:1px solid var(--line);background:var(--bg);color:var(--head)" />
+      <button id="ownGo" class="btn btn-dark px-5 py-3 text-sm">Build →</button>
+    </div>
+
+    <div class="card overflow-hidden text-left">
+      <div class="grid md:grid-cols-2">
+        <!-- SPEAKER -->
+        <div class="p-7 flex flex-col line-b md:border-b-0 md:border-r" style="border-color:var(--line);height:340px">
+          <div class="text-xs uppercase tracking-wider muted mb-5">Someone says…</div>
+          <div id="speaker" class="flex items-center gap-3 mb-4 fade">
+            <img id="pAvatar" alt="" class="shrink-0 w-11 h-11 rounded-full object-cover" style="background:var(--accent-soft)" />
+            <div><div id="pName" class="font-semibold head leading-tight">Priya</div><div id="pRole" class="text-xs muted">at home</div></div>
+          </div>
+          <div class="rounded-2xl px-4 py-3 overflow-hidden" style="background:var(--alt);height:118px">
+            <p id="pSay" class="text-base leading-relaxed head"></p>
+          </div>
+          <div id="pSpeaking" class="text-[11px] accent font-medium mt-3 flex items-center gap-2 fade opacity-0">
+            <span class="wave inline-flex items-end h-3"><span></span><span></span><span></span><span></span><span></span></span> speaking…
+          </div>
+        </div>
+        <!-- BUILDER -->
+        <div class="p-7 alt flex flex-col" style="height:340px">
+          <div class="flex items-center justify-between mb-5">
+            <div class="text-xs uppercase tracking-wider muted">Utter builds the workflow</div>
+            <div id="liveBadge" class="text-[11px] font-bold accent flex items-center gap-1.5 fade opacity-0"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>LIVE</div>
+          </div>
+          <div id="steps" class="space-y-2.5 overflow-hidden" style="height:215px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- STATS -->
+<section class="alt line-t line-b">
+  <div class="max-w-5xl mx-auto px-5 py-14 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div class="reveal"><div class="text-4xl font-black head">Any</div><div class="text-sm muted mt-1">language, matched live</div></div>
+    <div class="reveal"><div class="text-4xl font-black head">Real</div><div class="text-sm muted mt-1">phone calls, real voice</div></div>
+    <div class="reveal"><div class="text-4xl font-black head">1‑tap</div><div class="text-sm muted mt-1">human handoff</div></div>
+    <div class="reveal"><div class="text-4xl font-black head">0</div><div class="text-sm muted mt-1">lines of code</div></div>
+  </div>
+</section>
+
+<!-- HEAR (prominent audio samples) -->
+<section id="hear" class="max-w-5xl mx-auto px-5 py-24">
+  <h2 class="text-center text-3xl md:text-5xl font-black mb-3 reveal">Hear Utter on a real call</h2>
+  <p class="text-center muted mb-12 reveal">Real two-way conversations — caller and agent — generated by Utter. Tap play.</p>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="screening">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Call screening</span><span class="block text-xs muted">English · courier at the gate</span></span>
+    </button>
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="booking">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Appointment booking</span><span class="block text-xs muted">हिन्दी · books a haircut</span></span>
+    </button>
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="support">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Customer support</span><span class="block text-xs muted">தமிழ் · where's my order?</span></span>
+    </button>
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="handoff">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Human handoff</span><span class="block text-xs muted">తెలుగు · urgent, get me a person</span></span>
+    </button>
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="bengali">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Appointment reminder</span><span class="block text-xs muted">বাংলা · clinic reminder call</span></span>
+    </button>
+    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="ordering">
+      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
+      <span class="min-w-0"><span class="block font-bold head">Order taking</span><span class="block text-xs muted">ಕನ್ನಡ · place a pizza order</span></span>
+    </button>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="max-w-6xl mx-auto px-5 py-24">
+  <h2 class="text-center text-3xl md:text-5xl font-black mb-4 reveal">Live in three steps</h2>
+  <p class="text-center muted mb-14 reveal">No engineers, no integrations, no waiting.</p>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">01</div><h3 class="font-bold text-xl mb-2">Describe your agent</h3><p class="muted">Say what it should do in plain words. Pick a voice and the languages it should speak.</p></div>
+    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">02</div><h3 class="font-bold text-xl mb-2">Utter builds the flow</h3><p class="muted">It wires the whole pipeline — listen, understand, respond, run tools, capture, escalate.</p></div>
+    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">03</div><h3 class="font-bold text-xl mb-2">Connect a number</h3><p class="muted">Point a phone number at it and your agent is taking real calls — anywhere on earth.</p></div>
+  </div>
+</section>
+
+<!-- FOR EVERYONE -->
+<section id="everyone" class="alt line-t line-b">
+  <div class="max-w-6xl mx-auto px-5 py-24">
+    <h2 class="text-center text-3xl md:text-5xl font-black mb-4 reveal">One platform. Everyone.</h2>
+    <p class="text-center muted mb-14 reveal">From one person at home to a company across continents.</p>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal card lift p-8 md:row-span-2 flex flex-col justify-between">
+        <div><div class="ic mb-4">%ICON_HOME%</div><h3 class="font-bold text-2xl mb-2">Household</h3><p class="muted">Screen unknown callers, block spam, take messages, and get the gist on your screen — pick up only what matters. Never lose a call to a robocall again.</p></div>
+        <div class="mt-6 text-sm accent font-semibold">Your personal call screener →</div>
+      </div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_MIC%</div><h3 class="font-bold text-xl mb-1">Creators &amp; solo</h3><p class="muted text-sm">A 24/7 line that answers FAQs, books you, and routes only the calls worth your time.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_SHOP%</div><h3 class="font-bold text-xl mb-1">Small business</h3><p class="muted text-sm">A reception that never sleeps — capture leads, take orders, schedule, answer every ring.</p></div>
+      <div class="reveal card lift p-7 md:col-span-2"><div class="ic mb-3">%ICON_BUILDING%</div><h3 class="font-bold text-xl mb-1">Enterprise</h3><p class="muted text-sm">Replace brittle IVR trees with natural, multilingual agents that resolve more and hand off to humans seamlessly — at any scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="uses" class="max-w-6xl mx-auto px-5 py-24">
+  <h2 class="text-center text-3xl md:text-5xl font-black mb-3 reveal">What people build</h2>
+  <p class="text-center muted mb-14 reveal">Point Utter at a number and it handles the whole call, end to end.</p>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_SHIELD%</div><h3 class="font-bold mb-1">Call screening</h3><p class="muted text-sm">Vet unknown callers, see who &amp; why live, pick up only the ones that matter.</p></div>
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_CAL%</div><h3 class="font-bold mb-1">Appointment booking</h3><p class="muted text-sm">Capture name, service and time, confirm, write it to your calendar.</p></div>
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_MSG%</div><h3 class="font-bold mb-1">Message taking</h3><p class="muted text-sm">Take a detailed message and deliver a clean summary of the matter.</p></div>
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HEAD%</div><h3 class="font-bold mb-1">Customer support</h3><p class="muted text-sm">Answer common questions instantly, in the caller's language, 24/7.</p></div>
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_BOLT%</div><h3 class="font-bold mb-1">Lead &amp; order capture</h3><p class="muted text-sm">Qualify callers, collect details, route hot leads to a person instantly.</p></div>
+    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HAND%</div><h3 class="font-bold mb-1">Human handoff</h3><p class="muted text-sm">When it's urgent, your agent rings you in and steps back — the caller never restarts.</p></div>
+  </div>
+</section>
+
+<!-- SUPERPOWERS -->
+<section id="superpowers" class="alt line-t line-b">
+  <div class="max-w-6xl mx-auto px-5 py-24">
+    <div class="text-center mb-14">
+      <div class="pill accent mb-5 reveal">It makes calls too — not just answers them</div>
+      <h2 class="text-3xl md:text-5xl font-black reveal">Now imagine sending one <span class="accent">out</span>.</h2>
+      <p class="mt-5 muted text-lg max-w-2xl mx-auto reveal">So you never sit on hold, haggle, or dial around again. Describe the mission — Utter goes and does it.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_TAG%</div><h3 class="font-bold text-lg mb-1">Fight your bills</h3><p class="muted text-sm">Send Utter to negotiate a bill, cancel a subscription, or dispute a charge. It stays polite — you stay on the couch.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_PHONEOUT%</div><h3 class="font-bold text-lg mb-1">Call around for you</h3><p class="muted text-sm">"Find a table for four at 8." Utter rings ten places at once and books the first yes.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HOURGLASS%</div><h3 class="font-bold text-lg mb-1">Beat the hold music</h3><p class="muted text-sm">It waits on hold with the airline, bank or government office — and rings you the second a human picks up.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HEART%</div><h3 class="font-bold text-lg mb-1">Check in on loved ones</h3><p class="muted text-sm">A warm daily call to your parent — meals, meds, mood — with a gentle heads-up to you if anything seems off.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_GLOBE%</div><h3 class="font-bold text-lg mb-1">Live interpreter on the line</h3><p class="muted text-sm">Two people, two languages, one call. Utter translates both ways, in real time.</p></div>
+      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_GHOST%</div><h3 class="font-bold text-lg mb-1">Waste a scammer's time</h3><p class="muted text-sm">Forward spam to Utter and let it keep telemarketers talking in circles. Petty? Gloriously.</p></div>
+    </div>
+    <div class="text-center mt-10 reveal"><a data-book href="#book" class="btn btn-dark px-7 py-3.5">Dream one up with us →</a></div>
+  </div>
+</section>
+
+<!-- GLOBAL -->
+<section id="global" class="max-w-5xl mx-auto px-5 py-28 text-center">
+  <h2 class="text-3xl md:text-5xl font-black reveal">Speaks <span class="accent" id="langCycle">English</span></h2>
+  <p class="mt-6 muted text-lg max-w-2xl mx-auto reveal">Global by default, local in feel. Your agent matches the caller's language naturally — built on real telephony that works for a family in one city and a company across continents alike.</p>
+  
+</section>
+
+<!-- QUOTE -->
+<section class="alt line-t line-b">
+  <div class="max-w-4xl mx-auto px-5 py-20 text-center reveal">
+    <p class="text-2xl md:text-3xl font-semibold leading-snug head">"I described my front desk in two sentences. Ten minutes later it was answering real calls — in three languages."</p>
+    <p class="mt-6 muted text-sm">Early access builder · <span class="italic">placeholder, swap with a real quote</span></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="book" class="max-w-4xl mx-auto px-5 py-28 text-center">
+  <h2 class="text-4xl md:text-6xl font-black reveal">See your first<br/>agent <span class="accent">live.</span></h2>
+  <p class="mt-6 muted text-lg reveal">Book a 20-minute demo — we'll build a working voice agent for your exact use case, on a real call.</p>
+  <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center reveal">
+    <a data-book href="#" class="btn btn-dark px-8 py-4">Book a demo</a>
+    <a data-mail href="#" class="btn btn-ghost px-8 py-4">Email us</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="line-t">
+  <div class="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm muted">
+    <div class="text-2xl font-black lowercase head">utter<span class="cursor"></span></div>
+    <p>Voice agents, built by anyone.</p>
+    <p>© <span id="yr"></span> Utter · utter.sh</p>
+  </div>
+</footer>
+
+<script>
+  // ---- booking + contact targets ----
+  const BOOKING_URL  = "https://calendly.com/utterdotsh";
+  const CONTACT_EMAIL = "hello@utter.sh";
+  document.querySelectorAll('[data-book]').forEach(a => a.href = BOOKING_URL);
+  document.querySelectorAll('[data-mail]').forEach(a => a.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Utter — book a demo')}`);
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ---- inline SVG icons ----
+  const I = {
+    HOME:'<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>',
+    MIC:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>',
+    SHOP:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/></svg>',
+    BUILDING:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h6v6H9z"/></svg>',
+    SHIELD:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+    CAL:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
+    MSG:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>',
+    HEAD:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="17" y="14" width="5" height="6" rx="1.5"/></svg>',
+    BOLT:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+    HAND:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92V21a1 1 0 01-1.1 1 19 19 0 01-8.3-3 19 19 0 01-6-6A19 19 0 013.6 4.6 1 1 0 014.6 3.5H8.7a1 1 0 011 .8l.7 3.3a1 1 0 01-.3 1l-1.7 1.7a16 16 0 006 6l1.7-1.7a1 1 0 011-.3l3.3.7a1 1 0 01.8 1z"/></svg>',
+    TAG:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L2 12V2h10l8.6 8.6a2 2 0 010 2.8z"/><circle cx="7" cy="7" r="1.3"/></svg>',
+    PHONEOUT:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9V21a1 1 0 01-1.1 1 19 19 0 01-8.3-3 19 19 0 01-6-6A19 19 0 013.6 4.6 1 1 0 014.6 3.5H8.7a1 1 0 011 .8l.7 3.3a1 1 0 01-.3 1L8.4 11.2a16 16 0 006 6"/><path d="M15 3h6v6M21 3l-7 7"/></svg>',
+    HOURGLASS:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h12M6 22h12M7 2c0 5 5 6 5 10S7 17 7 22M17 2c0 5-5 6-5 10s5 5 5 10"/></svg>',
+    HEART:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 14c1.6-1.6 3-3.4 3-5.5A4.5 4.5 0 0012 5 4.5 4.5 0 002 8.5C2 13 12 21 12 21s3.9-3.1 7-7z"/></svg>',
+    GLOBE:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>',
+    GHOST:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V11a7 7 0 0114 0v10l-3-2-2 2-2-2-2 2-3-2z"/><circle cx="9.5" cy="11" r=".9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r=".9" fill="currentColor" stroke="none"/></svg>',
+  };
+  document.querySelectorAll('div,span').forEach(el=>{
+    if(el.childElementCount===0 && /%ICON_\w+%/.test(el.textContent)){
+      el.innerHTML = el.textContent.replace(/%ICON_(\w+)%/g,(m,k)=>I[k]||'');
+    }
+  });
+
+  // ---- reveal on scroll ----
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
+
+  // ---- "Hear it" audio players ----
+  const PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>';
+  const STOP='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+  let cur=null;
+  function setBtn(b,on){ b.querySelector('.pic').innerHTML=on?STOP:PLAY; const l=b.querySelector('.lbl'); if(l) l.textContent=on?'Playing…':(l.dataset.def||l.textContent); }
+  document.querySelectorAll('.hearbtn').forEach(b=>{
+    const l=b.querySelector('.lbl'); if(l) l.dataset.def=l.textContent;
+    setBtn(b,false);
+    b.addEventListener('click',()=>{
+      if(cur){cur.a.pause(); setBtn(cur.b,false); const same=cur.b===b; cur=null; if(same)return;}
+      const a=new Audio('audio/'+b.dataset.clip+'.wav?v=conv3'); setBtn(b,true);
+      a.onended=()=>{setBtn(b,false); cur=null;};
+      a.play().catch(()=>setBtn(b,false)); cur={a,b};
+    });
+  });
+
+  // ---- language cycler ----
+  const langs=['English','हिन्दी','தமிழ்','తెలుగు','বাংলা','ಕನ್ನಡ','मराठी','ગુજરાતી','اردو','ਪੰਜਾਬੀ','മലയാളം'];let li=0;
+  const langEl=document.getElementById('langCycle');
+  if(langEl){langEl.style.transition='opacity .25s';
+    setInterval(()=>{li=(li+1)%langs.length;langEl.style.opacity=0;setTimeout(()=>{langEl.textContent=langs[li];langEl.style.opacity=1},250)},1900);}
+
+  // ---- INTERACTIVE HERO: persona tabs + your-own → workflow build ----
+  const AV = s => `https://api.dicebear.com/9.x/notionists/svg?seed=${encodeURIComponent(s)}&backgroundColor=ececfb&radius=50`;
+  const personas=[
+    {avatar:AV('Priya Kapoor'),name:'Priya',role:'at home',
+     say:"Screen my unknown calls — tell me who's calling and why, and ring me if it's urgent.",
+     steps:['Greet & disclose','Detect caller & intent','Take a message','Ring me if it’s urgent']},
+    {avatar:AV('Sameer Khan'),name:'Sam',role:'café owner',
+     say:"Take table bookings and tell callers today's specials.",
+     steps:['Greet the caller','Share today’s specials','Capture booking details','Text the reservation']},
+    {avatar:AV('Dr Anand Rao'),name:'Dr. Rao',role:'clinic front desk',
+     say:"Book appointments and remind every patient the day before.",
+     steps:['Offer open slots','Confirm the appointment','Save to calendar','Day-before reminder call']},
+    {avatar:AV('Maria Garcia'),name:'Maria',role:'support lead',
+     say:"Answer FAQs 24/7 in the caller's language, escalate the hard ones.",
+     steps:['Detect the language','Answer from knowledge','Resolve or collect details','Escalate to a human']},
+  ];
+  const $=id=>document.getElementById(id);
+  const speaker=$('speaker'),pAvatar=$('pAvatar'),pName=$('pName'),pRole=$('pRole'),pSay=$('pSay'),pSpeaking=$('pSpeaking'),stepsEl=$('steps'),liveBadge=$('liveBadge');
+  const tabs=$('tabs'),ownBox=$('ownBox'),ownInput=$('ownInput'),ownGo=$('ownGo');
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const CHECK='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>';
+  let runId=0, auto=true;
+
+  async function type(el,txt,my){ el.classList.add('caret'); el.textContent=''; for(let i=0;i<txt.length;i++){ if(my!==runId)return; el.textContent+=txt[i]; await sleep(16);} el.classList.remove('caret'); }
+  function row(label){ const d=document.createElement('div'); d.className='wfstep flex items-center gap-3 text-sm';
+    d.innerHTML=`<span class="si w-5 h-5 rounded-full border flex items-center justify-center shrink-0" style="border-color:var(--line)"><span class="w-2 h-2 rounded-full" style="background:var(--accent);animation:blink 1s steps(1) infinite"></span></span><span class="head">${label}</span>`; return d; }
+
+  async function run(p){
+    const my=++runId;
+    speaker.style.opacity=0; pSpeaking.style.opacity=0; liveBadge.style.opacity=0;
+    await sleep(350); if(my!==runId)return my;
+    pAvatar.src=p.avatar; pName.textContent=p.name; pRole.textContent=p.role; pSay.textContent=''; stepsEl.innerHTML='';
+    speaker.style.opacity=1; await sleep(250); if(my!==runId)return my;
+    pSpeaking.style.opacity=1; await type(pSay,p.say,my); if(my!==runId)return my;
+    await sleep(300); if(my!==runId)return my; pSpeaking.style.opacity=0; await sleep(250); if(my!==runId)return my;
+    for(const s of p.steps){
+      const r=row(s); stepsEl.appendChild(r); requestAnimationFrame(()=>{r.style.opacity=1;r.style.transform='none';});
+      await sleep(600); if(my!==runId)return my;
+      const si=r.querySelector('.si'); si.style.borderColor='var(--accent)'; si.innerHTML=CHECK;
+      await sleep(200); if(my!==runId)return my;
+    }
+    liveBadge.style.opacity=1; return my;
+  }
+
+  function setActive(el){ tabs.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active')); if(el)el.classList.add('active'); }
+  function deriveSteps(t){ t=t.toLowerCase(); const s=['Greet & disclose'];
+    if(/book|appoint|schedul|reserv|slot|salon|clinic/.test(t)) s.push('Offer open slots','Confirm the details','Save to calendar');
+    else if(/screen|unknown|spam|who|filter|robocall/.test(t)) s.push('Detect caller & intent','Take a message','Ring you if urgent');
+    else if(/support|question|faq|help|answer|complaint/.test(t)) s.push('Detect the language','Answer from knowledge','Resolve or escalate');
+    else if(/order|lead|sell|buy|sale|quote|deliver/.test(t)) s.push('Qualify the caller','Capture the details','Route to a human');
+    else s.push('Understand the request','Run your workflow','Hand off if needed');
+    return s.slice(0,5);
+  }
+
+  tabs.querySelectorAll('.ptab[data-i]').forEach(t=>t.addEventListener('click',()=>{
+    auto=false; ownBox.classList.add('hidden'); setActive(t); run(personas[+t.dataset.i]);
+  }));
+  tabs.querySelector('[data-own]').addEventListener('click',function(){
+    auto=false; ++runId; setActive(this); ownBox.classList.remove('hidden'); ownInput.focus();
+  });
+  function buildOwn(){
+    const v=ownInput.value.trim(); if(!v)return;
+    run({avatar:AV('You'+v),name:'You',role:'your idea',say:v,steps:deriveSteps(v)});
+  }
+  ownGo.addEventListener('click',buildOwn);
+  ownInput.addEventListener('keydown',e=>{if(e.key==='Enter')buildOwn();});
+
+  (async function loop(){ let i=0; while(auto){
+    const idx=i%personas.length;
+    const tab=tabs.querySelector('.ptab[data-i="'+idx+'"]'); if(tab) setActive(tab);
+    const my=await run(personas[idx]); if(!auto||my!==runId)break; await sleep(2600); if(!auto)break; i++;
+  } })();
+</script>
+</body>
+</html>
