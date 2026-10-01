@@ -1,430 +1,944 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>utter — Voice agents, for your businesses</title>
-<meta name="description" content="Utter is a no-code platform to build voice agents and voice-AI workflows. Describe it in plain words — get a live agent that answers real calls, speaks any language, runs your workflow, and hands off to a human when it matters." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231A1916'/%3E%3Ctext x='16' y='23' font-family='Inter,sans-serif' font-size='20' font-weight='800' fill='%234F46E5' text-anchor='middle'%3Eu%3C/text%3E%3C/svg%3E" />
-<meta property="og:title" content="utter — Voice agents, for your businesses" />
-<meta property="og:description" content="No-code voice agents and voice-AI workflows for your business — any language, anywhere." />
+<title>utter — The phone, answered by an agent that knows the place</title>
+<meta name="description" content="Utter answers your calls in the caller's language, works out what they meant on your menu, your rooms or your directory, and gets the result to your team before they hang up. Try it on this page." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0A0A'/%3E%3Ctext x='16' y='23' font-family='Inter,sans-serif' font-size='20' font-weight='800' fill='%234F46E5' text-anchor='middle'%3Eu%3C/text%3E%3C/svg%3E" />
+<meta property="og:title" content="utter — The phone, answered by an agent that knows the place" />
+<meta property="og:description" content="Voice agents for restaurants, hotels and platforms. Try the menu agent right on the page." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://utter.sh" />
-<meta name="twitter:card" content="summary_large_image" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Sans+Tamil:wght@400;500&family=Noto+Sans+Telugu:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    --bg:#FFFFFF; --alt:#F7F6F3; --text:#37352F; --head:#1A1916;
-    --muted:#7C7A75; --line:#EAE8E3; --accent:#4F46E5; --accent-soft:#ECECFB;
+    --bg:#FFFFFF; --bg-2:#F8F8F6; --fg:#0B0B0D; --fg-2:#5A5A57; --fg-3:#8E8E8A;
+    --line:#E7E7E3; --line-2:#F0F0ED;
+    --accent:#4F46E5; --accent-2:#7C6CF0; --accent-wash:#EEEDFC;
+    --ok:#1F7A4D; --ok-wash:#E6F4EC; --warn:#B42318; --warn-wash:#FDECEA;
+    --ink:#0C0C11; --ink-2:#15151C; --ink-line:rgba(255,255,255,.09);
+    --card:#FFFFFF; --nav:rgba(255,255,255,.72); --dot:rgba(0,0,0,.09); --shadow:rgba(0,0,0,.35);
   }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --bg:#0E0E12; --bg-2:#15151B; --fg:#F2F2F0; --fg-2:#A9A9B2; --fg-3:#7E7E88; --line:#26262E; --line-2:#1E1E25;
+    --accent:#8B7FF5; --accent-2:#A79DF8; --accent-wash:rgba(139,127,245,.16); --ok:#5FD39A; --ok-wash:rgba(95,211,154,.14); --warn:#F08A82; --warn-wash:rgba(240,138,130,.14);
+    --card:#15151B; --nav:rgba(14,14,18,.72); --dot:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.7); color-scheme:dark } }
+  :root[data-theme="dark"]{
+    --bg:#0E0E12; --bg-2:#15151B; --fg:#F2F2F0; --fg-2:#A9A9B2; --fg-3:#7E7E88; --line:#26262E; --line-2:#1E1E25;
+    --accent:#8B7FF5; --accent-2:#A79DF8; --accent-wash:rgba(139,127,245,.16); --ok:#5FD39A; --ok-wash:rgba(95,211,154,.14); --warn:#F08A82; --warn-wash:rgba(240,138,130,.14);
+    --card:#15151B; --nav:rgba(14,14,18,.72); --dot:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.7); color-scheme:dark }
   *{box-sizing:border-box}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--accent-soft)}
-  h1,h2,h3{color:var(--head);letter-spacing:-.02em}
-  .muted{color:var(--muted)} .accent{color:var(--accent)} .head{color:var(--head)}
-  .alt{background:var(--alt)}
-  .line-t{border-top:1px solid var(--line)} .line-b{border-bottom:1px solid var(--line)}
+  html{color-scheme:light;scroll-behavior:smooth}
+  body{margin:0;overflow-x:clip;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"cv11","ss01","calt"}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,p{margin:0}
+  h1,h2,h3{letter-spacing:-.03em;text-wrap:balance;font-weight:600}
+  button{font:inherit}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500}
+  .hi{font-family:'Noto Sans Devanagari','Inter',sans-serif} .bn{font-family:'Noto Sans Bengali','Inter',sans-serif}
+  .ta{font-family:'Noto Sans Tamil','Inter',sans-serif} .te{font-family:'Noto Sans Telugu','Inter',sans-serif}
+  .wrap{max-width:1140px;margin:0 auto;padding-inline:24px}
+  .muted{color:var(--fg-2)} .faint{color:var(--fg-3)}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3)}
 
-  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
-  .card.lift:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 48px -28px rgba(26,25,22,.35);border-color:#DCDAD4}
-  .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:.4rem .85rem;font-size:.75rem;font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease,box-shadow .15s ease;white-space:nowrap}
+  .btn.sm{height:38px;padding:0 16px;font-size:14px}
+  .btn-primary{background:var(--fg);color:var(--bg);box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 8px 18px -10px rgba(0,0,0,.5)}
+  .btn-primary:hover{background:var(--fg);filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 12px 24px -10px rgba(0,0,0,.5)}
+  .btn-ghost{background:var(--card);color:var(--fg);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--fg-3)}
 
-  .btn{border-radius:999px;font-weight:600;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
-  .btn-dark{background:var(--head);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18)}
-  .btn-dark:hover{background:#000;transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
-  .btn-ghost{background:var(--bg);color:var(--head);border:1px solid var(--line)}
-  .btn-ghost:hover{background:var(--alt)}
-
-  .ptab{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s ease}
-  .ptab:hover{border-color:#D7D5CF;color:var(--head)}
-  .ptab.active{background:var(--head);color:#fff;border-color:var(--head)}
-
-  .hearbtn{cursor:pointer}
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-  .fade{transition:opacity .35s ease}
-
-  .cursor{width:9px;height:22px;background:var(--accent);display:inline-block;border-radius:2px;margin-left:3px;vertical-align:-3px;animation:blink 1.1s steps(1) infinite}
+  /* nav */
+  .nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line-2)}
+  .nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{font-weight:700;font-size:22px;letter-spacing:-.04em;display:inline-flex;align-items:center}
+  .logo i{width:8px;height:20px;background:var(--accent);border-radius:2px;margin-left:3px;animation:blink 1.1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
-  .caret{border-right:2px solid var(--accent);animation:blink 1s steps(1) infinite;padding-right:1px}
-  .wave span{display:inline-block;width:3px;margin:0 1.5px;background:var(--accent);border-radius:3px;animation:wave 1s ease-in-out infinite}
-  .wave span:nth-child(2){animation-delay:.12s}.wave span:nth-child(3){animation-delay:.24s}.wave span:nth-child(4){animation-delay:.36s}.wave span:nth-child(5){animation-delay:.48s}
-  @keyframes wave{0%,100%{height:7px}50%{height:22px}}
-  .ic{color:var(--accent)}
-  .wfstep{opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+  .links{display:none;gap:30px;font-size:14px;color:var(--fg-2);font-weight:500}
+  .links a:hover{color:var(--fg)}
+  @media(min-width:960px){.links{display:flex}}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;padding:56px 0 48px}
+  @media(min-width:1000px){.hero{padding:80px 0 72px}}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(60% 55% at 50% 35%,#000 20%,transparent 80%);-webkit-mask-image:radial-gradient(60% 55% at 50% 35%,#000 20%,transparent 80%);pointer-events:none}
+  .hero::after{content:"";position:absolute;inset:auto -10% -30% -10%;height:70%;background:radial-gradient(40% 50% at 70% 50%,rgba(79,70,229,.14),transparent 70%),radial-gradient(35% 45% at 25% 40%,rgba(31,122,77,.10),transparent 70%),radial-gradient(30% 40% at 55% 80%,rgba(180,83,42,.08),transparent 70%);filter:blur(30px);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:40px;align-items:center;max-width:1240px}
+  @media(min-width:1000px){.hero .wrap{grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px}}
+  .hero h1{font-size:clamp(40px,4.8vw,58px);line-height:1.03;max-width:12ch}
+  .hero .lede{margin-top:22px;font-size:18px;line-height:1.55;color:var(--fg-2);max-width:44ch}
+  .cta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pickers{margin-top:36px;display:flex;flex-direction:column;gap:12px}
+  .pickers .lbl{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .seg{display:inline-flex;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;align-self:flex-start}
+  .seg button{appearance:none;border:0;background:transparent;font-size:14px;font-weight:600;color:var(--fg-2);padding:8px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+  .seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+  .langs{display:flex;gap:6px;flex-wrap:wrap}
+  .langs button{appearance:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:500;color:var(--fg-2);cursor:pointer;transition:all .15s}
+  .langs button:hover{border-color:#C9C9C4;color:var(--fg)}
+  .langs button[aria-pressed="true"]{background:var(--accent-wash);border-color:#CFCBF7;color:var(--accent);font-weight:600}
+
+  /* the scene: device + trace */
+  .scene{position:relative;display:grid;grid-template-columns:1fr;gap:20px;align-items:start;justify-items:center}
+  @media(min-width:760px){.scene{grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:20px;justify-items:stretch}}
+  .device{width:100%;max-width:290px;aspect-ratio:9/18.6;border-radius:46px;padding:9px;background:linear-gradient(160deg,#4A4A52 0%,#1B1B20 35%,#26262C 70%,#3A3A42 100%);box-shadow:0 0 0 1px #09090B,0 50px 90px -40px rgba(0,0,0,.6),0 20px 40px -24px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.1);position:relative;z-index:2;margin-inline:auto}
+  .device::before,.device::after{content:"";position:absolute;width:2px;border-radius:1px;background:#1F1F25}
+  .device::before{left:-2px;top:120px;height:34px;box-shadow:0 56px 0 0 #1F1F25}
+  .device::after{right:-2px;top:150px;height:64px}
+  .device .scr{height:100%;border-radius:38px;background:#0B0B10;overflow:hidden;position:relative;display:flex;flex-direction:column;color:#fff}
+  .device .scr::before{content:"";position:absolute;inset:0 0 auto;height:46%;background:radial-gradient(80% 60% at 50% 0%,rgba(124,108,240,.35),transparent 70%);pointer-events:none}
+  .device .scr>*{position:relative}
+  .sb{display:flex;align-items:center;justify-content:space-between;padding:12px 24px 0;font-size:12px;font-weight:600;letter-spacing:.01em}
+  .sb .isl{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:90px;height:26px;border-radius:999px;background:#000}
+  .sb .sig{display:inline-flex;gap:3px;align-items:flex-end;height:10px}
+  .sb .sig i{width:3px;background:#fff;border-radius:1px}
+  .sb .sig i:nth-child(1){height:4px}.sb .sig i:nth-child(2){height:6px}.sb .sig i:nth-child(3){height:8px}.sb .sig i:nth-child(4){height:10px}
+  .sb .bat{width:22px;height:11px;border:1.5px solid rgba(255,255,255,.7);border-radius:3px;position:relative}
+  .sb .bat::after{content:"";position:absolute;inset:2px;right:4px;background:#fff;border-radius:1px}
+  .who{text-align:center;padding:30px 0 6px}
+  .who .av{width:56px;height:56px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(145deg,#8A7CF5,#4F46E5);display:grid;place-items:center;font-weight:600;font-size:18px;letter-spacing:-.02em;box-shadow:0 10px 24px -10px rgba(79,70,229,.8)}
+  .who b{display:block;font-size:19px;font-weight:600;letter-spacing:-.02em}
+  .who span{display:block;font-size:12.5px;color:rgba(255,255,255,.55);margin-top:3px;font-variant-numeric:tabular-nums}
+  .bars{display:flex;align-items:center;justify-content:center;gap:3px;height:22px;margin:6px 0 4px}
+  .bars i{width:3px;border-radius:2px;background:rgba(255,255,255,.35);height:4px;transition:height .12s ease,background .3s}
+  .device.talking .bars i{background:var(--accent-2);animation:bar 1.1s ease-in-out infinite}
+  .device.caller .bars i{background:#F5C84B}
+  .bars i:nth-child(2n){animation-delay:.1s}.bars i:nth-child(3n){animation-delay:.22s}.bars i:nth-child(5n){animation-delay:.3s}.bars i:nth-child(7n){animation-delay:.42s}
+  @keyframes bar{0%,100%{height:4px}50%{height:18px}}
+  .cap{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;margin-bottom:6px}
+  .thread{flex:1;display:flex;flex-direction:column;gap:7px;overflow:hidden;justify-content:flex-start;padding:0 12px 8px;}
+  .thread::-webkit-scrollbar{display:none}
+  .thread>:first-child{margin-top:auto}
+  .thread{mask-image:linear-gradient(to bottom,transparent,#000 18%);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%)}
+  .bub{max-width:92%;padding:8px 11px;border-radius:16px;font-size:13px;line-height:1.4;animation:pop .35s cubic-bezier(.2,.8,.2,1) both;word-wrap:break-word}
+  .bub small{display:block;font-size:11px;opacity:.6;margin-top:4px;font-family:'Inter',sans-serif;font-style:italic}
+  .bub.agent{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);border-bottom-left-radius:5px;backdrop-filter:blur(6px)}
+  .bub.caller{align-self:flex-end;background:linear-gradient(135deg,#6A5CF0,#4F46E5);border-bottom-right-radius:5px;box-shadow:0 6px 16px -8px rgba(79,70,229,.8)}
+  .bub.caller .cur{display:inline-block;width:2px;height:1em;background:#fff;vertical-align:-2px;margin-left:1px;animation:blink .8s steps(1) infinite}
+  .bub.typing{display:inline-flex;gap:4px;padding:11px 14px}
+  .bub.typing i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);animation:dot 1.1s ease-in-out infinite}
+  .bub.typing i:nth-child(2){animation-delay:.15s}.bub.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes dot{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-3px);opacity:1}}
+  @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+  .ctl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:8px 36px 6px}
+  .ctl i{display:grid;place-items:center;height:46px;border-radius:50%;width:46px;margin:0 auto;background:rgba(255,255,255,.12);color:#fff}
+  .ctl i.end{background:#E5484D;box-shadow:0 8px 20px -8px rgba(229,72,77,.8)}
+  .ctl span{display:block;text-align:center;font-size:9.5px;color:rgba(255,255,255,.5);margin-top:4px}
+  .home{width:110px;height:4px;border-radius:2px;background:rgba(255,255,255,.35);margin:6px auto 8px}
+
+  /* say it yourself */
+  .say{margin-top:14px;max-width:320px;margin-inline:auto}
+  .say form{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 4px 4px 16px;box-shadow:0 2px 6px rgba(0,0,0,.05),0 12px 24px -16px rgba(0,0,0,.25);transition:box-shadow .2s,border-color .2s}
+  .say form:focus-within{border-color:#B9B5F3;box-shadow:0 0 0 4px var(--accent-wash)}
+  .say input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:14px;color:var(--fg)}
+  .say input::placeholder{color:var(--fg-3)}
+  .say .mic,.say .go{appearance:none;border:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none}
+  .say .mic{background:transparent;color:var(--fg-2)} .say .mic:hover{background:var(--bg-2)} .say .mic[hidden]{display:none}
+  .say .mic.on{background:var(--warn-wash);color:var(--warn);animation:blink 1s steps(1) infinite}
+  .say .go{background:var(--fg);color:var(--bg)}
+  .say .hint{font-size:12px;color:var(--fg-3);text-align:center;margin-top:10px;line-height:1.45}
+  .tries{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+  .tries button{appearance:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12px;color:var(--fg-2);cursor:pointer;transition:all .15s}
+  .tries button:hover{border-color:#C9C9C4;color:var(--fg);background:var(--bg-2)}
+
+  /* the trace */
+  .trace{min-width:0;position:relative;padding:18px 0 0}
+  @media(min-width:760px){.trace{padding:36px 0 0 0;z-index:3}}
+  .trace .eyebrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+  @media(min-width:1240px){.trace .eyebrow{padding-left:64px}}
+  .trace .eyebrow a{font-weight:600;letter-spacing:0;text-transform:none;font-size:12px;color:var(--accent);cursor:pointer}
+  .trace .eyebrow a[hidden]{display:none}
+  .steps{display:flex;flex-direction:column;gap:10px;position:relative;scrollbar-width:none}
+  .steps::-webkit-scrollbar{display:none}
+  @media(min-width:1240px){.steps::before{content:"";position:absolute;left:40px;top:10px;bottom:10px;width:1px;background:linear-gradient(to bottom,transparent,var(--line) 10%,var(--line) 90%,transparent)}}
+  .step{position:relative;display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.03),0 16px 32px -24px rgba(0,0,0,.3);animation:pop .4s cubic-bezier(.2,.8,.2,1) both;min-width:0}
+  @media(min-width:1240px){.step{margin-left:64px}.step::before{content:attr(data-t);position:absolute;left:-64px;top:15px;width:30px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3)}.step::after{content:"";position:absolute;left:-28px;top:19px;width:7px;height:7px;border-radius:50%;background:var(--fg-3);box-shadow:0 0 0 3px var(--bg)}.step.ok::after{background:var(--ok)}.step.warn::after{background:var(--warn)}}
+  .step .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--accent-wash);color:var(--accent)}
+  .step.ok .ic{background:var(--ok-wash);color:var(--ok)}
+  .step.warn .ic{background:var(--warn-wash);color:var(--warn)}
+  .step b{display:block;font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+  .step span{display:block;font-size:13.5px;color:var(--fg-2);margin-top:2px;line-height:1.45}
+  .step .mini{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;background:var(--bg-2)}
+  .step .mini .row{display:flex;justify-content:space-between;gap:12px;padding:2px 0;font-variant-numeric:tabular-nums}
+  .step .mini .row.total{border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-weight:600;color:var(--fg)}
+  .step .why{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+  .step .why em{font-style:normal;font-size:12px;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--fg-2)}
+  .step .why em b{display:inline;font-size:12px;color:var(--fg)}
+  .placeholder{border:1px dashed var(--line);border-radius:14px;padding:14px;color:var(--fg-3);font-size:13.5px}
+  @media(min-width:1240px){.placeholder{margin-left:64px}}
+  .order{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--card);margin-top:10px}
+  @media(min-width:1240px){.order{margin-left:64px}}
+  .order[hidden]{display:none}
+  .order .eyebrow{margin-bottom:6px;padding:0}
+  .order .row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:3px 0;font-variant-numeric:tabular-nums}
+  .order .row small{display:block;color:var(--fg-3);font-size:12px}
+  .order .row.total{border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-weight:600}
+
+  /* proof strip */
+  .strip{border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);background:var(--bg-2)}
+  .strip .wrap{display:grid;grid-template-columns:1fr;gap:16px;padding-block:26px;font-size:14.5px;color:var(--fg-2)}
+  @media(min-width:760px){.strip .wrap{grid-template-columns:repeat(3,1fr);gap:0}.strip p{padding:0 28px;border-left:1px solid var(--line)}.strip p:first-child{padding-left:0;border:0}}
+  .strip b{color:var(--fg);font-weight:600;display:block;margin-bottom:2px}
+
+  section.block{padding:96px 0}
+  @media(min-width:960px){section.block{padding:128px 0}}
+  .block h2{font-size:clamp(32px,4.6vw,52px);line-height:1.06;max-width:20ch}
+  .block .sub{margin-top:18px;font-size:17px;color:var(--fg-2);max-width:56ch;line-height:1.6}
+
+  /* the week after: dark, pinned device */
+  .week{background:var(--ink);color:#C9C9D2;position:relative;overflow:clip}
+  .week::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 40% at 20% 20%,rgba(79,70,229,.22),transparent 70%),radial-gradient(40% 40% at 85% 70%,rgba(31,122,77,.14),transparent 70%);pointer-events:none}
+  .week::after{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;mix-blend-mode:overlay}
+  .week .wrap{position:relative;z-index:1}
+  .week .eyebrow{color:#9D95F5}
+  .week h2{color:#fff}
+  .week .sub{color:#A3A3AE}
+  .story{margin-top:64px;display:grid;grid-template-columns:1fr;gap:40px}
+  @media(min-width:900px){.story{grid-template-columns:360px 1fr;gap:88px;align-items:start}}
+  .pin{display:none}
+  @media(min-width:900px){.pin{display:block;position:sticky;top:88px}}
+  .pin .device{box-shadow:0 0 0 1px #000,0 60px 120px -40px rgba(0,0,0,.9),0 0 120px -20px rgba(79,70,229,.35),inset 0 0 0 1px rgba(255,255,255,.1)}
+  .device .app{height:100%;display:flex;flex-direction:column;background:#F6F6F4;color:#0B0B0D;--fg:#0B0B0D;--fg-2:#5A5A57;--fg-3:#8E8E8A;--line:#E7E7E3;--bg-2:#F8F8F6;--accent:#4F46E5;--accent-wash:#EEEDFC;--ok:#1F7A4D;--ok-wash:#E6F4EC;--warn:#B42318;--warn-wash:#FDECEA;animation:fade .45s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .app .sb2{height:46px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 6px;font-size:12px;font-weight:600;background:#fff;position:relative}
+  .app .sb2 .isl{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:90px;height:26px;border-radius:999px;background:#000}
+  .app .hd{padding:10px 14px 12px;font-size:14px;font-weight:600;border-bottom:1px solid var(--line);background:#fff;display:flex;justify-content:space-between;align-items:center;gap:8px;flex:none;letter-spacing:-.01em}
+  .app .hd small{font-weight:500;color:var(--fg-3);font-size:11px;text-align:right}
+  .app .bd{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;min-height:0}
+  .app .wa{background:#E5DDD5}
+  .app .wa .m{max-width:88%;padding:7px 10px;border-radius:10px;background:#fff;font-size:12.5px;line-height:1.4;box-shadow:0 1px 0 rgba(0,0,0,.05);animation:pop .3s ease both;align-self:flex-start}
+  .app .wa .m.me{align-self:flex-end;background:#DCF8C6}
+  .app .wa .m small{display:block;font-size:10px;color:var(--fg-3);text-align:right;margin-top:2px}
+  .app .quick{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;background:#F0F0ED;border-top:1px solid var(--line);flex:none}
+  .app .quick button,.app .act{appearance:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:600;color:var(--fg);cursor:pointer;transition:all .15s;text-align:left}
+  .app .quick button:hover,.app .act:hover{background:var(--bg-2)}
+  .app .act.y{background:var(--fg);color:#fff;border-color:var(--fg)}
+  .app .act[disabled],.app .quick button[disabled]{opacity:.5;cursor:default}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12.5px;animation:pop .3s ease both;flex:none;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .card b{display:block;font-size:13px}
+  .card .l{display:flex;justify-content:space-between;gap:10px;padding:2px 0;font-variant-numeric:tabular-nums}
+  .card .l small{display:block;color:var(--fg-3);font-size:11px}
+  .card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .card .st{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--accent-wash);color:var(--accent);margin-bottom:4px}
+  .card .st.ok{background:var(--ok-wash);color:var(--ok)} .card .st.warn{background:var(--warn-wash);color:var(--warn)}
+  .card .note{color:var(--fg-2);margin-top:4px}
+  .score .l span:last-child{font-weight:600} .score .l.ok span:last-child{color:var(--ok)} .score .l.warn span:last-child{color:var(--warn)}
+  .sms .m{background:#fff;border-radius:12px;padding:9px 11px;font-size:12.5px;line-height:1.45;animation:pop .3s ease both;align-self:flex-start;max-width:92%}
+  .sms .m.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+  .sms .from{font-size:11px;color:var(--fg-3);text-align:center}
+
+  .weektabs{margin-top:28px}
+  .week .seg{background:rgba(255,255,255,.06);border-color:var(--ink-line)}
+  .week .seg button{color:#A3A3AE}
+  .week .seg button[aria-selected="true"]{background:#fff;color:#0B0B0D}
+  .chapters{display:flex;flex-direction:column}
+  .ch{padding:9vh 0;border-bottom:1px solid var(--ink-line)}
+  .ch:last-child{border-bottom:0}
+  @media(min-width:900px){.ch{min-height:60vh;display:flex;flex-direction:column;justify-content:center;opacity:.3;transition:opacity .4s}.ch.on{opacity:1}}
+  .ch .when{font-size:12px;color:#8B8B97;font-variant-numeric:tabular-nums;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .ch .when .n{font-family:'JetBrains Mono',monospace;color:#9D95F5}
+  .ch h3{font-size:clamp(24px,3vw,34px);line-height:1.12;color:#fff}
+  .ch p{margin-top:14px;color:#A3A3AE;font-size:16px;line-height:1.65;max-width:46ch}
+  .ch .tag{margin-top:16px;align-self:flex-start}
+  .ch .mob{margin-top:24px}
+  @media(min-width:900px){.ch .mob{display:none}}
+  .mob .device{aspect-ratio:9/15.5}
+  @media(max-width:759px){.device{aspect-ratio:9/16;max-width:300px}.mob .device{aspect-ratio:9/14.5}.hero{padding-top:40px}.hero .wrap{gap:28px}.hero .lede{font-size:17px}.pickers{margin-top:26px}.ch{padding:7vh 0}section.block{padding:72px 0}}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px}
+  .tag.live{background:rgba(31,122,77,.18);color:#5FD39A}
+  .tag.live::before{content:"";width:6px;height:6px;border-radius:50%;background:#5FD39A;animation:blink 1.6s steps(1) infinite}
+  .tag.soon{background:rgba(255,255,255,.06);color:#A3A3AE;border:1px solid var(--ink-line)}
+
+  /* domains */
+  .for{position:relative;overflow:hidden;background:var(--bg-2);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+  .for .street{position:absolute;left:0;right:0;bottom:0;height:150px;color:var(--fg);opacity:.14;pointer-events:none}
+  .for .street svg{width:100%;height:100%}
+  .for .wrap{position:relative;z-index:1;padding-bottom:120px}
+  .doms{margin-top:52px;display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:760px){.doms{grid-template-columns:repeat(3,1fr)}}
+  .dom{border:1px solid var(--line);border-radius:20px;padding:26px;background:var(--card);display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .dom:hover{transform:translateY(-3px);box-shadow:0 24px 48px -32px var(--shadow)}
+  .dom .d{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;margin-bottom:4px}
+  .dom h3{font-size:19px}
+  .dom p{font-size:14.5px;color:var(--fg-2);line-height:1.55}
+  .dom .q{font-size:14px;color:var(--fg);padding:10px 12px;border-radius:10px;background:var(--bg-2);border:1px solid var(--line-2);margin-top:4px}
+  .dom .go{font-size:13px;font-weight:600;color:var(--accent);margin-top:auto;padding-top:6px}
+
+
+  /* board */
+  .board{margin-top:44px;display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:640px){.board{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.board{grid-template-columns:repeat(4,1fr)}}
+  .tile{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:16px;display:flex;flex-direction:column;gap:8px;min-height:150px;animation:pop .5s cubic-bezier(.2,.8,.2,1) both;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+  .tile:hover{transform:translateY(-2px);box-shadow:0 20px 40px -30px var(--shadow)}
+  .tile .dchip{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--bg-2);color:var(--fg-3);border:1px solid var(--line-2)}
+  .tile .dchip.rest{color:#1F6B4A} .tile .dchip.hotel{color:#7B6AB8} .tile .dchip.plat{color:#B4532A}
+  .tile .said{font-size:15.5px;font-weight:500;line-height:1.35;color:var(--fg)}
+  .tile .said small{display:block;font-size:12.5px;color:var(--fg-3);font-weight:400;margin-top:3px}
+  .tile .arrow{color:var(--fg-3);font-size:14px}
+  .tile .got{margin-top:auto}
+  .tile .got b{display:block;font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .tile .got small{display:block;font-size:12px;color:var(--fg-2);margin-top:3px;max-height:0;opacity:0;transition:max-height .25s,opacity .25s}
+  .tile:hover .got small{max-height:60px;opacity:1}
+  .tile.described .got b{color:var(--accent)} .tile.exact .got b{color:var(--ok)} .tile.unavailable .got b,.tile.none .got b{color:var(--warn)} .tile.several .got b{color:var(--fg-2)}
+  .boardbar{margin-top:16px;display:flex;align-items:center;gap:14px;font-size:13px}
+  /* read along */
+  .readtabs{margin-top:32px}
+  .read[hidden]{display:none}
+  .read header .dchip{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line-2);white-space:nowrap}
+  .read header .dchip.rest{color:#1F6B4A} .read header .dchip.hotel{color:#7B6AB8} .read header .dchip.plat{color:#B4532A}
+  .reads{margin-top:20px;display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:760px){.reads{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1100px){.reads{grid-template-columns:repeat(3,1fr)}}
+  .read{border:1px solid var(--line);border-radius:18px;background:var(--card);display:flex;flex-direction:column;overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+  .read:hover{border-color:var(--fg-3)} .read.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  .read header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-2)}
+  .read header b{font-weight:600;font-size:15px;letter-spacing:-.01em;flex:1;min-width:0}
+  .read .lchip{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--accent-wash);color:var(--accent);white-space:nowrap}
+  .read .count{font-size:12px;color:var(--fg-3);white-space:nowrap}
+  .rthread{height:300px;overflow:auto;padding:12px 14px;display:flex;flex-direction:column;gap:7px;background:var(--bg-2);scrollbar-width:thin}
+  .rthread:empty::before{content:"Tap to read the call";color:var(--fg-3);font-size:13px;margin:auto}
+  .rm{max-width:88%;padding:8px 11px;border-radius:14px;font-size:13.5px;line-height:1.4;animation:pop .3s ease both;background:var(--card);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px}
+  .rm.caller{align-self:flex-end;background:var(--fg);color:var(--bg);border-color:var(--fg);border-bottom-left-radius:14px;border-bottom-right-radius:5px}
+  .read footer{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:12.5px;color:var(--fg-2);border-top:1px solid var(--line-2)}
+  .read footer span{flex:1}
+  .rplay{appearance:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--fg);cursor:pointer;white-space:nowrap}
+  .read.on .rplay{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  .final{position:relative;overflow:hidden;background:var(--ink);color:#fff;border:1px solid var(--ink-line);border-radius:32px;padding:64px 24px;text-align:center}
+  @media(min-width:860px){.final{padding:96px 40px}}
+  .final::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 100%,rgba(79,70,229,.35),transparent 70%)}
+  .final>*{position:relative}
+  .final h2{color:#fff;font-size:clamp(34px,5vw,60px);margin-inline:auto}
+  .final p{color:rgba(255,255,255,.65);margin-top:16px;font-size:17px}
+  .final .btn-primary{background:#fff;color:#0B0B0D} .final .btn-primary:hover{background:#F2F2F0}
+  .final .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.25)} .final .btn-ghost:hover{background:rgba(255,255,255,.08)}
+  footer{padding:40px 0 48px;font-size:13.5px;color:var(--fg-3)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.logo i,.bars i,.tag.live::before,.bub,.step,.app,.card,.m,.wv i{animation:none!important}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<header class="sticky top-0 z-50 bg-white/85 backdrop-blur line-b">
-  <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="#top" class="text-2xl font-black tracking-tight lowercase head">utter<span class="cursor"></span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm muted">
-      <a href="#how" class="hover:text-black transition">How it works</a>
-      <a href="#hear" class="hover:text-black transition">Hear it</a>
-      <a href="#everyone" class="hover:text-black transition">For everyone</a>
-      <a href="#uses" class="hover:text-black transition">Use cases</a>
-      <a href="#superpowers" class="hover:text-black transition">Superpowers</a>
-      <a href="#global" class="hover:text-black transition">Global</a>
-    </div>
-    <a data-book href="#book" class="btn btn-dark text-sm px-5 py-2">Book a demo</a>
-  </nav>
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">utter<i></i></a>
+    <nav class="links">
+      <a href="#try">Try it</a>
+      <a href="#week">The week after</a>
+      <a href="#for">Who it's for</a>
+      <a href="#calls">Real calls</a>
+    </nav>
+    <a data-book href="#" class="btn btn-primary sm">Book a demo</a>
+  </div>
 </header>
 
 <main id="top">
 
 <!-- HERO -->
-<section class="max-w-6xl mx-auto px-5 pt-20 md:pt-28 pb-12 text-center">
-  <a href="#how" class="pill accent mb-8 hover:bg-[var(--alt)] transition">
-    <span class="wave inline-flex items-end h-4"><span></span><span></span><span></span><span></span><span></span></span>
-    No-code voice AI · now in early access
-  </a>
-  <h1 class="text-5xl md:text-7xl font-black leading-[1.04]">
-    Voice agents,<br/>for your <span class="accent">businesses</span>.
-  </h1>
-  <p class="mt-7 text-lg md:text-xl muted max-w-2xl mx-auto leading-relaxed">
-    Describe what you want in plain words. Utter builds a live voice agent that answers
-    real calls, speaks any language, runs your workflow, and hands off to a human when it matters.
-  </p>
-  <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-    <a data-book href="#book" class="btn btn-dark px-7 py-3.5">Book a demo</a>
-    <a href="#how" class="btn btn-ghost px-7 py-3.5">See how it works</a>
-  </div>
-
-  <!-- INTERACTIVE SHOWCASE: pick a persona or type your own → watch Utter build -->
-  <div class="mt-14 max-w-4xl mx-auto reveal">
-    <div class="flex flex-wrap justify-center gap-2 mb-4" id="tabs">
-      <button class="ptab active" data-i="0">Priya · home</button>
-      <button class="ptab" data-i="1">Sam · café</button>
-      <button class="ptab" data-i="2">Dr. Rao · clinic</button>
-      <button class="ptab" data-i="3">Maria · support</button>
-      <button class="ptab" data-own>✎ Your own</button>
-    </div>
-
-    <div id="ownBox" class="hidden mb-4 flex gap-2 max-w-xl mx-auto">
-      <input id="ownInput" type="text" maxlength="90" placeholder="Describe your agent… e.g. Book appointments for my salon"
-        class="flex-1 rounded-full px-5 py-3 text-sm outline-none" style="border:1px solid var(--line);background:var(--bg);color:var(--head)" />
-      <button id="ownGo" class="btn btn-dark px-5 py-3 text-sm">Build →</button>
-    </div>
-
-    <div class="card overflow-hidden text-left">
-      <div class="grid md:grid-cols-2">
-        <!-- SPEAKER -->
-        <div class="p-7 flex flex-col line-b md:border-b-0 md:border-r" style="border-color:var(--line);height:340px">
-          <div class="text-xs uppercase tracking-wider muted mb-5">Someone says…</div>
-          <div id="speaker" class="flex items-center gap-3 mb-4 fade">
-            <img id="pAvatar" alt="" class="shrink-0 w-11 h-11 rounded-full object-cover" style="background:var(--accent-soft)" />
-            <div><div id="pName" class="font-semibold head leading-tight">Priya</div><div id="pRole" class="text-xs muted">at home</div></div>
-          </div>
-          <div class="rounded-2xl px-4 py-3 overflow-hidden" style="background:var(--alt);height:118px">
-            <p id="pSay" class="text-base leading-relaxed head"></p>
-          </div>
-          <div id="pSpeaking" class="text-[11px] accent font-medium mt-3 flex items-center gap-2 fade opacity-0">
-            <span class="wave inline-flex items-end h-3"><span></span><span></span><span></span><span></span><span></span></span> speaking…
-          </div>
+<section class="hero" id="try">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">For restaurants, hotels and platforms</p>
+      <h1 style="margin-top:18px">The phone, answered by someone who <span class="serif">knows the place</span>.</h1>
+      <p class="lede">Utter picks up in the caller's language, works out what they meant on your menu, your rooms or your directory, and gets the result to your team before they hang up.</p>
+      <div class="cta">
+        <a data-book href="#" class="btn btn-primary">Book a demo</a>
+        <a href="#say" class="btn btn-ghost">Say something to it →</a>
+      </div>
+      <div class="pickers">
+        <span class="lbl">Watch a call for</span>
+        <div class="seg" role="tablist" aria-label="Watch a call for">
+          <button role="tab" aria-selected="true" data-scn="rest">Restaurant</button>
+          <button role="tab" aria-selected="false" data-scn="hotel">Hotel</button>
+          <button role="tab" aria-selected="false" data-scn="plat">Platform</button>
         </div>
-        <!-- BUILDER -->
-        <div class="p-7 alt flex flex-col" style="height:340px">
-          <div class="flex items-center justify-between mb-5">
-            <div class="text-xs uppercase tracking-wider muted">Utter builds the workflow</div>
-            <div id="liveBadge" class="text-[11px] font-bold accent flex items-center gap-1.5 fade opacity-0"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>LIVE</div>
-          </div>
-          <div id="steps" class="space-y-2.5 overflow-hidden" style="height:215px"></div>
+        <span class="lbl" id="langLbl">The caller speaks</span>
+        <div class="langs" id="langs" aria-label="The caller speaks">
+          <button aria-pressed="true" data-lang="hi">हिन्दी</button>
+          <button aria-pressed="false" data-lang="ta">தமிழ்</button>
+          <button aria-pressed="false" data-lang="te">తెలుగు</button>
+          <button aria-pressed="false" data-lang="bn">বাংলা</button>
+          <button aria-pressed="false" data-lang="en">English</button>
         </div>
       </div>
     </div>
-  </div>
 
-</section>
-
-<!-- STATS -->
-<section class="alt line-t line-b">
-  <div class="max-w-5xl mx-auto px-5 py-14 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    <div class="reveal"><div class="text-4xl font-black head">Any</div><div class="text-sm muted mt-1">language, matched live</div></div>
-    <div class="reveal"><div class="text-4xl font-black head">Real</div><div class="text-sm muted mt-1">phone calls, real voice</div></div>
-    <div class="reveal"><div class="text-4xl font-black head">1‑tap</div><div class="text-sm muted mt-1">human handoff</div></div>
-    <div class="reveal"><div class="text-4xl font-black head">0</div><div class="text-sm muted mt-1">lines of code</div></div>
-  </div>
-</section>
-
-<!-- CUSTOMERS / TRUSTED BY -->
-<section id="customers" class="max-w-5xl mx-auto px-5 pt-16 pb-4 text-center">
-  <p class="text-xs uppercase tracking-wider muted mb-8 reveal">Trusted by businesses building with Utter</p>
-  <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 reveal">
-    <a href="https://localmama.in" target="_blank" rel="noopener" aria-label="Local Mama" class="inline-flex items-center transition hover:opacity-80">
-      <img src="logos/localmama.png" alt="Local Mama" class="h-20 md:h-28 w-auto object-contain" />
-    </a>
-  </div>
-</section>
-
-<!-- HEAR (prominent audio samples) -->
-<section id="hear" class="max-w-5xl mx-auto px-5 py-24">
-  <h2 class="text-center text-3xl md:text-5xl font-black mb-3 reveal">Hear Utter on a real call</h2>
-  <p class="text-center muted mb-12 reveal">Real two-way conversations — caller and agent — generated by Utter. Tap play.</p>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="screening">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Call screening</span><span class="block text-xs muted">English · courier at the gate</span></span>
-    </button>
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="booking">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Appointment booking</span><span class="block text-xs muted">हिन्दी · books a haircut</span></span>
-    </button>
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="support">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Customer support</span><span class="block text-xs muted">தமிழ் · where's my order?</span></span>
-    </button>
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="handoff">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Human handoff</span><span class="block text-xs muted">తెలుగు · urgent, get me a person</span></span>
-    </button>
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="bengali">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Appointment reminder</span><span class="block text-xs muted">বাংলা · clinic reminder call</span></span>
-    </button>
-    <button class="hearbtn card lift p-5 flex items-center gap-4 text-left w-full reveal" data-clip="ordering">
-      <span class="pic shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white" style="background:var(--accent)"></span>
-      <span class="min-w-0"><span class="block font-bold head">Order taking</span><span class="block text-xs muted">ಕನ್ನಡ · place a pizza order</span></span>
-    </button>
-  </div>
-</section>
-
-<!-- HOW -->
-<section id="how" class="max-w-6xl mx-auto px-5 py-24">
-  <h2 class="text-center text-3xl md:text-5xl font-black mb-4 reveal">Live in three steps</h2>
-  <p class="text-center muted mb-14 reveal">No engineers, no integrations, no waiting.</p>
-  <div class="grid md:grid-cols-3 gap-5">
-    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">01</div><h3 class="font-bold text-xl mb-2">Describe your agent</h3><p class="muted">Say what it should do in plain words. Pick a voice and the languages it should speak.</p></div>
-    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">02</div><h3 class="font-bold text-xl mb-2">Utter builds the flow</h3><p class="muted">It wires the whole pipeline — listen, understand, respond, run tools, capture, escalate.</p></div>
-    <div class="reveal card lift p-8"><div class="accent font-black text-4xl mb-4">03</div><h3 class="font-bold text-xl mb-2">Connect a number</h3><p class="muted">Point a phone number at it and your agent is taking real calls — anywhere on earth.</p></div>
-  </div>
-</section>
-
-<!-- FOR EVERYONE -->
-<section id="everyone" class="alt line-t line-b">
-  <div class="max-w-6xl mx-auto px-5 py-24">
-    <h2 class="text-center text-3xl md:text-5xl font-black mb-4 reveal">One platform. Everyone.</h2>
-    <p class="text-center muted mb-14 reveal">From one person at home to a company across continents.</p>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="reveal card lift p-8 md:row-span-2 flex flex-col justify-between">
-        <div><div class="ic mb-4">%ICON_HOME%</div><h3 class="font-bold text-2xl mb-2">Household</h3><p class="muted">Screen unknown callers, block spam, take messages, and get the gist on your screen — pick up only what matters. Never lose a call to a robocall again.</p></div>
-        <div class="mt-6 text-sm accent font-semibold">Your personal call screener →</div>
+    <div class="scene">
+      <div>
+        <div class="device" id="phone">
+          <div class="scr">
+            <div class="sb"><span>9:41</span><span class="isl"></span><span style="display:inline-flex;gap:6px;align-items:center"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"></span></span></div>
+            <div class="who"><div class="av" id="av">MK</div><b id="who">Madras Kitchen</b><span id="timer">0:00</span></div>
+            <div class="bars" id="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="cap">Live transcript</div>
+            <div class="thread" id="thread"></div>
+            <div class="ctl">
+              <div><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M3 3l18 18"/></svg></i><span>mute</span></div>
+              <div><i class="end"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M3.6 14.3c3.9-3.9 12.9-3.9 16.8 0l-2.1 2.1c-.4.4-1 .5-1.5.3l-2.6-1.3c-.5-.2-.8-.7-.8-1.2v-1.6c-2-.6-4.4-.6-6.4 0v1.6c0 .5-.3 1-.8 1.2l-2.6 1.3c-.5.2-1.1.1-1.5-.3z"/></svg></i><span>end</span></div>
+              <div><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg></i><span>speaker</span></div>
+            </div>
+            <div class="home"></div>
+          </div>
+        </div>
+        <div class="say" id="say">
+          <form id="sayForm" autocomplete="off">
+            <input id="sayInput" type="text" maxlength="120" placeholder="Say what a caller would say…" aria-label="Say what a caller would say" />
+            <button type="button" class="mic" id="mic" hidden aria-label="Speak instead"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></button>
+            <button type="submit" class="go" aria-label="Send"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+          </form>
+          <div class="tries" id="tries"></div>
+          <p class="hint" id="hint"></p>
+        </div>
       </div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_MIC%</div><h3 class="font-bold text-xl mb-1">Creators &amp; solo</h3><p class="muted text-sm">A 24/7 line that answers FAQs, books you, and routes only the calls worth your time.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_SHOP%</div><h3 class="font-bold text-xl mb-1">Small business</h3><p class="muted text-sm">A reception that never sleeps — capture leads, take orders, schedule, answer every ring.</p></div>
-      <div class="reveal card lift p-7 md:col-span-2"><div class="ic mb-3">%ICON_BUILDING%</div><h3 class="font-bold text-xl mb-1">Enterprise</h3><p class="muted text-sm">Replace brittle IVR trees with natural, multilingual agents that resolve more and hand off to humans seamlessly — at any scale.</p></div>
+      <div class="trace">
+        <p class="eyebrow"><span>What Utter did, as it happened</span><a id="replay" hidden>Replay the demo</a></p>
+        <div class="steps" id="steps"><div class="placeholder">Connecting…</div></div>
+        <div class="order" id="order" hidden><p class="eyebrow">The order so far</p><div id="orderRows"></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- USE CASES -->
-<section id="uses" class="max-w-6xl mx-auto px-5 py-24">
-  <h2 class="text-center text-3xl md:text-5xl font-black mb-3 reveal">What people build</h2>
-  <p class="text-center muted mb-14 reveal">Point Utter at a number and it handles the whole call, end to end.</p>
-  <div class="grid md:grid-cols-3 gap-5">
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_SHIELD%</div><h3 class="font-bold mb-1">Call screening</h3><p class="muted text-sm">Vet unknown callers, see who &amp; why live, pick up only the ones that matter.</p></div>
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_CAL%</div><h3 class="font-bold mb-1">Appointment booking</h3><p class="muted text-sm">Capture name, service and time, confirm, write it to your calendar.</p></div>
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_MSG%</div><h3 class="font-bold mb-1">Message taking</h3><p class="muted text-sm">Take a detailed message and deliver a clean summary of the matter.</p></div>
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HEAD%</div><h3 class="font-bold mb-1">Customer support</h3><p class="muted text-sm">Answer common questions instantly, in the caller's language, 24/7.</p></div>
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_BOLT%</div><h3 class="font-bold mb-1">Lead &amp; order capture</h3><p class="muted text-sm">Qualify callers, collect details, route hot leads to a person instantly.</p></div>
-    <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HAND%</div><h3 class="font-bold mb-1">Human handoff</h3><p class="muted text-sm">When it's urgent, your agent rings you in and steps back — the caller never restarts.</p></div>
+<!-- PROOF STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <p><b>Eleven Indian languages, plus English</b> Detected from the first sentence. The agent switches when the caller does.</p>
+    <p><b>Looks things up mid-call</b> Menu, rooms, directory. It never invents an answer it cannot check.</p>
+    <p><b>Hands off with the reason</b> A person gets the caller and the question, not a cold transfer.</p>
   </div>
 </section>
 
-<!-- SUPERPOWERS -->
-<section id="superpowers" class="alt line-t line-b">
-  <div class="max-w-6xl mx-auto px-5 py-24">
-    <div class="text-center mb-14">
-      <div class="pill accent mb-5 reveal">It makes calls too — not just answers them</div>
-      <h2 class="text-3xl md:text-5xl font-black reveal">Now imagine sending one <span class="accent">out</span>.</h2>
-      <p class="mt-5 muted text-lg max-w-2xl mx-auto reveal">So you never sit on hold, haggle, or dial around again. Describe the mission — Utter goes and does it.</p>
+<!-- THE WEEK AFTER -->
+<section id="week" class="block week">
+  <div class="wrap">
+    <p class="eyebrow reveal">The week after</p>
+    <h2 class="reveal" style="margin-top:14px">One call on Tuesday. <span class="serif">Here is the rest of the week.</span></h2>
+    <p class="sub reveal">Most voice agents send you a transcript and stop. Utter keeps working: for the kitchen or the front desk, for the owner, for the caller who got cut off, and for the next thousand calls. Pick a line, scroll, and tap anything on the phone.</p>
+
+    <div class="seg weektabs" id="weektabs" role="tablist"><button role="tab" aria-selected="true" data-dom="rest">Restaurant</button><button role="tab" aria-selected="false" data-dom="hotel">Hotel</button><button role="tab" aria-selected="false" data-dom="plat">Platform</button></div>
+    <div class="story">
+      <div class="pin"><div class="device"><div class="scr"><div class="app" id="pinApp"></div></div></div></div>
+      <div class="chapters" id="chapters"></div>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_TAG%</div><h3 class="font-bold text-lg mb-1">Fight your bills</h3><p class="muted text-sm">Send Utter to negotiate a bill, cancel a subscription, or dispute a charge. It stays polite — you stay on the couch.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_PHONEOUT%</div><h3 class="font-bold text-lg mb-1">Call around for you</h3><p class="muted text-sm">"Find a table for four at 8." Utter rings ten places at once and books the first yes.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HOURGLASS%</div><h3 class="font-bold text-lg mb-1">Beat the hold music</h3><p class="muted text-sm">It waits on hold with the airline, bank or government office — and rings you the second a human picks up.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_HEART%</div><h3 class="font-bold text-lg mb-1">Check in on loved ones</h3><p class="muted text-sm">A warm daily call to your parent — meals, meds, mood — with a gentle heads-up to you if anything seems off.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_GLOBE%</div><h3 class="font-bold text-lg mb-1">Live interpreter on the line</h3><p class="muted text-sm">Two people, two languages, one call. Utter translates both ways, in real time.</p></div>
-      <div class="reveal card lift p-7"><div class="ic mb-3">%ICON_GHOST%</div><h3 class="font-bold text-lg mb-1">Waste a scammer's time</h3><p class="muted text-sm">Forward spam to Utter and let it keep telemarketers talking in circles. Petty? Gloriously.</p></div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="for" class="block for">
+  <div class="street"><svg viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><g stroke-opacity="0.26"><path d="M120 30V148"></path><path d="M100 40h40M104 52h32"></path><path d="M1120 30V148"></path><path d="M1100 40h40M1104 52h32"></path><path d="M120 40C420 74 820 74 1120 40"></path><path d="M120 52C420 88 820 88 1120 52" stroke-opacity="0.6"></path></g><g stroke-opacity="0.5"><path d="M188 148h104V88H188z"></path><path d="M180 88h120"></path><path d="M184 88v13q11 10 22 0t22 0t22 0t22 0t22 0V88"></path><path d="M202 108h76M202 122h76M202 136h76" stroke-opacity="0.55"></path></g><g stroke-opacity="0.5"><path d="M356 148h96V72h-96z"></path><path d="M348 72h112l-10-13H358z"></path><path d="M370 90h40v-14h-40z" stroke-opacity="0.6"></path><path d="M378 83h24" stroke-opacity="0.45"></path><path d="M370 106h32v26h-32z" stroke-opacity="0.55"></path><path d="M416 106h22v42h-22z" stroke-opacity="0.55"></path><circle cx="421" cy="128" r="1.8" stroke-opacity="0.5"></circle></g><g stroke-opacity="0.5"><path d="M516 148h78V96h-78z"></path><path d="M508 96l20-16h38l20 16"></path><path d="M534 112h42v22h-42z" stroke-opacity="0.55"></path></g><g stroke-opacity="0.5"><path d="M658 148h128V100H658z"></path><path d="M650 100h144v-11H650z"></path><path d="M676 148v-30h36v30M736 148v-24h30v24" stroke-opacity="0.5"></path></g><g stroke-opacity="0.62"><path d="M876 148h84v-9h-84z"></path><path d="M886 148v14M950 148v14"></path><path d="M898 139v-24a5 5 0 0 1 5-5h20a5 5 0 0 1 5 5v24z"></path><path d="M928 118l13-6-2 13z"></path><path d="M901 110h24"></path><path d="M907 110q7-9 13 0"></path><path d="M898 121q-9 3 0 9" stroke-opacity="0.55"></path><path class="steam s1" d="M907 104q3-7 0-12t3-10"></path><path class="steam s2" d="M919 104q3-7 0-12t3-10"></path><path d="M938 139l2-13h9l2 13z" stroke-opacity="0.6"></path><path d="M953 139l2-10h7l2 10z" stroke-opacity="0.45"></path></g><g stroke-opacity="0.7"><path d="M1024 140h136l-8-26h-120z"></path><path d="M1034 114l-7-14h-22"></path><circle cx="1056" cy="156" r="15"></circle><circle cx="1132" cy="156" r="15"></circle><circle cx="1056" cy="156" r="3.5" stroke-opacity="0.45"></circle><circle cx="1132" cy="156" r="3.5" stroke-opacity="0.45"></circle><ellipse cx="1046" cy="106" rx="9" ry="7" stroke-opacity="0.6"></ellipse><ellipse cx="1070" cy="104" rx="10" ry="7" stroke-opacity="0.6"></ellipse><ellipse cx="1094" cy="106" rx="9" ry="7" stroke-opacity="0.6"></ellipse><ellipse cx="1118" cy="104" rx="10" ry="7" stroke-opacity="0.6"></ellipse><ellipse cx="1142" cy="106" rx="9" ry="7" stroke-opacity="0.6"></ellipse></g><g stroke-opacity="0.55"><circle cx="1252" cy="156" r="16"></circle><circle cx="1330" cy="156" r="16"></circle><path d="M1252 156l24-38h28l26 38"></path><path d="M1276 118l12 38M1288 156h42" stroke-opacity="0.55"></path><path d="M1304 118l-6-13h-14" stroke-opacity="0.55"></path><path d="M1282 105h16" stroke-opacity="0.45"></path><path d="M1312 110h26l-4 18h-19z" stroke-opacity="0.45"></path></g><path d="M0 172h1440" stroke-opacity="0.42"></path><path d="M0 181h1440" stroke-opacity="0.13" stroke-dasharray="12 16"></path></g></svg></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Who it's for</p>
+    <h2 class="reveal" style="margin-top:14px">Three kinds of phone line. <span class="serif">One agent</span> that knows the place.</h2>
+    <div class="doms">
+      <div data-pick="rest" class="dom reveal">
+        <div class="d" style="background:#1F6B4A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 3v7a3 3 0 006 0V3M7 3v18M17 3c-2 2-3 5-3 8h3v10"/></svg></div>
+        <h3>Restaurants</h3>
+        <p>Phone orders taken while the kitchen keeps cooking. Orders land on a kitchen screen the moment the caller says yes. Allergy questions go to a person.</p>
+        <div class="q hi">"कुछ crepe जैसा है क्या?"</div>
+        <span class="go">Watch the call ↑</span>
+      </div>
+      <div data-pick="hotel" class="dom reveal">
+        <div class="d" style="background:#5B4B8A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg></div>
+        <h3>Hotels and guest houses</h3>
+        <p>Every enquiry caught at any hour, in any language. Dates, guests and wishes in the caller's own words. Nothing confirmed until your front desk says so.</p>
+        <div class="q">"Three nights from the 18th, facing the river if you have one."</div>
+        <span class="go">Watch the call ↑</span>
+      </div>
+      <div data-pick="plat" class="dom reveal">
+        <div class="d" style="background:#B4532A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+        <h3>Lead generation for platforms</h3>
+        <p>Give your users one number. The agent understands what they need and where, matches your listings, and sends the lead to the businesses that can serve it.</p>
+        <div class="q bn">"গড়িয়াহাটের কাছে একজন দাঁতের ডাক্তার চাই"</div>
+        <span class="go">Watch the call ↑</span>
+      </div>
     </div>
-    <div class="text-center mt-10 reveal"><a data-book href="#book" class="btn btn-dark px-7 py-3.5">Dream one up with us →</a></div>
   </div>
 </section>
 
-<!-- GLOBAL -->
-<section id="global" class="max-w-5xl mx-auto px-5 py-28 text-center">
-  <h2 class="text-3xl md:text-5xl font-black reveal">Speaks <span class="accent" id="langCycle">English</span></h2>
-  <p class="mt-6 muted text-lg max-w-2xl mx-auto reveal">Global by default, local in feel. Your agent matches the caller's language naturally — built on real telephony that works for a family in one city and a company across continents alike.</p>
-  
-</section>
+<!-- WHAT CALLERS SAY -->
+<section id="calls" class="block">
+  <div class="wrap">
+    <p class="eyebrow reveal">What callers actually say</p>
+    <h2 class="reveal" style="margin-top:14px">Nobody speaks in categories. <span class="serif">They say what they need.</span></h2>
+    <p class="sub reveal">A dish, a room, a tradesperson. Every tile below is resolved live by the same matching that runs on the call: the menu for the restaurant, the room types for the hotel, the listings for the platform. Hover one to see which word did the work.</p>
+    <div class="board" id="board"></div>
+    <div class="boardbar reveal"><button class="btn btn-ghost sm" id="shuffle">Show me more</button><span class="faint" id="boardnote"></span></div>
 
-<!-- QUOTE -->
-<section class="alt line-t line-b">
-  <div class="max-w-4xl mx-auto px-5 py-20 text-center reveal">
-    <p class="text-2xl md:text-3xl font-semibold leading-snug head">"I described my front desk in two sentences. Ten minutes later it was answering real calls — in three languages."</p>
-    <p class="mt-6 muted text-sm">Early access builder · <span class="italic">placeholder, swap with a real quote</span></p>
+    <p class="eyebrow reveal" style="margin-top:88px">Twelve real calls, read along</p>
+    <h2 class="reveal" style="margin-top:14px">Three agents talked to twelve strangers. <span class="serif">Here is every word.</span></h2>
+    <p class="sub reveal">A restaurant, a hotel and a directory line, each an Utter agent on the Sarvam platform, each talking to simulated callers in five languages. Nothing scripted: the agents decided every reply. Tap a call to read it as it happened.</p>
+    <div class="seg readtabs" id="readtabs" role="tablist"><button role="tab" aria-selected="true" data-dom="all">All</button><button role="tab" aria-selected="false" data-dom="rest">Restaurant</button><button role="tab" aria-selected="false" data-dom="hotel">Hotel</button><button role="tab" aria-selected="false" data-dom="plat">Platform</button></div>
+    <div class="reads" id="reads"></div>
   </div>
 </section>
 
-<!-- CTA -->
-<section id="book" class="max-w-4xl mx-auto px-5 py-28 text-center">
-  <h2 class="text-4xl md:text-6xl font-black reveal">See your first<br/>agent <span class="accent">live.</span></h2>
-  <p class="mt-6 muted text-lg reveal">Book a 20-minute demo — we'll build a working voice agent for your exact use case, on a real call.</p>
-  <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center reveal">
-    <a data-book href="#" class="btn btn-dark px-8 py-4">Book a demo</a>
-    <a data-mail href="#" class="btn btn-ghost px-8 py-4">Email us</a>
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="final reveal">
+      <h2>Let's take your first call <span class="serif">together</span>.</h2>
+      <p>Thirty minutes. You bring the menu, the rooms or the listings. We bring an agent that answers.</p>
+      <div class="cta" style="justify-content:center">
+        <a data-book href="#" class="btn btn-primary">Book a demo</a>
+        <a data-mail href="#" class="btn btn-ghost">phanikumaryadavilli@utter.sh</a>
+      </div>
+    </div>
   </div>
 </section>
 
 </main>
 
-<footer class="line-t">
-  <div class="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm muted">
-    <div class="text-2xl font-black lowercase head">utter<span class="cursor"></span></div>
-    <p>Voice agents, for your businesses.</p>
-    <p>© <span id="yr"></span> Utter · utter.sh</p>
+<footer>
+  <div class="wrap">
+    <span class="logo" style="font-size:18px;color:var(--fg)">utter<i></i></span>
+    <span>Voice agents for restaurants, hotels and platforms.</span>
+    <span>© <span id="yr"></span> Utter · utter.sh</span>
   </div>
 </footer>
 
 <script>
-  // ---- booking + contact targets ----
-  const BOOKING_URL  = "https://calendly.com/utterdotsh";
-  const CONTACT_EMAIL = "hello@utter.sh";
-  document.querySelectorAll('[data-book]').forEach(a => a.href = BOOKING_URL);
-  document.querySelectorAll('[data-mail]').forEach(a => a.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Utter — book a demo')}`);
-  document.getElementById('yr').textContent = new Date().getFullYear();
+const BOOKING_URL="https://calendly.com/utterdotsh", CONTACT_EMAIL="phanikumaryadavilli@utter.sh";
+document.querySelectorAll('[data-book]').forEach(a=>a.href=BOOKING_URL);
+document.querySelectorAll('[data-mail]').forEach(a=>a.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Utter — book a demo')}`);
+document.getElementById('yr').textContent=new Date().getFullYear();
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const el=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money=c=>'$'+(c/100).toFixed(2);
 
-  // ---- inline SVG icons ----
-  const I = {
-    HOME:'<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>',
-    MIC:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>',
-    SHOP:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/></svg>',
-    BUILDING:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h6v6H9z"/></svg>',
-    SHIELD:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
-    CAL:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>',
-    MSG:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>',
-    HEAD:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="17" y="14" width="5" height="6" rx="1.5"/></svg>',
-    BOLT:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
-    HAND:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92V21a1 1 0 01-1.1 1 19 19 0 01-8.3-3 19 19 0 01-6-6A19 19 0 013.6 4.6 1 1 0 014.6 3.5H8.7a1 1 0 011 .8l.7 3.3a1 1 0 01-.3 1l-1.7 1.7a16 16 0 006 6l1.7-1.7a1 1 0 011-.3l3.3.7a1 1 0 01.8 1z"/></svg>',
-    TAG:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L2 12V2h10l8.6 8.6a2 2 0 010 2.8z"/><circle cx="7" cy="7" r="1.3"/></svg>',
-    PHONEOUT:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9V21a1 1 0 01-1.1 1 19 19 0 01-8.3-3 19 19 0 01-6-6A19 19 0 013.6 4.6 1 1 0 014.6 3.5H8.7a1 1 0 011 .8l.7 3.3a1 1 0 01-.3 1L8.4 11.2a16 16 0 006 6"/><path d="M15 3h6v6M21 3l-7 7"/></svg>',
-    HOURGLASS:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h12M6 22h12M7 2c0 5 5 6 5 10S7 17 7 22M17 2c0 5-5 6-5 10s5 5 5 10"/></svg>',
-    HEART:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 14c1.6-1.6 3-3.4 3-5.5A4.5 4.5 0 0012 5 4.5 4.5 0 002 8.5C2 13 12 21 12 21s3.9-3.1 7-7z"/></svg>',
-    GLOBE:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"/></svg>',
-    GHOST:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V11a7 7 0 0114 0v10l-3-2-2 2-2-2-2 2-3-2z"/><circle cx="9.5" cy="11" r=".9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r=".9" fill="currentColor" stroke="none"/></svg>',
-  };
-  document.querySelectorAll('div,span').forEach(el=>{
-    if(el.childElementCount===0 && /%ICON_\w+%/.test(el.textContent)){
-      el.innerHTML = el.textContent.replace(/%ICON_(\w+)%/g,(m,k)=>I[k]||'');
+/* ================= THE MENU MATCHER (a port of utter's core/menu/match) ================= */
+const MENU=[
+["idli","Idli","Tiffin",799,"Three soft steamed rice and lentil cakes, with sambar and chutneys","idly, plain idli, steamed idli","steamed rice cake, dumpling, soft, fluffy, light, healthy, mild, breakfast, oil free"],
+["ghee-podi-idli","Ghee Podi Idli","Tiffin",999,"Small idlis tossed in ghee and a spiced lentil powder","podi idli, mini podi idli","steamed rice cake, spiced, buttery, bite sized, savoury, snack"],
+["medu-vada","Medu Vada","Tiffin",849,"Two crisp fried lentil rings, soft inside, with sambar and chutneys","vada, vadai, wada, uddina vada, garelu","savoury doughnut, donut, fritter, fried, crispy, crunchy, snack, lentil"],
+["sambar-vada","Sambar Vada","Tiffin",949,"Lentil doughnuts soaked in a bowl of hot sambar","sambar vadai, dunked vada","doughnut in soup, soaked, soupy, lentil stew, comforting, warm"],
+["pongal","Ven Pongal","Tiffin",1099,"Rice and lentils cooked soft with black pepper, cumin and ghee","pongal, khara pongal, ghee pongal","porridge, risotto, savoury oatmeal, soft, creamy, comforting, mild, peppery, khichdi"],
+["upma","Rava Upma","Tiffin",899,"Semolina cooked with onion, mustard seed and curry leaf","upma, uppittu, uppuma","savoury porridge, semolina, couscous, polenta, grits, soft, light, breakfast"],
+["poori-masala","Poori Masala","Tiffin",1199,"Three puffed fried breads with a spiced potato curry","puri, poori, puri bhaji, poori potato","fried bread, puffed bread, bread with potato, curry, filling"],
+["plain-dosa","Plain Dosa","Dosa",999,"A thin crisp crepe of fermented rice and lentil batter, with sambar and chutneys","sada dosa, plain dosai, plain dose, sada dosai","crepe, pancake, thin, crispy, crisp, wrap, light, savoury, gluten free crepe"],
+["masala-dosa","Masala Dosa","Dosa",1299,"A thin crisp rice and lentil crepe filled with spiced potato","masala dosai, masala dose, masal dosa, potato dosa","crepe, pancake, stuffed crepe, filled, potato filling, crispy, crisp, wrap, savoury, popular, classic"],
+["mysore-masala-dosa","Mysore Masala Dosa","Dosa",1399,"A crisp crepe spread with red chilli and garlic chutney, filled with potato","mysore dosa, mysore masala dosai, mysore masala dose","crepe, pancake, stuffed crepe, spicy, hot, fiery, chilli, garlic, potato filling, crispy"],
+["ghee-roast-dosa","Ghee Roast Dosa","Dosa",1299,"A very thin, extra crisp crepe roasted in ghee, served as a tall cone","ghee roast, ghee dosa, nei roast, ghee dosai","crepe, pancake, extra crispy, crisp, buttery, rich, thin, cone"],
+["paper-roast","Paper Roast","Dosa",1399,"A paper-thin, very large crisp crepe, enough to share","paper dosa, paper masala dosa, family dosa","crepe, pancake, huge, giant, large, thin, extra crispy, crisp, wafer, sharing"],
+["onion-rava-dosa","Onion Rava Dosa","Dosa",1349,"A lacy, crisp semolina crepe with onion, green chilli and cumin","rava dosa, rava dosai, onion rava, rava dose","crepe, pancake, lacy, crispy, crisp, semolina, onion, crunchy"],
+["cheese-dosa","Cheese Dosa","Dosa",1349,"A crisp rice and lentil crepe with melted cheese","cheese dosai, cheese dose","crepe, pancake, cheesy, quesadilla, grilled cheese, mild, kids, children"],
+["onion-uttapam","Onion Uttapam","Uttapam",1199,"A thick, soft rice and lentil pancake topped with onion","onion uthappam, onion oothappam, onion uttappa","thick pancake, savoury pancake, pizza, flatbread, soft, fluffy, topped"],
+["vegetable-uttapam","Vegetable Uttapam","Uttapam",1299,"A thick, soft rice and lentil pancake topped with tomato, onion, carrot and chilli","veg uttapam, mixed uttapam, vegetable uthappam, vegetable oothappam, veg uttappa","thick pancake, savoury pancake, pizza, vegetable pizza, soft, fluffy, topped"],
+["bisi-bele-bath","Bisi Bele Bath","Rice",1249,"Rice, lentils and vegetables cooked together with a warm spice blend","bisibelebath, bisi bele, sambar rice, bisibele bhath","rice stew, one pot, hot pot, risotto, spiced, hearty, comforting, filling, lentil rice"],
+["curd-rice","Curd Rice","Rice",899,"Soft rice mixed with yogurt, tempered with mustard seed and curry leaf, served cool","yogurt rice, thayir sadam, dahi rice, mosaranna","yogurt, yoghurt, cooling, cool, mild, soothing, light, creamy, comforting"],
+["lemon-rice","Lemon Rice","Rice",999,"Rice tossed with lemon, turmeric, peanuts and curry leaf","chitranna, elumichai sadam, nimmakaya pulihora","tangy, sour, citrus, zesty, yellow rice, light, nutty"],
+["vegetable-biryani","Vegetable Biryani","Rice",1399,"Fragrant basmati rice layered with vegetables and whole spices, with raita","veg biryani, biriyani, vegetable biriyani, veg biriyani","spiced rice, pilaf, pulao, fragrant, aromatic, hearty, filling, fried rice"],
+["south-indian-thali","South Indian Thali","Meals",1699,"A full platter: rice, sambar, rasam, two vegetables, curd, poori, papad and a sweet","thali, meals, full meals, south indian meals, lunch thali","platter, combo, sampler, tasting, everything, full meal, lunch, variety, big, hungry, filling"],
+["mini-tiffin","Mini Tiffin","Meals",1499,"A small dosa, an idli, a vada, pongal and a sweet on one plate","mini tiffin combo, tiffin combo, tiffin platter","platter, combo, sampler, tasting, variety, first time, try everything, breakfast platter"],
+["sambar","Sambar","Sides",499,"A bowl of tangy lentil and vegetable stew","sambhar, extra sambar, sambar bowl","lentil soup, soup, stew, soupy, broth, tangy, dal, warm"],
+["rasam","Rasam","Sides",449,"A thin, peppery tomato and tamarind broth","tomato rasam, pepper rasam, saaru, chaaru","soup, broth, clear soup, thin, peppery, tangy, sour, spicy, hot, cold remedy, warm"],
+["rava-kesari","Rava Kesari","Sweets",599,"A warm semolina pudding with ghee, saffron and cashew","kesari, kesari bath, sheera, sooji halwa","dessert, sweet, pudding, halwa, warm, rich"],
+["gulab-jamun","Gulab Jamun","Sweets",549,"Two soft milk dumplings in warm rose-scented syrup","jamun, gulab jamoon","dessert, sweet, syrupy, doughnut holes, donut holes, dumpling, warm"],
+["payasam","Payasam","Sweets",549,"A sweet milk pudding with vermicelli, cardamom and cashew","semiya payasam, kheer, paal payasam","dessert, sweet, pudding, rice pudding, milky, creamy"],
+["filter-coffee","Filter Coffee","Drinks",399,"Strong South Indian coffee with hot frothed milk","coffee, madras coffee, kaapi, degree coffee, filter kaapi","latte, cappuccino, milky, strong, hot drink, caffeine"],
+["masala-chai","Masala Chai","Drinks",349,"Milk tea brewed with ginger and cardamom","chai, tea, masala tea, indian tea","spiced tea, milky, hot drink, ginger"],
+["mango-lassi","Mango Lassi","Drinks",499,"A cold, thick mango and yogurt drink","lassi, mango lassie","smoothie, milkshake, shake, yogurt drink, cold drink, sweet, fruity, cooling, kids, children"],
+["buttermilk","Masala Buttermilk","Drinks",349,"Thin salted yogurt drink with ginger, chilli and coriander","buttermilk, chaas, majjiga, neer mor, salt lassi","savoury, salty, cold drink, cooling, light, refreshing, digestive"],
+].map(([id,name,category,price,description,alsoCalled,describedAs],i)=>({id,name,category,price,description,alsoCalled,describedAs,available:id!=='rasam',sortOrder:i}));
+
+const WORD=/[\p{L}\p{N}\p{M}]+/gu;
+const tokenize=t=>((t||'').toLowerCase().match(WORD)||[]).filter(x=>x.length>=2);
+const FILLER=new Set("i we us me my you your it its that this want wanted would like love looking need get have give take order try can could do does is are am was be there please thanks hi hello a an the some any something anything of for to in on and or with kind type sort thing things dish dishes food item items one got also maybe just really very too so bit little more made from comes served which what has".split(' '));
+const REFUSES=new Set(["no","not","without","non","less","hold","minus","skip"]);
+const INTENS=new Set(["too","very","so","any","much","the","that","really"]);
+const content=t=>tokenize(t).filter(x=>!FILLER.has(x));
+const phrases=f=>(f||'').split(',').map(p=>p.trim()).filter(Boolean);
+function editDistance(a,b){const m=a.length,n=b.length;let prev=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){const cur=[i];for(let j=1;j<=n;j++){cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));}prev=cur;}return prev[n];}
+const similarity=(a,b)=>{const L=Math.max(a.length,b.length);return L?1-editDistance(a,b)/L:1};
+const INDEX=MENU.map(item=>{const names=[item.name,...phrases(item.alsoCalled)].map(n=>new Set(content(n))).filter(s=>s.size);const about=new Set([...content(item.describedAs),...content(item.description),...content(item.category),...names.flatMap(s=>[...s])]);return{item,names,about}});
+const EVERYTHING=new Set(INDEX.flatMap(x=>[...x.about]));
+const NAMEWORDS=[...new Set(INDEX.flatMap(x=>x.names.flatMap(n=>[...n])))];
+function correct(tok){if(EVERYTHING.has(tok))return null;if(tok.length<4)return null;let best=null,bs=0.7;for(const c of NAMEWORDS){if(Math.abs(c.length-tok.length)>Math.max(1,Math.round(tok.length*.3)))continue;const s=similarity(tok,c);if(s>bs||(s===bs&&best&&c<best)){bs=s;best=c;}}return best;}
+function fix(tok){if(EVERYTHING.has(tok))return tok;const c=correct(tok);if(c)return c;for(const e of ['es','s','y']){if(tok.endsWith(e)){const st=tok.slice(0,-e.length);if(EVERYTHING.has(st))return st;}}return tok;}
+const subset=(a,b)=>{for(const t of a)if(!b.has(t))return false;return true};
+const byOrder=(a,b)=>a.sortOrder-b.sortOrder||a.name.localeCompare(b.name);
+function hear(said){const wanted=[],refused=[];let refusing=false;for(const raw of tokenize(said)){if(REFUSES.has(raw)){refusing=true;continue;}if(refusing&&INTENS.has(raw))continue;if(FILLER.has(raw)){refusing=false;continue;}(refusing?refused:wanted).push(fix(raw));refusing=false;}return{wanted:[...new Set(wanted)],refused:[...new Set(refused)]};}
+function leftover(said,name){const kept=[];for(const w of said.trim().split(/\s+/)){const t=tokenize(w);if(!t.length)continue;const isName=t.every(x=>name.has(fix(x)));const isFill=t.every(x=>FILLER.has(x));if(!isName&&!isFill)kept.push(w.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,''));}return kept.length?kept.join(' '):null;}
+const ans=(kind,found,unknown,extra=null,hits={})=>({kind,items:found.slice(0,4),total:found.length,unknown,extra,hits});
+function named(found,unknown,extra){const on=found.filter(i=>i.available).sort(byOrder);if(!on.length)return ans('unavailable',[...found].sort(byOrder),unknown);if(on.length===1)return ans('exact',on,unknown,extra);return ans('several',on,unknown);}
+function findOnMenu(said){
+  const text=(said||'').trim(); if(!text) return {...ans('none',[],[]),heard:'',refused:[],wanted:[]};
+  const {wanted,refused}=hear(text); if(!wanted.length) return {...ans('none',[],[]),heard:'',refused,wanted};
+  const want=new Set(wanted); const unknown=wanted.filter(t=>!EVERYTHING.has(t));
+  const exact=INDEX.flatMap(x=>{const n=x.names.find(n=>n.size===want.size&&subset(n,want));return n?[{x,name:n}]:[]});
+  let out;
+  if(exact.length){const extra=exact.length===1?leftover(text,exact[0].name):null;out=named(exact.map(e=>e.x.item),unknown,extra);}
+  else{
+    const full=INDEX.flatMap(x=>{const best=x.names.filter(n=>subset(n,want)).reduce((a,n)=>(a&&a.size>=n.size?a:n),null);return best?[{x,name:best}]:[]});
+    const part=INDEX.filter(x=>x.names.some(n=>subset(want,n)));
+    if(full.length){const L=Math.max(...full.map(f=>f.name.size));const top=full.filter(f=>f.name.size===L);const rivals=part.filter(p=>!top.some(t=>t.x.item.id===p.item.id));const found=[...top.map(t=>t.x.item),...rivals.map(p=>p.item)];const extra=found.length===1?leftover(text,top[0].name):null;out=named(found,unknown,extra);}
+    else if(part.length) out=named(part.map(x=>x.item),unknown,null);
+    else{
+      const known=wanted.filter(t=>EVERYTHING.has(t));
+      if(!known.length) out=ans('none',[],unknown);
+      else{
+        const weight=t=>{const h=INDEX.filter(x=>x.about.has(t)).length;return Math.log(1+INDEX.length/h)};
+        const scored=INDEX.filter(x=>x.item.available).filter(x=>!refused.some(t=>x.about.has(t))).map(x=>({x,score:known.reduce((s,t)=>s+(x.about.has(t)?weight(t):0),0)})).filter(s=>s.score>0);
+        if(!scored.length) out=ans('none',[],unknown);
+        else{const best=Math.max(...scored.map(s=>s.score));const close=scored.filter(s=>s.score>=best/2).sort((a,b)=>b.score-a.score||byOrder(a.x.item,b.x.item));const hits={};close.forEach(s=>hits[s.x.item.id]=known.filter(t=>s.x.about.has(t)));out=ans('described',close.map(s=>s.x.item),unknown,null,hits);}
+      }
     }
-  });
-
-  // ---- reveal on scroll ----
-  if('IntersectionObserver' in window){
-    const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  } else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); }
-
-  // ---- "Hear it" audio players ----
-  const PLAY='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>';
-  const STOP='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
-  let cur=null;
-  function setBtn(b,on){ b.querySelector('.pic').innerHTML=on?STOP:PLAY; const l=b.querySelector('.lbl'); if(l) l.textContent=on?'Playing…':(l.dataset.def||l.textContent); }
-  document.querySelectorAll('.hearbtn').forEach(b=>{
-    const l=b.querySelector('.lbl'); if(l) l.dataset.def=l.textContent;
-    setBtn(b,false);
-    b.addEventListener('click',()=>{
-      if(cur){cur.a.pause(); setBtn(cur.b,false); const same=cur.b===b; cur=null; if(same)return;}
-      const a=new Audio('audio/'+b.dataset.clip+'.wav?v=conv3'); setBtn(b,true);
-      a.onended=()=>{setBtn(b,false); cur=null;};
-      a.play().catch(()=>setBtn(b,false)); cur={a,b};
-    });
-  });
-
-  // ---- language cycler ----
-  const langs=['English','हिन्दी','தமிழ்','తెలుగు','বাংলা','ಕನ್ನಡ','मराठी','ગુજરાતી','اردو','ਪੰਜਾਬੀ','മലയാളം'];let li=0;
-  const langEl=document.getElementById('langCycle');
-  if(langEl){langEl.style.transition='opacity .25s';
-    setInterval(()=>{li=(li+1)%langs.length;langEl.style.opacity=0;setTimeout(()=>{langEl.textContent=langs[li];langEl.style.opacity=1},250)},1900);}
-
-  // ---- INTERACTIVE HERO: persona tabs + your-own → workflow build ----
-  const AV = s => `https://api.dicebear.com/9.x/notionists/svg?seed=${encodeURIComponent(s)}&backgroundColor=ececfb&radius=50`;
-  const personas=[
-    {avatar:AV('Priya Kapoor'),name:'Priya',role:'at home',
-     say:"Screen my unknown calls — tell me who's calling and why, and ring me if it's urgent.",
-     steps:['Greet & disclose','Detect caller & intent','Take a message','Ring me if it’s urgent']},
-    {avatar:AV('Sameer Khan'),name:'Sam',role:'café owner',
-     say:"Take table bookings and tell callers today's specials.",
-     steps:['Greet the caller','Share today’s specials','Capture booking details','Text the reservation']},
-    {avatar:AV('Dr Anand Rao'),name:'Dr. Rao',role:'clinic front desk',
-     say:"Book appointments and remind every patient the day before.",
-     steps:['Offer open slots','Confirm the appointment','Save to calendar','Day-before reminder call']},
-    {avatar:AV('Maria Garcia'),name:'Maria',role:'support lead',
-     say:"Answer FAQs 24/7 in the caller's language, escalate the hard ones.",
-     steps:['Detect the language','Answer from knowledge','Resolve or collect details','Escalate to a human']},
-  ];
-  const $=id=>document.getElementById(id);
-  const speaker=$('speaker'),pAvatar=$('pAvatar'),pName=$('pName'),pRole=$('pRole'),pSay=$('pSay'),pSpeaking=$('pSpeaking'),stepsEl=$('steps'),liveBadge=$('liveBadge');
-  const tabs=$('tabs'),ownBox=$('ownBox'),ownInput=$('ownInput'),ownGo=$('ownGo');
-  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-  const CHECK='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>';
-  let runId=0, auto=true;
-
-  async function type(el,txt,my){ el.classList.add('caret'); el.textContent=''; for(let i=0;i<txt.length;i++){ if(my!==runId)return; el.textContent+=txt[i]; await sleep(16);} el.classList.remove('caret'); }
-  function row(label){ const d=document.createElement('div'); d.className='wfstep flex items-center gap-3 text-sm';
-    d.innerHTML=`<span class="si w-5 h-5 rounded-full border flex items-center justify-center shrink-0" style="border-color:var(--line)"><span class="w-2 h-2 rounded-full" style="background:var(--accent);animation:blink 1s steps(1) infinite"></span></span><span class="head">${label}</span>`; return d; }
-
-  async function run(p){
-    const my=++runId;
-    speaker.style.opacity=0; pSpeaking.style.opacity=0; liveBadge.style.opacity=0;
-    await sleep(350); if(my!==runId)return my;
-    pAvatar.src=p.avatar; pName.textContent=p.name; pRole.textContent=p.role; pSay.textContent=''; stepsEl.innerHTML='';
-    speaker.style.opacity=1; await sleep(250); if(my!==runId)return my;
-    pSpeaking.style.opacity=1; await type(pSay,p.say,my); if(my!==runId)return my;
-    await sleep(300); if(my!==runId)return my; pSpeaking.style.opacity=0; await sleep(250); if(my!==runId)return my;
-    for(const s of p.steps){
-      const r=row(s); stepsEl.appendChild(r); requestAnimationFrame(()=>{r.style.opacity=1;r.style.transform='none';});
-      await sleep(600); if(my!==runId)return my;
-      const si=r.querySelector('.si'); si.style.borderColor='var(--accent)'; si.innerHTML=CHECK;
-      await sleep(200); if(my!==runId)return my;
-    }
-    liveBadge.style.opacity=1; return my;
   }
+  return {...out,heard:wanted.join(' '),refused,wanted};
+}
 
-  function setActive(el){ tabs.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active')); if(el)el.classList.add('active'); }
-  function deriveSteps(t){ t=t.toLowerCase(); const s=['Greet & disclose'];
-    if(/book|appoint|schedul|reserv|slot|salon|clinic/.test(t)) s.push('Offer open slots','Confirm the details','Save to calendar');
-    else if(/screen|unknown|spam|who|filter|robocall/.test(t)) s.push('Detect caller & intent','Take a message','Ring you if urgent');
-    else if(/support|question|faq|help|answer|complaint/.test(t)) s.push('Detect the language','Answer from knowledge','Resolve or escalate');
-    else if(/order|lead|sell|buy|sale|quote|deliver/.test(t)) s.push('Qualify the caller','Capture the details','Route to a human');
-    else s.push('Understand the request','Run your workflow','Hand off if needed');
-    return s.slice(0,5);
-  }
+/* ================= THE PHONE ================= */
+const IC={
+  search:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+  check:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+  bell:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg>',
+  lang:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 5h10M9 3v2M11 5c-1 5-4 8-7 10M7 9c1 3 4 6 7 7M13 20l4-9 4 9M14.5 17h5"/></svg>',
+  hand:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 12V4M8 12V7M16 12V8M20 12v4a8 8 0 01-16 0v-2"/></svg>',
+  warn:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2zM12 10v5M12 18h.01"/></svg>',
+  plus:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+};
+const REST={
+  hi:{ask:['हैलो… एक सवाल है, crepe जैसा कुछ है क्या आपके यहाँ?','Hello… quick question, do you have anything like a crepe?'],heard:'Heard Hindi',offer:['Crepe तो नहीं, पर Masala Dosa बिल्कुल वैसा ही है। पतला, कुरकुरा, अंदर मसाले वाला आलू। लेंगे?','No crepes, but the Masala Dosa is just like one. Thin, crisp, spiced potato inside. Shall I add it?'],yes:['हाँ हाँ, दो कर दो। और प्याज़ मत डालना।','Yes yes, make it two. And no onion.'],bye:['दो Masala Dosa, बिना प्याज़। साढ़े सात बजे तैयार मिलेंगे। धन्यवाद!','Two Masala Dosa, no onion. Ready at half past seven. Thank you!']},
+  ta:{ask:['ஹலோ… crepe மாதிரி ஏதாவது இருக்கா உங்ககிட்ட?','Hello… do you have anything like a crepe?'],heard:'Heard Tamil',offer:['Crepe இல்லை, ஆனா Masala Dosa அதுக்கு ரொம்ப கிட்ட. உள்ளே மசாலா உருளைக்கிழங்கு. வேணுமா?','No crepes, but the Masala Dosa is very close. Spiced potato inside. Shall I add it?'],yes:['ஆமா ஆமா, ரெண்டு போடுங்க. வெங்காயம் வேண்டாம்.','Yes yes, make it two. No onion.'],bye:['ரெண்டு Masala Dosa, வெங்காயம் இல்லாம. 7:30க்கு ரெடி. நன்றி!','Two Masala Dosa, no onion. Ready at 7:30. Thanks!']},
+  te:{ask:['హలో… crepe లాంటిది ఏదైనా ఉందా మీ దగ్గర?','Hello… do you have anything like a crepe?'],heard:'Heard Telugu',offer:['Crepe లేదు, కానీ Masala Dosa దానికి చాలా దగ్గర. లోపల మసాలా బంగాళాదుంప. వేయమంటారా?','No crepes, but the Masala Dosa is very close. Spiced potato inside. Shall I add it?'],yes:['అవును అవును, రెండు వేయండి. ఉల్లిపాయ వద్దు.','Yes yes, make it two. No onion.'],bye:['రెండు Masala Dosa, ఉల్లిపాయ లేకుండా. 7:30కి రెడీ. ధన్యవాదాలు!','Two Masala Dosa, no onion. Ready at 7:30. Thank you!']},
+  bn:{ask:['হ্যালো… crepe-এর মতো কিছু আছে আপনাদের?','Hello… do you have anything like a crepe?'],heard:'Heard Bengali',offer:['Crepe নেই, তবে Masala Dosa খুব কাছাকাছি। ভেতরে মশলা আলু। দেব?','No crepes, but the Masala Dosa is very close. Spiced potato inside. Shall I add it?'],yes:['হ্যাঁ হ্যাঁ, দুটো দিন। আর পেঁয়াজ দেবেন না।','Yes yes, two please. And no onion.'],bye:['দুটো Masala Dosa, পেঁয়াজ ছাড়া। ৭:৩০-এ রেডি। ধন্যবাদ!','Two Masala Dosa, no onion. Ready at 7:30. Thank you!']},
+  en:{ask:['Hi, umm… this might sound silly, but do you have anything like a crepe?'],heard:null,offer:['Not silly at all. We don\'t do crepes, but the Masala Dosa is very close: thin, crisp, with spiced potato inside. Shall I add one?'],yes:['Yeah, let\'s do two. No onion, please.'],bye:['Two Masala Dosa, no onion. Ready at 7:30. Thank you!']},
+};
+function restScript(l){const r=REST[l];const s=[{at:.3,kind:'agent',text:'Madras Kitchen, good evening. What can I get you?',lang:'en'},{at:2.2,kind:'caller',text:r.ask[0],en:r.ask[1]}];let t=4.2;
+  if(r.heard){s.push({at:t,kind:'did',ic:'lang',title:r.heard,body:'Switched the agent to the caller\'s language for the rest of the call.'});t+=.7;}
+  s.push({at:t,kind:'did',ic:'search',title:'Checked the menu for "something like a crepe"',body:'Nothing is called that. Closest: Masala Dosa, then Plain Dosa, Ghee Roast and 4 more.',why:[['crepe','the menu says a dosa is "a thin crisp crepe"']]});
+  s.push({at:t+.9,kind:'agent',text:r.offer[0],en:r.offer[1]},{at:t+3.9,kind:'caller',text:r.yes[0],en:r.yes[1]},{at:t+5.7,kind:'did',ic:'check',cls:'ok',title:'Order placed',body:'On the kitchen screen before the caller hung up.',mini:[['2 × Masala Dosa · no onion','$25.98'],['Before tax','$25.98']]},{at:t+6.4,kind:'agent',text:r.bye[0],en:r.bye[1]},{at:t+9.6,kind:'end'});return s;}
+const SCN={
+  rest:{who:'Madras Kitchen',av:'MK',steps:l=>restScript(l)},
+  hotel:{who:'Seaside Inn',av:'SI',steps:()=>[
+    {at:.3,kind:'agent',text:'Seaside Inn, good evening. How can I help?',lang:'en'},
+    {at:2.2,kind:'caller',text:'Hi, umm… I\'m looking for a room, three nights from the 18th. Two of us. Facing the river, if you have it?',lang:'en'},
+    {at:5.0,kind:'did',ic:'search',title:'Checked room types',body:'River-view double listed at ₹4,200 a night. Availability is for the front desk to confirm.'},
+    {at:6.0,kind:'agent',text:'We do, a river-view double with a balcony, ₹4,200 a night. I can\'t confirm it myself, but I\'ll note it and the front desk rings you back within the hour. Who should they ask for?',lang:'en'},
+    {at:9.6,kind:'caller',text:'Anita. Anita Rao.',lang:'en'},
+    {at:11.0,kind:'did',ic:'check',cls:'ok',title:'Booking request logged',body:'Anita Rao · 3 nights from 18 Oct · 2 guests · "facing the river". Waiting for the front desk.'},
+    {at:11.8,kind:'did',ic:'bell',title:'Front desk notified on WhatsApp',body:'One tap to say "I rang them" and record the decision.'},
+    {at:12.4,kind:'agent',text:'Thank you, Anita. Someone will call you back shortly to confirm.',lang:'en'},
+    {at:15,kind:'end'}]},
+  plat:{who:'Dial Local',av:'DL',steps:()=>[
+    {at:.3,kind:'agent',text:'Dial Local. Tell me what you need and where.',lang:'en'},
+    {at:2.2,kind:'caller',text:'হ্যাঁ… একটা দাঁতের ডাক্তার চাই, গড়িয়াহাটের কাছে হলে ভালো। কাল রাত থেকে খুব ব্যথা।',en:'Yes… I need a dentist, near Gariahat if possible. Bad pain since last night.',lang:'bn'},
+    {at:5.2,kind:'did',ic:'lang',title:'Heard Bengali',body:'Replied in Bengali. Request recorded in English for the platform.'},
+    {at:5.9,kind:'did',ic:'search',title:'Matched "dentist · Kolkata · Gariahat" against listings',body:'Two clinics listed with verified numbers.'},
+    {at:6.8,kind:'agent',text:'গড়িয়াহাটের কাছে দুটো ডেন্টাল ক্লিনিক আছে। আমি দুজনকেই আপনার নম্বর পাঠিয়ে দিচ্ছি, আর আপনাকে ওদের নম্বর মেসেজ করছি।',en:'There are two dental clinics near Gariahat. I\'m sending both your number, and messaging you theirs.',lang:'bn'},
+    {at:10.2,kind:'did',ic:'check',cls:'ok',title:'Lead sent to 2 businesses',body:'Dental Bliss · Dr NK\'s Family Dental Care. Caller\'s number masked on every screen.'},
+    {at:11.0,kind:'did',ic:'hand',title:'Had nobody? It says so.',body:'A request with no match is recorded as "we had nobody", so the platform knows who to sign next.'},
+    {at:11.6,kind:'agent',text:'ধন্যবাদ। তাড়াতাড়ি সুস্থ হয়ে উঠুন।',en:'Thank you. Get well soon.',lang:'bn'},
+    {at:14.4,kind:'end'}]},
+};
+const phone=document.getElementById('phone'),thread=document.getElementById('thread'),steps=document.getElementById('steps'),who=document.getElementById('who'),av=document.getElementById('av'),timer=document.getElementById('timer');
+const orderBox=document.getElementById('order'),orderRows=document.getElementById('orderRows'),replay=document.getElementById('replay'),say=document.getElementById('say'),input=document.getElementById('sayInput');
+let timers=[],current='rest',lang='hi',typingEl=null,t0=0,tick=null,mode='demo';
+function clear(){timers.forEach(clearTimeout);timers=[];clearInterval(tick);thread.innerHTML='';steps.innerHTML='<div class="placeholder">Connecting…</div>';phone.classList.remove('talking','caller');typingEl=null;orderBox.hidden=true;orderRows.innerHTML='';}
+function bubble(kind,text,en,l){const b=el(`<div class="bub ${kind} ${l||lang}"></div>`);const t=document.createElement('span');b.appendChild(t);if(en){const s=document.createElement('small');s.textContent=en;b.appendChild(s);}thread.appendChild(b);
+  if(kind==='caller'&&!reduced){let i=0;const cur=el('<span class="cur"></span>');t.after(cur);const step=()=>{t.textContent=text.slice(0,++i);if(i<text.length)timers.push(setTimeout(step,26));else cur.remove();};step();}else t.textContent=text;
+  thread.scrollTop=thread.scrollHeight;}
+function typing(on){if(typingEl){typingEl.remove();typingEl=null;}if(on){typingEl=el('<div class="bub agent typing"><i></i><i></i><i></i></div>');thread.appendChild(typingEl);}}
+function did(s){if(steps.firstChild&&steps.firstChild.classList.contains('placeholder'))steps.innerHTML='';
+  const mini=s.mini?`<div class="mini">${s.mini.map((r,i)=>`<div class="row ${i===s.mini.length-1?'total':''}"><span>${esc(r[0])}</span><span>${esc(r[1])}</span></div>`).join('')}</div>`:'';
+  const why=s.why&&s.why.length?`<div class="why">${s.why.map(w=>`<em><b>"${esc(w[0])}"</b> → ${esc(w[1])}</em>`).join('')}</div>`:'';
+  steps.appendChild(el(`<div class="step ${s.cls||''}" data-t="${timer.textContent}"><div class="ic">${IC[s.ic]}</div><div><b>${esc(s.title)}</b><span>${esc(s.body)}</span>${why}${mini}</div></div>`));
+  steps.scrollTop=steps.scrollHeight;}
+function startTimer(){t0=Date.now();clearInterval(tick);tick=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);timer.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`},250);timer.textContent='0:00';}
+function play(name){clear();mode='demo';replay.hidden=true;current=name;const sc=SCN[name];who.textContent=sc.who;av.textContent=sc.av;startTimer();
+  const rest=name==='rest';document.getElementById('langs').style.display=rest?'flex':'none';document.getElementById('langLbl').style.display=rest?'block':'none';
+  renderTries(name);
+  const speed=reduced?.15:1;
+  sc.steps(lang).forEach(s=>{const at=s.at*1000*speed;
+    if(s.kind==='agent'){timers.push(setTimeout(()=>{typing(true);phone.classList.remove('caller');phone.classList.add('talking')},Math.max(0,at-700)));timers.push(setTimeout(()=>{typing(false);bubble('agent',s.text,s.en,s.lang)},at));}
+    else if(s.kind==='caller'){timers.push(setTimeout(()=>{phone.classList.add('talking','caller');bubble('caller',s.text,s.en,s.lang)},at));}
+    else if(s.kind==='did'){timers.push(setTimeout(()=>did(s),at));}
+    else if(s.kind==='end'){timers.push(setTimeout(()=>{phone.classList.remove('talking','caller');clearInterval(tick);timers.push(setTimeout(()=>play(current),3000))},at));}
+  });}
+const selectTab=n=>document.querySelectorAll('.seg [data-scn]').forEach(x=>x.setAttribute('aria-selected',x.dataset.scn===n));
+document.querySelectorAll('.seg [data-scn]').forEach(b=>b.addEventListener('click',()=>{selectTab(b.dataset.scn);play(b.dataset.scn)}));
+document.querySelectorAll('#langs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#langs button').forEach(x=>x.setAttribute('aria-pressed',x===b));lang=b.dataset.lang;selectTab('rest');play('rest')}));
+document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{selectTab(a.dataset.pick);play(a.dataset.pick);document.getElementById('try').scrollIntoView({behavior:'smooth'})}));
+replay.addEventListener('click',()=>play(current));
 
-  tabs.querySelectorAll('.ptab[data-i]').forEach(t=>t.addEventListener('click',()=>{
-    auto=false; ownBox.classList.add('hidden'); setActive(t); run(personas[+t.dataset.i]);
-  }));
-  tabs.querySelector('[data-own]').addEventListener('click',function(){
-    auto=false; ++runId; setActive(this); ownBox.classList.remove('hidden'); ownInput.focus();
-  });
-  function buildOwn(){
-    const v=ownInput.value.trim(); if(!v)return;
-    run({avatar:AV('You'+v),name:'You',role:'your idea',say:v,steps:deriveSteps(v)});
-  }
-  ownGo.addEventListener('click',buildOwn);
-  ownInput.addEventListener('keydown',e=>{if(e.key==='Enter')buildOwn();});
+/* ================= SAY IT YOURSELF ================= */
+const NUM={one:1,a:1,an:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,couple:2,pair:2};
+let order=[],lastOffered=null;
+function qtyOf(text){const m=text.toLowerCase().match(/\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|couple|pair)\b/);if(!m)return 1;const q=NUM[m[1]]??parseInt(m[1],10);return Math.min(Math.max(q,1),25);}
+function renderOrder(){orderBox.hidden=!order.length;orderRows.innerHTML=order.map(l=>`<div class="row"><span>${l.qty} × ${esc(l.item.name)}${l.note?`<small>${esc(l.note)}</small>`:''}</span><span>${money(l.qty*l.item.price)}</span></div>`).join('')+(order.length?`<div class="row total"><span>Before tax</span><span>${money(order.reduce((s,l)=>s+l.qty*l.item.price,0))}</span></div>`:'');}
+function add(item,qty,note){const ex=order.find(l=>l.item.id===item.id&&l.note===note);if(ex)ex.qty+=qty;else order.push({item,qty,note:note||null});renderOrder();}
+let tryDomain=null,hotel={pending:null},plat={};
+function enterTryMode(){if(mode!=='try'||tryDomain!==current){timers.forEach(clearTimeout);timers=[];typing(false);thread.innerHTML='';steps.innerHTML='';order=[];lastOffered=null;hotel={pending:null};renderOrder();mode='try';tryDomain=current;replay.hidden=false;const sc=SCN[current];who.textContent=sc.who;av.textContent=sc.av;startTimer();bubble('agent',TRY[current].greet,null,'en');}}
+function agentSays(text,delay=900){phone.classList.remove('caller');phone.classList.add('talking');typing(true);timers.push(setTimeout(()=>{typing(false);bubble('agent',text,null,'en');timers.push(setTimeout(()=>phone.classList.remove('talking'),1800));},reduced?50:delay));}
+const list=xs=>xs.length<=1?xs.join(''):xs.slice(0,-1).join(', ')+' and '+xs[xs.length-1];
+const desc=i=>i.description.charAt(0).toLowerCase()+i.description.slice(1);
+function respondRest(text){
+  const low=text.toLowerCase().trim();
+  if(/\b(allerg\w*|cashew|peanut|nut|nuts|gluten|celiac|dairy)\b/.test(low)){did({ic:'warn',cls:'warn',title:'Needs a person',body:`The caller asked: "${text}". The menu lists stated dietary notes only, never a promise about preparation, so the agent hands this to staff with the question.`});agentSays("I can see what the menu states, but I can't promise how it's prepared. Let me get someone from the kitchen who can tell you for certain. One moment.");return;}
+  if(/\b(person|human|manager|someone|staff)\b/.test(low)){did({ic:'hand',cls:'warn',title:'Needs a person',body:'The caller asked for a person. Staff get the caller, the conversation so far and a waiting timer.'});agentSays('Of course. I\'m getting someone now, and they\'ll see everything you\'ve told me so far.');return;}
+  if(/^(yes|yeah|yep|ok|okay|sure|please|haan|ha|aama|avunu)\b/.test(low)||(/\b(that|those|it)\b/.test(low)&&/\b(yes|yeah|ok|sure|take|add|do|go)\b/.test(low))){
+    if(lastOffered){const q=qtyOf(low);const note=/\bno onion\b/.test(low)?'no onion':null;add(lastOffered,q,note);did({ic:'plus',cls:'ok',title:`Added ${q} × ${lastOffered.name}`,body:'Only after the caller said yes to a dish by name. A described match is never an order on its own.'});agentSays(`${q} ${lastOffered.name}${note?', '+note:''}. Anything else?`);lastOffered=null;return;}
+    agentSays('What would you like? Tell me a dish, or describe what you feel like.');return;}
+  if(/^(that'?s all|that is all|that'?s it|that is it|nothing else|done|no thanks|no that'?s all|place (the )?order)\b/.test(low)){
+    if(!order.length){agentSays('Nothing on the order yet. Name a dish, or describe what you feel like, and I\'ll find it.');return;}
+    const total=order.reduce((s,l)=>s+l.qty*l.item.price,0);did({ic:'check',cls:'ok',title:'Order placed',body:'On the kitchen screen now. Confirmation goes to the caller.',mini:[...order.map(l=>[`${l.qty} × ${l.item.name}${l.note?' · '+l.note:''}`,money(l.qty*l.item.price)]),['Before tax',money(total)]]});
+    agentSays(`${list(order.map(l=>`${l.qty} ${l.item.name}`))}, ${money(total)} before tax. Ready for pickup at 7:30. Thank you!`);order=[];renderOrder();return;}
+  const stripped=text.replace(/\b(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten|couple|pair)\b( of)?/i,'').trim();
+  const a=findOnMenu(stripped||text);
+  const heard=a.heard||text;
+  if(a.kind==='none'&&!a.wanted.length&&a.refused.length){const ok=INDEX.filter(x=>x.item.available&&!a.refused.some(t=>x.about.has(t))).sort((p,q)=>(q.about.has('mild')-p.about.has('mild'))||byOrder(p.item,q.item)).slice(0,4).map(x=>x.item);did({ic:'search',title:`Ruled out anything the menu calls "${a.refused.join('", "')}"`,body:`A refusal is the one thing a kitchen must not lose, so it is read before anything else. ${ok.length} dishes that aren't: ${list(ok.map(i=>i.name))} and more.`});agentSays(`No problem. Nothing ${a.refused[0]} then. The ${ok[0].name} is ${desc(ok[0])}, or the ${ok[1].name}. Shall I tell you more about either?`);lastOffered=null;return;}
+  const toks=tokenize(text);
+  const fixes=a.wanted.filter(w=>!toks.includes(w)).map(w=>[toks.find(t=>fix(t)===w)||w,`read as "${w}"`]);
+  if(a.kind==='exact'){const it=a.items[0];const q=qtyOf(low);add(it,q,a.extra);did({ic:'check',cls:'ok',title:`Named a dish: ${it.name}`,body:`"${heard}" names ${it.name} exactly${a.extra?`. Kept for the kitchen: "${a.extra}"`:''}.`,why:fixes});agentSays(`${q} ${it.name}${a.extra?', '+a.extra:''}. ${money(it.price)} each. Anything else?`);return;}
+  if(a.kind==='several'){did({ic:'search',title:`"${heard}" fits ${a.total} dishes`,body:`${list(a.items.map(i=>i.name))}${a.total>a.items.length?` and ${a.total-a.items.length} more`:''}. The agent asks which, rather than guessing.`,why:fixes});agentSays(`We have ${a.total} kinds: ${list(a.items.map(i=>`${i.name} at ${money(i.price)}`))}. Which would you like?`);lastOffered=null;return;}
+  if(a.kind==='unavailable'){const it=a.items[0];did({ic:'warn',cls:'warn',title:`${it.name} has run out today`,body:'Still on the menu, not on offer. The kitchen marked it out at 6:50 pm, and the agent stopped offering it on the next call.'});agentSays(`${it.name} is on the menu, but the kitchen has run out today. Shall I find you something similar?`);return;}
+  if(a.kind==='described'){const it=a.items[0];lastOffered=it;const why=a.items.slice(0,2).map(i=>[a.hits[i.id].join(', '),`${i.name} is described as "${i.describedAs.split(',').slice(0,3).join(',')}"`]);did({ic:'search',title:`Nothing is called "${heard}"`,body:`Looked the words up in what each dish is. Closest: ${list(a.items.map(i=>i.name))}${a.total>a.items.length?` and ${a.total-a.items.length} more`:''}${a.refused.length?`. Ruled out anything the menu calls "${a.refused.join('", "')}"`:''}.`,why});agentSays(`Nothing is called that, but the ${it.name} is very close: ${desc(it)}. ${money(it.price)}. Would you like that?`);return;}
+  did({ic:'search',title:`Nothing on the menu answers to "${heard}"`,body:'No name and no description matched, so the agent says so instead of guessing. On a real call it is handed the whole menu to reason over.'});
+  agentSays("I don't have anything like that. We're a South Indian vegetarian kitchen: dosas, idlis, rice dishes, sweets and coffee. What are you in the mood for?");lastOffered=null;
+}
+function submit(text){text=(text||'').trim();if(!text)return;
+  enterTryMode();phone.classList.add('talking','caller');bubble('caller',text,null,'en');timers.push(setTimeout(()=>respond(text),reduced?50:Math.min(1800,500+text.length*26)));input.value='';}
+document.getElementById('sayForm').addEventListener('submit',e=>{e.preventDefault();submit(input.value)});
+document.getElementById('tries').addEventListener('click',e=>{const b=e.target.closest('button');if(b)submit(b.textContent)});
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const mic=document.getElementById('mic');
+if(SR&&location.protocol==='https:'){mic.hidden=false;let rec=null;mic.addEventListener('click',()=>{if(rec){rec.stop();return;}try{rec=new SR();rec.lang='en-IN';rec.interimResults=false;rec.onresult=e=>{submit(e.results[0][0].transcript)};rec.onend=()=>{mic.classList.remove('on');rec=null};rec.onerror=()=>{mic.classList.remove('on');mic.hidden=true;rec=null};mic.classList.add('on');rec.start();}catch{mic.hidden=true;}});}
 
-  (async function loop(){ let i=0; while(auto){
-    const idx=i%personas.length;
-    const tab=tabs.querySelector('.ptab[data-i="'+idx+'"]'); if(tab) setActive(tab);
-    const my=await run(personas[idx]); if(!auto||my!==runId)break; await sleep(2600); if(!auto)break; i++;
-  } })();
+
+/* ================= THREE PLAYGROUNDS ================= */
+const TRY={
+  rest:{greet:'Madras Kitchen, good evening. What can I get you?',placeholder:'Say what a caller would say…',hint:'The real menu matcher, running on a 31-dish menu, in your browser.',chips:['something like a crepe','soupy, with lentils','two masala dossa, no onion','not too spicy','is there cashew in the pongal?',"that's all"]},
+  hotel:{greet:'Seaside Inn, good evening. How can I help?',placeholder:'Ask about a room…',hint:'Four room types, a few house facts. Nothing is confirmed until the front desk says so.',chips:['a room for two this weekend','anything facing the river?','how much is a double?','is breakfast included?','three nights from the 18th, a family suite','I need to cancel a booking']},
+  plat:{greet:'Dial Local. Tell me what you need and where.',placeholder:'Ask for a business…',hint:'A small Kolkata directory: eight listings, five trades. Ask for one it has, and one it doesn\'t.',chips:['a dentist near Gariahat','electrician, the fan stopped working','a plumber in Salt Lake','someone to fix my AC','a maths tutor for class 10','the number for Sharma Electricals']},
+};
+function renderTries(name){const t=TRY[name];document.getElementById('tries').innerHTML=t.chips.map(c=>`<button>${esc(c)}</button>`).join('');document.getElementById('hint').textContent=t.hint;input.placeholder=t.placeholder;}
+
+const ROOMS=[{name:'River-view double',price:4200,key:/river|view|balcon/,desc:'a double with a balcony over the river'},{name:'Garden double',price:3200,key:/garden|quiet/,desc:'a double opening onto the garden'},{name:'Family suite',price:6500,key:/family|suite|four|kids|children/,desc:'two rooms that sleep four'},{name:'Standard twin',price:2600,key:/twin|standard|cheap|budget|basic/,desc:'two single beds, no view'}];
+const rs=n=>'₹'+n.toLocaleString('en-IN');
+function respondHotel(text){
+  const low=text.toLowerCase();
+  if(/\b(cancel|refund|complain|complaint|manager|person|human|someone)\b/.test(low)){did({ic:'hand',cls:'warn',title:'Needs a person',body:'Cancellations, refunds and complaints always go to the front desk. The agent never promises money back or a room.'});agentSays("I'll get the front desk for that, they can see your booking and sort it out. One moment.");return;}
+  if(/\b(breakfast|check.?in|check.?out|parking|wifi|pets?|dog|pool)\b/.test(low)){const facts=[];if(/breakfast/.test(low))facts.push('breakfast is included, 7 to 10 in the garden room');if(/check.?in/.test(low))facts.push('check-in is from 1 pm');if(/check.?out/.test(low))facts.push('check-out is by 11 am');if(/parking/.test(low))facts.push('parking is free, inside the gate');if(/wifi/.test(low))facts.push('wifi is free throughout');if(/pets?|dog/.test(low))facts.push("sorry, no pets");if(/pool/.test(low))facts.push('there is no pool, but the river ghat is a two-minute walk');did({ic:'search',title:'Checked the house facts',body:'Only what the hotel has written down. Nothing invented.'});agentSays(facts.map((f,i)=>i?f:f.charAt(0).toUpperCase()+f.slice(1)).join('. ')+'. Anything else?');return;}
+  const name=/^[A-Z][a-z]+( [A-Z][a-z]+){0,2}\.?$/.test(text.trim())||/\b(my name is|this is|i am|i'm)\s+([a-z]+)/i.test(text);
+  if(hotel.pending&&name){const n=(text.match(/\b(?:my name is|this is|i am|i'm)\s+([A-Za-z ]+)/i)||[,text.replace(/\.$/,'')])[1].trim();const p=hotel.pending;hotel.pending=null;did({ic:'check',cls:'ok',title:'Booking request logged',body:`${n} · ${p.nights} night${p.nights>1?'s':''}${p.when?' from '+p.when:''} · ${p.guests} guest${p.guests>1?'s':''} · ${p.room.name}. Waiting for the front desk.`});timers.push(setTimeout(()=>did({ic:'bell',title:'Front desk notified on WhatsApp',body:'One tap to say "I rang them" and record the decision.'}),reduced?50:900));agentSays(`Thank you, ${n}. The front desk will ring you back within the hour to confirm.`);return;}
+  if(/\b(room|rooms|night|nights|stay|book|booking|weekend|double|suite|twin|price|cost|much|rate|tariff|available|availability|facing|view)\b/.test(low)){
+    const room=ROOMS.find(r=>r.key.test(low));
+    if(/\b(how much|price|cost|rate|tariff|rates|prices)\b/.test(low)&&!/\b(night|nights|weekend|from the)\b/.test(low)){did({ic:'search',title:'Checked room types',body:ROOMS.map(r=>`${r.name} ${rs(r.price)}`).join(' · ')+'. Per night, before tax.'});agentSays((room?`The ${room.name} is ${rs(room.price)} a night, ${room.desc}. `:'')+`We have ${ROOMS.length} kinds: ${list(ROOMS.map(r=>`${r.name} at ${rs(r.price)}`))}. For which dates?`);return;}
+    const nights=(low.match(/\b(\d{1,2}|one|two|three|four|five|six|seven)\s*nights?\b/)||[])[1];const n=nights?(NUM[nights]??parseInt(nights,10)):(/weekend/.test(low)?2:1);
+    const g=(low.match(/\b(for|of us|us)\s*(\d|two|three|four)\b|\b(\d|two|three|four)\s*(of us|adults|people|guests)\b/)||[]);const guests=(NUM[g[2]||g[3]]??parseInt(g[2]||g[3],10))||(/\b(two of us|couple|for two)\b/.test(low)?2:(/family|kids|children/.test(low)?4:2));
+    const when=(low.match(/\b(?:from|on)\s+(the\s+)?(\d{1,2}(?:st|nd|rd|th)?(?:\s+\w+)?)/)||[])[2]||(/weekend/.test(low)?'this weekend':(/tomorrow/.test(low)?'tomorrow':null));
+    const pick=room||(guests>2?ROOMS[2]:ROOMS[0]);hotel.pending={room:pick,nights:n,guests,when};
+    did({ic:'search',title:'Checked room types',body:`${pick.name} listed at ${rs(pick.price)} a night${room?'':' (closest to what was asked)'}. Availability is for the front desk to confirm.`,why:[[when||'dates','kept in the caller\'s words'],[`${guests} guests`,'from "'+text.slice(0,40)+(text.length>40?'…':'')+'"']]});
+    agentSays(`We have a ${pick.name} at ${rs(pick.price)} a night, ${pick.desc}. I can't confirm it myself, but I'll log ${n} night${n>1?'s':''}${when?' from '+when:''} for ${guests} and the front desk will ring you back within the hour. Your name?`);return;}
+  if(/^(that'?s all|thanks|thank you|no thanks|bye|ok)\b/.test(low)){agentSays('Thank you for calling Seaside Inn. Goodbye.');return;}
+  did({ic:'search',title:'Nothing in the hotel\'s facts answers that',body:'The agent says so and steers back to what it can do, instead of guessing.'});agentSays("I'm not sure about that one. I can help with rooms, prices and a booking request. What dates were you thinking of?");
+}
+
+const LIST=[
+  {name:'Dental Bliss',trade:'dentist',area:'Gariahat'},{name:"Dr NK's Family Dental Care",trade:'dentist',area:'Ballygunge'},
+  {name:'Sparks & Co',trade:'electrician',area:'Salt Lake'},{name:'Roy Electricals',trade:'electrician',area:'Gariahat'},
+  {name:'Das Plumbing',trade:'plumber',area:'Salt Lake'},{name:'CoolFix',trade:'ac repair',area:'Park Street'},
+  {name:'Mistri Bros',trade:'carpenter',area:'Howrah'},{name:'Quick Cab Kolkata',trade:'taxi',area:'Kolkata'}];
+const TRADES={dentist:/dentist|dental|tooth|teeth|toothache/,electrician:/electrician|electric|fan|wiring|switch|fuse|light not working/,plumber:/plumb|tap|pipe|leak|drain|geyser/,'ac repair':/\bac\b|air ?con|cooling|aircon/,carpenter:/carpenter|wood|furniture|door|cupboard/,taxi:/taxi|cab|ride|airport drop/};
+function respondPlat(text){
+  const low=text.toLowerCase();
+  const byName=low.match(/\b(number|contact|phone)\s+(for|of)\s+(.+)$/);
+  if(byName){const q=byName[3].replace(/[?.]/g,'').trim();const hit=LIST.find(l=>l.name.toLowerCase().includes(q.toLowerCase().replace(/^the /,'')));if(hit){did({ic:'check',cls:'ok',title:`Found ${hit.name} by name`,body:`${hit.trade}, ${hit.area}. Number sent to the caller, caller's number sent to them.`});agentSays(`${hit.name} in ${hit.area}. I'm texting you their number now.`);}else{did({ic:'search',title:`Asked for a business by name: "${q}"`,body:'Not listed. Recorded as a name request, not as "we had nobody for electricians". Those are different questions.'});agentSays(`I don't have ${q} listed. Would you like an electrician near you instead?`);}return;}
+  const trade=Object.keys(TRADES).find(t=>TRADES[t].test(low));
+  const area=(text.match(/\b(?:near|in|around|at)\s+([A-Z][A-Za-z]+(?:\s[A-Z][A-Za-z]+)?)/)||[])[1];
+  if(!trade){if(/^(that'?s all|thanks|thank you|bye)\b/.test(low)){agentSays('Thanks for calling Dial Local. Goodbye.');return;}const said=low.replace(/^(i need|i want|looking for|a|an|someone to)\s+/,'').replace(/[?.]/g,'');did({ic:'warn',cls:'warn',title:`We had nobody for "${said}"`,body:'Recorded as exactly that, with the caller\'s words, so the platform knows which business to sign next. Never a guess.'});agentSays("I don't have anyone for that yet. I've noted it, and we'll ring you back when we do. Anything else?");return;}
+  const hits=LIST.filter(l=>l.trade===trade);const near=area?hits.filter(l=>l.area.toLowerCase()===area.toLowerCase()):[];const send=near.length?near:hits;
+  did({ic:'search',title:`Matched "${trade}${area?' · '+area:''} · Kolkata" against listings`,body:`${hits.length} listed${area?(near.length?`, ${near.length} in ${area}`:`, none in ${area}, so the nearest are offered`):''}. Only businesses with verified numbers.`});
+  timers.push(setTimeout(()=>did({ic:'check',cls:'ok',title:`Lead sent to ${send.length} business${send.length>1?'es':''}`,body:`${list(send.map(s=>s.name))}. Caller's number masked on every screen until they act on it.`}),reduced?50:900));
+  agentSays(`${send.length>1?`There are ${send.length}`:'There is one'}: ${list(send.map(s=>`${s.name} in ${s.area}`))}. I'm sending ${send.length>1?'them':'it'} your number, and texting you theirs.`);
+}
+function respond(text){({rest:respondRest,hotel:respondHotel,plat:respondPlat})[current](text);}
+renderTries('rest');
+
+
+/* ================= WHAT CALLERS SAY: live board ================= */
+const PHRASES=[
+ ['rest','something like a crepe','कुछ crepe जैसा','hi'],['hotel','a room facing the river','','en'],['plat','my tooth has hurt since last night','কাল রাত থেকে দাঁতে ব্যথা','bn'],
+ ['rest','soupy, with lentils','ডাল দিয়ে স্যুপের মতো','bn'],['plat','the fan stopped working','ಫ್ಯಾನ್ ಕೆಲಸ ಮಾಡ್ತಿಲ್ಲ','kn'],['hotel','two rooms for a family of four','चार लोगों के लिए दो कमरे','hi'],
+ ['rest','a savoury doughnut','','en'],['plat','a cab to the airport at five','','en'],['hotel','something cheap for one night','','en'],
+ ['rest','two masal dose','','en'],['plat','a yoga teacher in Salt Lake','','en'],['hotel','is breakfast included?','நாஷ்டா சேர்த்தா?','ta'],
+ ['rest','porridge, but savoury','','en'],['plat','the number for Sharma Electricals','','en'],['hotel','quiet, with a garden','','en'],
+ ['rest','a cooling drink, salty','ஒரு குளிர்ச்சியான பானம், உப்பு','ta'],['plat','the geyser is leaking','గీజర్ లీక్ అవుతోంది','te'],['rest','yogurt rice','పెరుగు అన్నం','te'],
+ ['rest','something sweet, syrupy','कुछ मीठा, चाशनी वाला','hi'],['hotel','I need to cancel a booking','','en'],['plat','someone to fix the AC','','en'],['rest','a huge dosa to share','ಹಂಚಿಕೊಳ್ಳೋಕೆ ದೊಡ್ಡ ದೋಸೆ','kn'],
+ ['rest','idly','','en'],['hotel','can we bring our dog?','','en'],['rest','like a quesadilla','','en'],['plat','a carpenter in Howrah','','en']];
+const DOMN={rest:'Restaurant',hotel:'Hotel',plat:'Platform'};
+let boardStart=0;
+function resolveTile(dom,gloss){const low=gloss.toLowerCase();
+  if(dom==='rest'){const a=findOnMenu(gloss);const it=a.items[0];
+    if(a.kind==='exact')return[it.name,a.wanted.some(w=>!tokenize(gloss).includes(w))?'spelling forgiven':'named outright','exact'];
+    if(a.kind==='several')return[`${a.total} dishes, asks which`,'a name that fits several','several'];
+    if(a.kind==='described'){const hits=a.hits[it.id]||[];return[it.name,hits.length?`"${hits[0]}" is in how the menu describes it`:'described, not named','described'];}
+    if(a.kind==='unavailable')return[`${it.name}, run out`,'on the menu, not on offer','unavailable'];
+    return['nothing, says so','no match, no guess','none'];}
+  if(dom==='hotel'){if(/cancel|refund|complain/.test(low))return['front desk rings back','never promised by the agent','none'];
+    if(/breakfast/.test(low))return['yes, 7 to 10','from the house facts','exact'];if(/dog|pet/.test(low))return['sorry, no pets','from the house facts','unavailable'];
+    const r=ROOMS.find(r=>r.key.test(low))||(/family|four|kids|children|two rooms/.test(low)?ROOMS[2]:null);
+    if(r){const w=(low.match(r.key)||[''])[0];return[`${r.name}, ${rs(r.price)}`,w?`"${w}" matched the room`:'fits four guests','described'];}
+    return['asks for dates first','nothing to match yet','several'];}
+  const byName=low.match(/\b(number|contact)\s+(for|of)\s+(.+)$/);
+  if(byName)return['not listed, says so','a name, not a trade: recorded as such','unavailable'];
+  const trade=Object.keys(TRADES).find(t=>TRADES[t].test(low));
+  if(!trade)return['we had nobody','recorded, so the platform knows who to sign','none'];
+  const area=(gloss.match(/\b(?:in|near|at)\s+([A-Z][A-Za-z]+(?:\s[A-Z][A-Za-z]+)?)/)||[])[1];
+  const hits=LIST.filter(l=>l.trade===trade);const near=area?hits.filter(l=>l.area.toLowerCase()===area.toLowerCase()):[];const send=near.length?near:hits;
+  const w=(low.match(TRADES[trade])||[''])[0];return[`${send.length} ${trade}${send.length>1?'s':''} sent`,`"${w}" means ${trade}${area?', '+area+' first':''}`,'described'];}
+function tile(p){const [dom,gloss,native,lang]=p;const [got,why,kind]=resolveTile(dom,gloss);
+  return `<div class="tile ${kind}"><span class="dchip ${dom}">${DOMN[dom]}</span><div class="said">${native?`<span class="${lang}">${esc(native)}</span><small>${esc(gloss)}</small>`:esc(gloss)}</div><div class="arrow">→</div><div class="got"><b>${esc(got)}</b><small>${esc(why)}</small></div></div>`;}
+function renderBoard(){const n=8;const slice=[];for(let i=0;i<n;i++)slice.push(PHRASES[(boardStart+i)%PHRASES.length]);const el=document.getElementById('board');el.innerHTML=slice.map(tile).join('');[...el.children].forEach((t,i)=>{t.style.animationDelay=(i*70)+'ms'});boardStart=(boardStart+n)%PHRASES.length;document.getElementById('boardnote').textContent=`${PHRASES.length} things people say, three kinds of phone line, resolved in your browser.`;}
+document.getElementById('shuffle').addEventListener('click',renderBoard);
+renderBoard();
+
+/* ================= SIX REAL CALLS, READ ALONG ================= */
+const CALLS={"screening": {"title": "Something like a crêpe", "lang": "English", "chip": "en", "note": "Crêpe becomes dosa. Cheese Dosa for the daughter. Pickup in fifteen minutes.", "turns": [["a", "Madras Kitchen, good evening! What can I get for you?"], ["c", "Hi, umm, this might sound silly, but do you have anything like a crepe? My daughter loves crepes."], ["a", "Oh, that is not silly at all! We do not have crepes, but our dosas are very similar. They are thin, crisp rice and lentil crepes. Would she like to try one?"], ["c", "Oh okay, um, what do you recommend for a child? Not too spicy."], ["a", "Well, I would definitely recommend the Cheese Dosa. It has melted cheese, it is quite mild, and children usually love it. Would you like to add one to your order?"], ["c", "Yeah okay, let's do one cheese dosa for her and, um, one masala dosa for myself. Can I pick that up in fifteen minutes?"], ["a", "Got it. One Cheese Dosa for thirteen forty nine and one Masala Dosa for twelve ninety nine. Anything else for you?"], ["c", "No, that is all, thank you."], ["a", "Alright, so that is one Cheese Dosa and one Masala Dosa. The total comes to twenty six forty eight before tax. Does that sound correct?"], ["c", "Yeah, sounds good, thank you."], ["a", "Great. May I have your name please?"], ["c", "It's, uh, Rachel."], ["a", "Thanks, Rachel. For the pickup time, would you like to come in about twenty minutes, or does fifteen minutes still work best for you?"], ["c", "Fifteen minutes works best for me, please."], ["a", "Perfect, Rachel. Your order will be ready in fifteen minutes, and you can pay at the counter. Thanks for calling Madras Kitchen!"]], "dom": "rest"}, "h_river": {"dom": "hotel", "title": "Facing the river, if you have it", "lang": "English", "chip": "en", "note": "Nothing confirmed by the agent. Request read back; the front desk rings back within the hour.", "turns": [["a", "Seaside Inn, good evening! How can I help you?"], ["c", "Hi, umm, I'm looking for a room, three nights from the eighteenth. Two of us. Facing the river, if you have it?"], ["a", "Hmm, I can certainly note that down for you. Just to be sure, is that for the eighteenth of October?"], ["c", "Haan, yes, eighteenth of October only. Also, uh, breakfast is included, na?"], ["a", "Yes, breakfast is included from seven to ten in the garden room. So, for two guests, I can note down the river-view double. It is four thousand two hundred rupees a night. Does that work for you?"], ["c", "Yes yes, that works fine."], ["a", "Great. May I have your name, please?"], ["c", "Uh, it's Anita Rao."], ["a", "Thank you, Anita Rao. So, I have a request for two guests for three nights starting eighteenth October in a river-view double. Our front desk will ring you back within the hour to confirm, as nothing is confirmed just yet. Thank you for calling!"]]}, "p_nobody": {"dom": "plat", "title": "A yoga teacher, then a name", "lang": "English", "chip": "en", "note": "\"We had nobody\" said honestly and recorded. A business asked for by name is not invented; a listed one is offered.", "turns": [["a", "Dial Local, hello! Tell me what you need, and where."], ["c", "Hi, uh, looking for a yoga teacher in Salt Lake, basically."], ["a", "Hmm, sorry, but we don't have any yoga teachers listed yet. I'll note this down so we can add some. Need anything else?"], ["c", "Okay, then can I get the number for Sharma Electricals?"], ["a", "I am sorry, but Sharma Electricals is not listed. I have Sparks and Co in Salt Lake and Roy Electricals in Gariahat. Would either of those work?"], ["c", "Haan okay, give me Sparks and Co number, that will work."], ["a", "Sure. I am passing your number to Sparks and Co in Salt Lake and texting their details to you now. Need anything else?"], ["c", "No, that is all, thanks."]]}, "booking": {"title": "No onion, and is there rasam?", "lang": "हिन्दी", "chip": "hi", "note": "No onion kept with the dish. Rasam has run out, so Sambar is suggested.", "turns": [["a", "मद्रास किचन, गुड इवनिंग! मैं आपके लिए क्या ला सकती हूँ?"], ["c", "हाँ, दो masala dosa कर दो, प्याज़ मत डालना। और आज rasam है क्या?"], ["a", "ज़रूर, दो Masala Dosa, बिना onion के। ये twelve ninety nine dollars के दो हुए। वैसे, आज Rasam खत्म हो गई है, क्या मैं उसकी जगह Sambar add कर दूँ?"], ["c", "अच्छा, फिर एक sambar दे दो।"], ["a", "ठीक है, एक Sambar add कर दिया है, जिसकी price four ninety nine dollars है। क्या आप इसके अलावा कुछ और लेना चाहेंगे?"], ["c", "नहीं, बस इतना ही। साढ़े सात बजे pick up करूँगी, नाम Anita लिख लो।"], ["a", "ठीक है अनीता जी। तो आपका order है दो Masala Dosa और एक Sambar, जिसका total thirty ninety-seven dollars हुआ। क्या यह सही है?"], ["c", "हाँ हाँ, ठीक है, बिल्कुल सही है।"], ["a", "धन्यवाद अनीता जी। आपका order शाम साढ़े सात बजे ready रहेगा और payment आपको counter पर करना होगा। मद्रास किचन में call करने के लिए शुक्रिया!"]], "dom": "rest"}, "h_cancel": {"dom": "hotel", "title": "I need to cancel, will I get a refund?", "lang": "हिन्दी", "chip": "hi", "note": "No refund promised by the agent. The emergency is acknowledged; the front desk rings back within the hour.", "turns": [["a", "Seaside Inn, good evening! How can I help you?"], ["c", "हाँ जी नमस्ते, मुझे अपनी बुकिंग कैंसल करनी थी। एक्चुअली इस शनिवार के लिए गार्डन डबल रूम था, कुछ फैमिली इमरजेंसी हो गई है। क्या मुझे रिफंड मिलेगा?"], ["a", "नमस्ते। मुझे सुनकर दुख हुआ कि आपको इमरजेंसी है। रिफंड और कैंसलेशन के लिए हमारे फ्रंट डेस्क वाले आपको कॉल करेंगे। क्या मैं आपका नाम जान सकती हूँ?"], ["c", "हाँ जी, Rohit Mehra। ठीक है, आप कॉल बैक करवा दीजिए, प्लीज़ रिफंड का बता दीजिएगा ना।"], ["a", "ठीक है रोहित मेहरा जी, मैंने नोट कर लिया है। हमारे फ्रंट डेस्क वाले आपको एक घंटे के अंदर कॉल करेंगे और रिफंड के बारे में बता देंगे। Seaside Inn में कॉल करने के लिए धन्यवाद।"]]}, "p_dentist": {"dom": "plat", "title": "A dentist near Gariahat, today", "lang": "বাংলা", "chip": "bn", "note": "Matched to the listed clinic in Gariahat. No appointment promised; the clinic rings back.", "turns": [["a", "Dial Local, hello! Tell me what you need, and where."], ["c", "হ্যালো, গড়িয়াহাটের কাছে একজন দাঁতের ডাক্তার চাই। কাল রাত থেকে দাঁত ব্যথা করছে, আজকেই দেখা যাবে কি?"], ["a", "গড়িয়াহাটের কাছে Dental Bliss আছে। আমি ওদের কাছে আপনার নম্বর পাঠিয়ে দিচ্ছি আর ডিটেইলস টেক্সট করে দিচ্ছি। আর কিছু লাগবে?"], ["c", "আচ্ছা ঠিক আছে, মেসেজ পাঠিয়ে দিন। আর কিছু লাগবে না, ধন্যবাদ।"], ["a", "You are most welcome. I am sending the details right away. Have a great day!"]]}, "ordering": {"title": "Dinner for the family", "lang": "ಕನ್ನಡ", "chip": "kn", "note": "Cheese Dosa offered for the six-year-old. Order read back with the total.", "turns": [["a", "Madras Kitchen, good evening! What can I get for you?"], ["c", "ಹಾಂ ನಮಸ್ಕಾರ ಎರಡು ಮಸಾಲಾ ದೋಸೆ ಪಾರ್ಸೆಲ್ ಕೊಡಿ ಸ್ವಲ್ಪ ಬೇಗ ಮಾಡಿ"], ["a", "ನಮಸ್ಕಾರ! ಖಂಡಿತ, ಎರಡು Masala Dosa, ಇದರ ಬೆಲೆ ಒಂದು ಮಸಾಲ ದೋಸೆಗೆ twelve ninety nine. ಬೇರೆ ಏನಾದ್ರೂ ಬೇಕಾ?"], ["c", "ಹಾಂ ಒಂದು ನಿಮಿಷ ನನ್ನ ಆರು ವರ್ಷದ ಮಗುವಿಗೆ ಖಾರ ಆಗಲ್ಲ ಏನು ಕೊಡ್ಬಹುದು ಅವನಿಗೆ"], ["a", "ಅದಕ್ಕೆ Cheese Dosa ತುಂಬಾ ಚೆನ್ನಾಗಿರುತ್ತೆ, ಇದು mild ಆಗಿರುತ್ತೆ ಮತ್ತೆ ಮಕ್ಕಳಿಗೆ ತುಂಬಾ ಇಷ್ಟ ಆಗುತ್ತೆ. ಇದರ ಬೆಲೆ thirteen forty nine. ಇದನ್ನ order ಮಾಡ್ಲಾ?"], ["c", "ಹಾಂ ಸರಿ ಅದನ್ನೇ ಕೊಡಿ ಮತ್ತೆ ಜೊತೆಗೇ ಎರಡು ಫಿಲ್ಟರ್ಸ್ ಕಾಫಿ ಕೂಡ ಪಾರ್ಸೆಲ್ ಮಾಡಿ"], ["a", "ಸರಿ, ಒಂದು Cheese Dosa ಮತ್ತೆ ಎರಡು Filter Coffee. ಒಂದು ಕಾಫಿಗೆ three ninety nine ಆಗುತ್ತೆ. ಇನ್ನು ಬೇರೆ ಏನಾದ್ರೂ ಬೇಕಾ?"], ["c", "ಇಲ್ಲ ಬಸ್ ಅಷ್ಟೇ ನಾನು ಟ್ವೆಂಟಿ ಮಿನಿಟ್ಸ್ ಅಲ್ಲಿ ಬರ್ತೀನಿ ರೆಡಿ ಮಾಡಿರೋದಿ"], ["a", "ಸರಿ, ನಿಮ್ಮ order ನಲ್ಲಿ ಎರಡು Masala Dosa, ಒಂದು Cheese Dosa ಮತ್ತೆ ಎರಡು Filter Coffee ಇದೆ. total ಬೆಲೆ forty seven ninety seven ಡಾಲರ್ ಆಗುತ್ತೆ. ಇದು correct ಅಲ್ವಾ?"], ["c", "ಹಾಂ ಸರಿ ಕರೆಕ್ಟ್ ಆಗಿದೆ ಬೇಗ ಮಾಡಿ ನಾನು ಬರ್ತಾ ಇದೀನಿ"], ["a", "ಸರಿ, ನಿಮ್ಮ ಹೆಸರು ಸ್ವಲ್ಪ ಹೇಳ್ತೀರಾ?"], ["c", "ನನ್ನ ಹೆಸರು ಸುರೇಶ್ ಹಾಂ ನಾನು ಟ್ವೆಂಟಿ ಮಿನಿಟ್ಸ್ ಅಲ್ಲಿ ಬರ್ತೀನಿ ರೆಡಿ ಮಾಡಿರೋಡಿ"], ["a", "ಸರಿ ಸುರೇಶ್ ಅವರೇ, ನಿಮ್ಮ order ಇಪ್ಪತ್ತು ನಿಮಿಷದಲ್ಲಿ ready ಇರುತ್ತೆ. payment counter ನಲ್ಲಿ ಮಾಡಿ. Madras Kitchen ಗೆ call ಮಾಡಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು."], ["c", "ಹಾಂ ಸರಿ ಧನ್ಯವಾದ ಬರ್ತಿನಿ"]], "dom": "rest"}, "h_dasara": {"dom": "hotel", "title": "Family for Dasara", "lang": "ಕನ್ನಡ", "chip": "kn", "note": "Family suite for four, parking and breakfast answered from the house facts, request read back.", "turns": [["a", "Seaside Inn, good evening! How can I help you?"], ["c", "ನಮಸ್ಕಾರ, ದಸರಾಗೆ ನಮಗೆ ರೂಮ್ ಬೇಕಿತ್ತು, ಅಕ್ಟೋಬರ್ ಎರಡರಿಂದ ಎರಡು ದಿನಕ್ಕೆ."], ["a", "ನಮಸ್ಕಾರ, ಖಂಡಿತ help ಮಾಡ್ತೀನಿ. ನಿಮ್ಮ ಜೊತೆ ಒಟ್ಟು ಎಷ್ಟು ಜನ ಇರ್ತೀರಾ?"], ["c", "ಹೌದು, ಇಬ್ಬರು ದೊಡ್ಡವರು ಮತ್ತೆ ಇಬ್ಬರು ಮಕ್ಕಳು. ಅಲ್ಲಿ ಕಾರ್ ಪಾರ್ಕಿಂಗ್ ಇರುತ್ತಾ?"], ["a", "ಹೌದು, ಗೇಟ್ ಒಳಗಡೆ free parking available ಇದೆ. ನಿಮಗೆ family suite suit ಆಗುತ್ತೆ, ಇದರ ಬೆಲೆ ಒಂದು ರಾತ್ರಿಗೆ ಆರು ಸಾವಿರದ ಐನೂರು ರೂಪಾಯಿ. ಇದನ್ನೇ note ಮಾಡ್ಲಿ?"], ["c", "ಸರಿ, ರೂಮ್ ಓಕೆ. ಮತ್ತೆ ಬೆಳಗ್ಗೆ ಬ್ರೇಕ್‌ಫಾಸ್ಟ್ ಇದರಲ್ಲಿ ಸೇರಿರುತ್ತಾ?"], ["a", "ಹೌದು, breakfast included ಇದೆ. ಬೆಳಗ್ಗೆ ಏಳು ಇಂದ ಹತ್ತು ಗಂಟೆಯವರೆಗೆ garden room ನಲ್ಲಿ ಸಿಗುತ್ತೆ. ನಿಮ್ಮ ಹೆಸರು ಸ್ವಲ್ಪ ಹೇಳ್ತೀರಾ?"], ["c", "ಹೌದು, ನನ್ನ ಹೆಸರು ಪ್ರಕಾಶ್. ಬುಕ್ಕಿಂಗ್ ಕನ್ಫರ್ಮ್ ಮಾಡಿಬಿಡಿ."], ["a", "ಪ್ರಕಾಶ್ ಅವರೇ, ನಾನು ನಿಮ್ಮ request note ಮಾಡ್ತೀನಿ. ಅಕ್ಟೋಬರ್ ಎರಡು ಇಂದ ಎರಡು ರಾತ್ರಿ, ನಾಲ್ಕು ಜನರಿಗೆ family suite ಬೇಕು ಅಂತ. ಇದು ಇನ್ನು confirm ಆಗಿಲ್ಲ, ನಮ್ಮ front desk ಅವರು ಒಂದು ಗಂಟೆಯೊಳಗೆ ನಿಮಗೆ call ಮಾಡಿ confirm ಮಾಡ್ತಾರೆ. ಧನ್ಯವಾದಗಳು."]]}, "p_fan": {"dom": "plat", "title": "The fan stopped working", "lang": "తెలుగు", "chip": "te", "note": "Electrician in Salt Lake found first. The agent refuses to promise a same-day visit.", "turns": [["a", "Dial Local, hello! Tell me what you need, and where."], ["c", "హలో, మా ఇంట్లో పొద్దున్నే ఫ్యాన్ ఆగిపోయింది. మేము సాల్ట్ లేక్ లో ఉంటాము. ఈరోజే ఎవరైనా వస్తారా అండి?"], ["a", "సాల్ట్ లేక్ లో electrician కావాలి కదా. అక్కడ Sparks and Co available ఉన్నారు. మీ number వారికి పంపిస్తున్నాను, వివరాలు మీకు text వస్తాయి. ఇంకేమైనా help కావాలా?"], ["c", "సరే అండి, మెసేజ్ పంపించండి. వాళ్ళు ఖచ్చితంగా ఈరోజే వస్తారు కదా?"], ["a", "నేను కేవలం details పంపిస్తాను, కానీ వాళ్ళు ఎప్పుడు వస్తారో నేను promise చేయలేను. మీరు text లో వచ్చిన number కి call చేసి check చేసుకోండి. ఇంకేమైనా help కావాలా?"], ["c", "సరే అండి, థాంక్స్. ఇంకేం వద్దు."], ["a", "సరే అండి, థాంక్స్. మీ రోజు బాగుండాలని కోరుకుంటున్నాను, బై!"]]}, "support": {"title": "Quick breakfast", "lang": "தமிழ்", "chip": "ta", "note": "Idli is steamed, so less oily. Extra chutney kept. Twenty minutes, not ten.", "turns": [["a", "மத்ராஸ் கிச்சன், குட் ஈவினிங்! உங்களுக்கு நான் என்ன எடுத்து தரட்டு?"], ["c", "ஹலோ, எனக்கு இட்லி, வடை, இதுல எதுல எண்ணெய் கம்மியா இருக்கும்னு சொல்ல முடியுமா? அவசரமா ஆபீஸ் போகணும்."], ["a", "ஆமா, கண்டிப்பா. இட்லி steamed rice cakes, அதனால அதுல எண்ணெய் ரொம்ப கம்மியா இருக்கும். உங்களுக்கு இட்லி order பண்ணட்டுமா?"], ["c", "சரி சரி, அப்போ ரெண்டு idli, ஒரு medu vada குடுத்துடுங்க. அப்புறம் extra chutney வேணும். பத்து நிமிஷத்துல ரெடி ஆயிடுமா?"], ["a", "சரிங்க, ரெண்டு idli seven ninety nine டாலர், ஒரு medu vada eight forty nine டாலர். extra chutney-யும் சேர்த்துக்கிறேன். ஆனா, order ready ஆக இருபது நிமிஷம் ஆகும். ஓகேவா?"], ["c", "ஆமா, இருபது நிமிஷமா? சரி சரி, பரவால்ல. கொஞ்சம் சீக்கிரம் பண்ணுங்க. என் பேரு Karthik."], ["a", "சரி கார்த்திக், சீக்கிரம் பண்ண சொல்லுறேன். வேற ஏதாவது items வேணுமா, இல்ல இது போதும்மா?"], ["c", "இல்ல இல்ல, இதுவே போதும். சீக்கிரம் ரெடி பண்ணி வையுங்க, நான் வரேன்."], ["a", "சரிங்க, அப்போ ரெண்டு idli மற்றும் ஒரு medu vada, மொத்தம் sixteen forty eight டாலர். இத confirm பண்றீங்களா?"], ["c", "ஆமா ஆமா, confirm பண்ணிடுங்க. நன்றி, சீக்கிரம் குடுங்க."], ["a", "ஓகே கார்த்திக், confirm பண்ணிட்டேன். இருபது நிமிஷத்துல வந்து collect பண்ணிக்கோங்க. payment counter-ல பண்ணுங்க. Madras Kitchen-க்கு கால் பண்ணதுக்கு ரொம்ப நன்றி."]], "dom": "rest"}, "handoff": {"title": "Is there cashew in the pongal?", "lang": "తెలుగు", "chip": "te", "note": "The agent refuses to promise and takes a name for a staff callback.", "turns": [["a", "Madras Kitchen, good evening! What can I get for you?"], ["c", "నమస్కారం అండి, మా బాబుకి నట్ అలర్జీ ఉంది. Ven Pongal లో జీడిపప్పు ఉంటుందా అండి?"], ["a", "నమస్కారం అండి. Ven Pongal గురించి అడిగారు కదా, మా menu లో దాని గురించి వివరాలు లేవు. kitchen లో అది ఎలా తయారు చేస్తారో నేను ఖచ్చితంగా చెప్పలేను. మీ పేరు మరియు phone number ఇస్తే, మా staff మెంబర్ పది నిమిషాల్లో మీకు call చేసి కన్ఫర్మ్ చేస్తారు. సరేనా?"], ["c", "ఖచ్చితంగా చెప్పగలరా అండి? బాబు కోసం అని."], ["a", "అర్థమైంది అండి, బాబు విషయం కాబట్టి నేను రిస్క్ తీసుకోలేను. అందుకే మా staff మెంబర్ మీకు call చేసి కన్ఫర్మ్ చేస్తారు. మీ పేరు కొంచెం చెబుతారా?"], ["c", "సరే అండి, నా పేరు Lakshmi. నా ఫోన్ నెంబర్ లాస్ట్ లో నాలుగు మూడు రెండు ఒకటి ఉంటుంది."], ["a", "ధన్యవాదాలు లక్ష్మి గారు. మీ phone number మరియు వివరాలు నోట్ చేసుకున్నాను. మా staff మెంబర్ పది నిమిషాల్లో మీకు call చేస్తారు. Madras Kitchen కి call చేసినందుకు థాంక్యూ అండి."], ["c", "సరే అండి, థాంక్యూ."]], "dom": "rest"}, "bengali": {"title": "Soupy, with lentils", "lang": "বাংলা", "chip": "bn", "note": "Sambar found from a description. A sweet offered without being asked for by name.", "turns": [["a", "Madras Kitchen, good evening! What can I get for you?"], ["c", "হ্যালো আচ্ছা আমি না ঠিক জানি না ডিশগুলো নাম আমার না ডাল এর স্যুপি মত কিছু একটা চাই আর তারপর একটা মিষ্টি ঠিক আছে"], ["a", "আচ্ছা, আপনি কি Sambar ট্রাই করবেন? এটা একটা টক ডাল স্যুপের মতো। আর মিষ্টির জন্য আমাদের কাছে Rava Kesari আছে। আপনি কি এই দুটো নিতে চান?"], ["c", "হ্যাঁ ঠিক আছে ওটাই প্যাক করে দিন আচ্ছা টোটাল কত হলো আমার নাম রিয়া আমি হাফ আন আওয়ার এ আসছি ঠিক আছে"], ["a", "ঠিক আছে রিয়া। আপনার জন্য একটা Sambar চার ডলার নিরানব্বই সেন্ট আর একটা Rava Kesari পাঁচ ডলার নিরানব্বই সেন্ট। মোট হলো দশ ডলার আটানব্বই সেন্ট। আধ ঘণ্টায় রেডি থাকবে। payment কাউন্টারে করতে হবে। ধন্যবাদ Madras Kitchen-এ call করার জন্য।"], ["c", "আচ্ছ ধন্যবাদ আমি আসছি"]], "dom": "rest"}};
+const reads=document.getElementById('reads');let readTimers=[];
+reads.innerHTML=Object.entries(CALLS).map(([k,c])=>`<article class="read" data-k="${k}" data-dom="${c.dom}"><header><span class="dchip ${c.dom}">${DOMN[c.dom]}</span><span class="lchip">${esc(c.lang)}</span><b>${esc(c.title)}</b><span class="count">${c.turns.length} turns</span></header><div class="rthread" data-thread></div><footer><span>${esc(c.note)}</span><button class="rplay" data-play>Read it</button></footer></article>`).join('');
+function readCall(card){readTimers.forEach(clearTimeout);readTimers=[];document.querySelectorAll('.read.on').forEach(x=>x.classList.remove('on'));card.classList.add('on');
+  const c=CALLS[card.dataset.k];const th=card.querySelector('[data-thread]');th.innerHTML='';let t=0;
+  c.turns.forEach(([who,text],i)=>{const delay=reduced?i*40:t;readTimers.push(setTimeout(()=>{const m=el(`<div class="rm ${who==='a'?'agent':'caller'} ${c.chip}"></div>`);m.textContent=text;th.appendChild(m);th.scrollTop=th.scrollHeight;},delay));t+=Math.min(2600,700+text.length*22);});
+  readTimers.push(setTimeout(()=>card.classList.remove('on'),t+800));}
+reads.addEventListener('click',e=>{const card=e.target.closest('.read');if(card)readCall(card);});
+document.querySelectorAll('#readtabs button').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('#readtabs button').forEach(x=>x.setAttribute('aria-selected',x===t));const d=t.dataset.dom;document.querySelectorAll('.read').forEach(c=>c.hidden=d!=='all'&&c.dataset.dom!==d);}));
+
+/* ================= THE WEEK AFTER: pinned phone, three lines ================= */
+const SB=t=>`<div class="sb2"><span class="isl"></span><span>${t}</span><span style="display:inline-flex;gap:5px;align-items:center;font-size:11px">●●●● <span style="display:inline-block;width:20px;height:10px;border:1.5px solid #333;border-radius:3px;position:relative"><span style="position:absolute;inset:2px;right:4px;background:#111;border-radius:1px"></span></span></span></div>`;
+const LRN=(b,note,acts)=>`<div class="card"><b>${b}</b><div class="note">${note}</div>${acts?`<div class="acts">${acts}</div>`:''}</div>`;
+const SCREENS={
+  rest_call:()=>SB('7:12')+`<div class="hd">Madras Kitchen <small>Tue · on the line</small></div><div class="bd wa" style="background:#F6F6F4">
+    <div class="m">Madras Kitchen, good evening. What can I get you?</div><div class="m me hi">कुछ crepe जैसा है क्या?<small>something like a crepe?</small></div>
+    <div class="m hi">Crepe नहीं है, पर Masala Dosa बहुत करीब है। लेंगे?<small>no crepes, but the Masala Dosa is very close</small></div><div class="m me hi">हाँ, दो। प्याज़ मत डालना।<small>yes, two. no onion.</small></div>
+    <div class="card"><span class="st ok">order placed</span><div class="l"><span>2 × Masala Dosa<small>no onion</small></span><span>$25.98</span></div></div></div>`,
+  rest_kitchen:()=>SB('7:13')+`<div class="hd">Orders <small>Tue · kitchen</small></div><div class="bd">
+    <div class="card"><span class="st">new · 0:12</span><b>+9198•••210 · pickup 7:30</b><div class="l"><span>2 × Masala Dosa<small>no onion</small></span><span>$25.98</span></div><div class="acts"><button class="act y" data-next="Cooking">Start cooking</button></div></div>
+    <div class="card"><span class="st ok">ready</span><b>+9190•••774 · pickup 7:15</b><div class="l"><span>1 × South Indian Thali</span><span>$16.99</span></div><div class="l"><span>1 × Filter Coffee</span><span>$3.99</span></div><div class="acts"><button class="act" data-done="1">Collected</button></div></div>
+    <div class="card"><span class="st warn">needs a person · 0:41</span><b>+9197•••302 · on the line</b><div class="note">Asked whether the Ven Pongal contains cashew. Her son has a nut allergy.</div><div class="acts"><button class="act y" data-took="1">Somebody has it</button></div></div></div>`,
+  rest_owner:()=>SB('9:40')+`<div class="hd">Maya <small>your agent · WhatsApp</small></div><div class="bd wa" data-thread>
+    <div class="m me">Rasam is finished for tonight 🎤 0:04<small>9:40 pm ✓✓</small></div><div class="m">Done. I'll stop offering Rasam until you tell me otherwise. Two callers asked for it in the last hour, so I'll suggest Sambar instead.<small>9:40 pm</small></div></div>
+    <div class="quick"><button data-q="how was tonight?">how was tonight?</button><button data-q="what did people ask for that we don't have?">what did people ask for that we don't have?</button><button data-q="add paneer dosa at $13.99 from friday">add paneer dosa $13.99 from Friday</button></div>`,
+  rest_rescue:()=>SB('12:05')+`<div class="hd">Messages <small>Wed</small></div><div class="bd sms" data-thread><div class="from">Madras Kitchen</div>
+    <div class="m">Looks like we got cut off. Your 2 × Masala Dosa (no onion) and 1 × Filter Coffee are still here, $29.97. Reply YES to place it for pickup at 12:30.</div>
+    <div class="acts" style="display:flex;gap:6px;justify-content:flex-end"><button class="act y" data-yes="Placed. 2 × Masala Dosa (no onion), 1 × Filter Coffee, $29.97, ready at 12:30. The kitchen has it now.">YES</button><button class="act" data-no="1">No thanks</button></div></div>`,
+  rest_learn:()=>SB('9:00')+`<div class="hd">Maya <small>Sunday · what I learned</small></div><div class="bd">
+    ${LRN('12 callers said "paneer dosa" this week.','It isn\'t on the menu. The closest thing you sell is Cheese Dosa.','<button class="act y" data-learn="Offering Cheese Dosa whenever someone asks for paneer dosa.">Offer Cheese Dosa</button><button class="act" data-learn="Paneer Dosa added at $13.99. I\'ll start offering it on the next call.">Add it, $13.99</button><button class="act" data-learn="Ignored. I\'ll keep saying we don\'t have it.">Ignore</button>')}
+    ${LRN('"Raw dosa" heard 7 times. 6 of them ordered Rava Dosa.','Treat "raw dosa" as Rava Dosa from now on?','<button class="act y" data-learn=\'"Raw dosa" now means Onion Rava Dosa, on every call.\'>Yes</button><button class="act" data-learn="Left as it was. I\'ll keep asking which dosa they mean.">No</button>')}
+    ${LRN('3 callers hung up at the thali price.','Each was quoted $16.99 and said "that\'s a lot" or went quiet. Nothing to approve, just so you know.','')}</div>`,
+  rest_score:()=>SB('8:30')+`<div class="hd">Call quality <small>this week · 212 calls</small></div><div class="bd">
+    <div class="card score"><b style="margin-bottom:6px">What the agent got right</b><div class="l ok"><span>Prices quoted that matched the menu</span><span>142 / 142</span></div><div class="l ok"><span>Dishes offered that aren't on the menu</span><span>0</span></div><div class="l ok"><span>Allergy questions answered instead of handed over</span><span>0</span></div></div>
+    <div class="card score"><b style="margin-bottom:6px">Where callers struggled</b><div class="l warn"><span>Agent spoke over a caller</span><span>3</span></div><div class="l warn"><span>Caller had to repeat themselves</span><span>5</span></div><div class="l warn"><span>Hung up at the price</span><span>3</span></div><div class="note" style="margin-top:6px">Every number opens the calls behind it, with the caller's words.</div></div></div>`,
+
+  hotel_call:()=>SB('11:40')+`<div class="hd">Seaside Inn <small>Tue · on the line</small></div><div class="bd wa" style="background:#F6F6F4">
+    <div class="m">Seaside Inn, good evening. How can I help?</div><div class="m me">Hi, umm, three nights from the 18th. Two of us. Facing the river, if you have it?</div>
+    <div class="m">I can't confirm it myself, but I'll note a river-view double and the front desk rings you back within the hour. Your name?</div><div class="m me">Anita Rao.</div>
+    <div class="card"><span class="st">request logged</span><div class="l"><span>3 nights from 18 Oct · 2 guests<small>"facing the river"</small></span><span>₹4,200/n</span></div></div></div>`,
+  hotel_desk:()=>SB('7:05')+`<div class="hd">Bookings <small>Wed · waiting for you</small></div><div class="bd">
+    <div class="card"><span class="st">waiting · since 11:40 pm</span><b>Anita Rao · +9198•••210</b><div class="l"><span>3 nights from 18 Oct · 2 guests<small>a room facing the river</small></span><span>₹12,600</span></div><div class="acts"><button class="act y" data-rang="Confirmed with Anita at 7:12 am. River-view double, 18 to 21 Oct.">I rang them</button></div></div>
+    <div class="card"><span class="st">waiting · since 6:20 am</span><b>Prakash · +9199•••441</b><div class="l"><span>2 nights from 2 Oct · 2 adults, 2 children<small>family suite, parking asked</small></span><span>₹13,000</span></div><div class="acts"><button class="act y" data-rang="Confirmed with Prakash. Family suite, 2 to 4 Oct.">I rang them</button></div></div>
+    <div class="card"><span class="st warn">front desk · cancellation</span><b>Rohit Mehra · +9198•••077</b><div class="note">Garden double this Saturday. Family emergency, asked about a refund. Promised a call within the hour.</div><div class="acts"><button class="act" data-rang="Rang Rohit. Refunded in full, booking released.">I rang them</button></div></div></div>`,
+  hotel_owner:()=>SB('9:40')+`<div class="hd">Maya <small>your agent · WhatsApp</small></div><div class="bd wa" data-thread>
+    <div class="m me">Family suite is being repainted till the 5th 🎤 0:05<small>9:40 pm ✓✓</small></div><div class="m">Noted. I won't suggest the Family suite for stays before 6 October. Prakash's Dasara request is for the 2nd, shall I ask the front desk to offer him two Garden doubles instead?<small>9:40 pm</small></div></div>
+    <div class="quick"><button data-q="how many enquiries this week?">how many enquiries this week?</button><button data-q="what do callers ask that we can't answer?">what do callers ask that we can't answer?</button><button data-q="raise the river view to 4600 from friday">raise the river view to 4,600 from Friday</button></div>`,
+  hotel_rescue:()=>SB('18:02')+`<div class="hd">Messages <small>Thu</small></div><div class="bd sms" data-thread><div class="from">Seaside Inn</div>
+    <div class="m">Hi Anita, the front desk tried you twice about the river-view double, 18 to 21 October. We can hold it until 9 pm tonight. Reply YES to keep it, or a time to call you.</div>
+    <div class="acts" style="display:flex;gap:6px;justify-content:flex-end"><button class="act y" data-yes="Held for you. The front desk will confirm by 9 pm and send the booking details here.">YES</button><button class="act" data-no="1">Call me at 8</button></div></div>`,
+  hotel_learn:()=>SB('9:00')+`<div class="hd">Maya <small>Sunday · what I learned</small></div><div class="bd">
+    ${LRN('9 callers asked for a "balcony".','The river-view double has one, but its description doesn\'t say so. Add "balcony" to it?','<button class="act y" data-learn="Added. The agent now mentions the balcony when someone asks.">Add it</button><button class="act" data-learn="Left as is.">No</button>')}
+    ${LRN('6 enquiries came in between midnight and 6 am.','All six were logged and rung back in the morning. Nothing to approve.','')}
+    ${LRN('4 callers asked about late check-in.','The facts say check-in from 1 pm, but not until when. Tell me the latest arrival time?','<button class="act y" data-learn="Noted: late check-in until 11 pm, by arrangement.">Until 11 pm</button><button class="act" data-learn="Noted: no late check-in.">None</button>')}</div>`,
+  hotel_score:()=>SB('8:30')+`<div class="hd">Call quality <small>this week · 96 calls</small></div><div class="bd">
+    <div class="card score"><b style="margin-bottom:6px">What the agent got right</b><div class="l ok"><span>Rooms promised or called "available"</span><span>0</span></div><div class="l ok"><span>Prices quoted that matched the rate card</span><span>61 / 61</span></div><div class="l ok"><span>Refunds or cancellations handled without the desk</span><span>0</span></div></div>
+    <div class="card score"><b style="margin-bottom:6px">Where callers struggled</b><div class="l warn"><span>Asked something the facts don't cover</span><span>4</span></div><div class="l warn"><span>Caller had to repeat the dates</span><span>2</span></div><div class="l warn"><span>Rang back before the desk did</span><span>3</span></div><div class="note" style="margin-top:6px">Every number opens the calls behind it, with the caller's words.</div></div></div>`,
+
+  plat_call:()=>SB('7:12')+`<div class="hd">Dial Local <small>Tue · on the line</small></div><div class="bd wa" style="background:#F6F6F4">
+    <div class="m">Dial Local. Tell me what you need, and where.</div><div class="m me bn">গড়িয়াহাটের কাছে একজন দাঁতের ডাক্তার চাই<small>a dentist near Gariahat</small></div>
+    <div class="m bn">গড়িয়াহাটের কাছে Dental Bliss আছে। আমি ওদের কাছে আপনার নম্বর পাঠিয়ে দিচ্ছি।<small>Dental Bliss is near Gariahat. Sending them your number.</small></div>
+    <div class="card"><span class="st ok">lead sent</span><div class="l"><span>dentist · Gariahat<small>Dental Bliss · Dr NK's</small></span><span>2 sent</span></div></div></div>`,
+  plat_desk:()=>SB('7:13')+`<div class="hd">Requests <small>Tue · still open</small></div><div class="bd">
+    <div class="card"><span class="st ok">we found businesses · 2 sent</span><b>Ravi · +9198•••234</b><div class="l"><span>dentist<small>Kolkata · Bengali</small></span><span>7:12 pm</span></div><div class="acts"><button class="act" data-rang="Dental Bliss rang Ravi back at 7:20 pm. Seen today at 8.">Closed</button></div></div>
+    <div class="card"><span class="st warn">we had nobody</span><b>Dev · +9190•••552</b><div class="l"><span>yoga teacher<small>Salt Lake · English</small></span><span>6:40 pm</span></div><div class="note">Nobody listed. Recorded, so you know who to sign next.</div><div class="acts"><button class="act y" data-rang="Added to the signing list: yoga, Salt Lake. 6 asks this month.">Add to signing list</button></div></div>
+    <div class="card"><span class="st">name request</span><b>Dev · +9190•••552</b><div class="l"><span>"Sharma Electricals"<small>not listed · Sparks and Co offered</small></span><span>6:41 pm</span></div></div></div>`,
+  plat_owner:()=>SB('9:40')+`<div class="hd">Maya <small>your agent · WhatsApp</small></div><div class="bd wa" data-thread>
+    <div class="m me">Approve Sparks and Co for AC repair too 🎤 0:04<small>9:40 pm ✓✓</small></div><div class="m">Done. Sparks and Co now gets AC repair leads in Salt Lake as well as electrical. CoolFix on Park Street stays first for Park Street.<small>9:40 pm</small></div></div>
+    <div class="quick"><button data-q="what did we have nobody for this week?">what did we have nobody for this week?</button><button data-q="who got the most leads?">who got the most leads?</button><button data-q="pause Roy Electricals till monday">pause Roy Electricals till Monday</button></div>`,
+  plat_rescue:()=>SB('12:05')+`<div class="hd">Messages <small>Wed</small></div><div class="bd sms" data-thread><div class="from">Dial Local</div>
+    <div class="m">Hi, we got cut off before you said where you are. For the plumber, which area? Reply with it and I'll send the nearest two.</div>
+    <div class="acts" style="display:flex;gap:6px;justify-content:flex-end"><button class="act y" data-yes="Salt Lake: Das Plumbing is listed there. Sending them your number and texting you theirs.">Salt Lake</button><button class="act" data-no="1">Howrah</button></div></div>`,
+  plat_learn:()=>SB('9:00')+`<div class="hd">Maya <small>Sunday · what I learned</small></div><div class="bd">
+    ${LRN('"Geyser" heard 7 times, matched nobody.','Das Plumbing fixes geysers. Add "geyser" to plumbers?','<button class="act y" data-learn=\'"Geyser" now finds plumbers. Tested against 212 past calls: 7 more matches, 0 wrong ones.\'>Add it</button><button class="act" data-learn="Left as is.">No</button>')}
+    ${LRN('Yoga asked for 6 times, tutors 4 times.','Nobody listed for either. Worth signing before the next month.','')}
+    ${LRN('"Sharma Electricals" asked for by name 3 times.','Not listed. Want me to ring them and invite them to list?','<button class="act y" data-learn="I\'ll ring Sharma Electricals on Monday with an invitation to list.">Ring them</button><button class="act" data-learn="Skipped.">Skip</button>')}</div>`,
+  plat_score:()=>SB('8:30')+`<div class="hd">Call quality <small>this week · 318 calls</small></div><div class="bd">
+    <div class="card score"><b style="margin-bottom:6px">What the agent got right</b><div class="l ok"><span>Businesses named that aren't listed</span><span>0</span></div><div class="l ok"><span>Caller numbers read out</span><span>0</span></div><div class="l ok"><span>Leads sent within 10 seconds of hang-up</span><span>241 / 241</span></div></div>
+    <div class="card score"><b style="margin-bottom:6px">Where it couldn't help</b><div class="l warn"><span>We had nobody</span><span>23</span></div><div class="l warn"><span>Area never said</span><span>9</span></div><div class="l warn"><span>Asked for a business by name, not listed</span><span>5</span></div><div class="note" style="margin-top:6px">Every number opens the calls behind it, with the caller's words.</div></div></div>`,
+};
+const WEEK={
+  rest:[['call','Tuesday, 7:12 pm','A caller who doesn\'t know the food orders anyway.','"Something like a crepe" finds the dosa. "Soupy, with lentils" finds the sambar. The agent matches what people mean, forgives spelling, keeps "no onion" for the kitchen, and never offers a dish that isn\'t on the menu or has run out.','live'],
+    ['kitchen','Tuesday, 7:13 pm','The kitchen has it before the caller hangs up.','Orders land on a screen in the kitchen the moment the caller says yes, with the caller\'s own words for anything unusual. Tap the order through Cooking and Ready.','live'],
+    ['owner','Tuesday, 9:40 pm','The owner runs it by talking to it.','No console, no prompts. A voice note on WhatsApp and the agent changes on the next call. Ask it how the evening went and it answers from the calls. Try the quick replies.','soon'],
+    ['rescue','Wednesday, 12:05 pm','A dropped call becomes an order anyway.','A caller who got cut off halfway through still has an order waiting. One message brings it back, and the kitchen never knows there was a problem. Tap YES.','soon'],
+    ['learn','Sunday, 9:00 am','It teaches itself. The owner approves.','Every mishearing and every description that found nothing becomes a one-tap suggestion. Approve it and every call after that is better.','soon'],
+    ['score','Every call','It checks its own work against your menu.','Every call is scored mechanically: every price quoted, every dish offered, every allergy question it should have handed over.','soon']],
+  hotel:[['call','Tuesday, 11:40 pm','An enquiry at midnight, caught in the caller\'s words.','Dates, nights, guests and "facing the river", logged while the front desk sleeps. The agent never says a room is available and never confirms. It promises a call back within the hour of opening.','live'],
+    ['desk','Wednesday, 7:05 am','The front desk starts the day with a list, not a voicemail.','Everyone who rang overnight, what they wanted, in order. Ring them, tap "I rang them", and the outcome is recorded on the same row. Cancellations and refunds are flagged for a person.','live'],
+    ['owner','Wednesday, 9:40 pm','The owner runs it by talking to it.','"The family suite is being repainted till the 5th" as a voice note, and the agent stops suggesting it. Ask how many enquiries came in, or change a rate from Friday.','soon'],
+    ['rescue','Thursday, 6:02 pm','A guest the desk couldn\'t reach is not a lost booking.','Two missed calls become one message: the room is held until 9 pm, reply YES to keep it. The desk sees the reply as it arrives.','soon'],
+    ['learn','Sunday, 9:00 am','It learns what guests ask that the facts don\'t cover.','"Balcony" asked nine times, late check-in four times. Each becomes a one-tap addition to the house facts, approved by the owner.','soon'],
+    ['score','Every call','It checks itself against the rate card.','Rooms promised, prices misquoted, refunds handled without the desk: all counted, every week, with the calls behind each number.','soon']],
+  plat:[['call','Tuesday, 7:12 pm','A caller in Bengali becomes a lead in seconds.','What they need and where, understood in their own language, matched against your listings, and sent to the businesses that can serve it, before the caller hangs up.','live'],
+    ['desk','Tuesday, 7:13 pm','Every request on one screen, including the ones you couldn\'t serve.','Leads sent, "we had nobody" recorded with the caller\'s words, a business asked for by name kept separate from a missing trade. Tap one to close it.','live'],
+    ['owner','Tuesday, 9:40 pm','The platform team runs it by talking to it.','Approve a business for a second trade, pause one for the weekend, ask who got the most leads. A voice note is enough.','soon'],
+    ['rescue','Wednesday, 12:05 pm','A caller who hung up before saying where is not lost.','One message asks the missing question. The reply completes the request and the leads go out.','soon'],
+    ['learn','Sunday, 9:00 am','It learns the words your callers use.','"Geyser" matched nobody seven times; the plumber fixes geysers. Every change is tested against past calls before it goes live, then approved with one tap.','live'],
+    ['score','Every call','It checks itself against your listings.','Businesses named that aren\'t listed, numbers read out, leads sent late: all counted, every week.','soon']],
+};
+const ANS={
+  'how was tonight?':'31 calls, 24 orders, $612 before tax. Busiest at 7:40. Three callers hung up at the thali price. Nine asked for "paneer dosa", which we don\'t have.',
+  "what did people ask for that we don't have?":'This week: paneer dosa (9), chole bhature (4), crepes (3, I offered dosa and 2 said yes), coke (2). Shall I draft a menu note for the paneer dosa?',
+  'add paneer dosa at $13.99 from friday':'Added Paneer Dosa at $13.99, on offer from Friday. I\'ll describe it as a crepe filled with spiced paneer. Say "change it" if that\'s wrong.',
+  'how many enquiries this week?':'41 enquiries, 29 became requests, 18 confirmed by the desk so far. Six came in after midnight. The river-view double was asked for 14 times.',
+  "what do callers ask that we can't answer?":'Late check-in (4), whether the river room has a balcony (9), airport pickup (3). Give me the answers and I\'ll use them from the next call.',
+  'raise the river view to 4600 from friday':'From Friday the River-view double is ₹4,600 a night. Requests already logged keep ₹4,200. Say "undo" if that\'s wrong.',
+  'what did we have nobody for this week?':'Yoga teacher (6), home tutor (4), pest control (3), tailor (2). Yoga in Salt Lake is the one to sign first.',
+  'who got the most leads?':'Sparks and Co 38, Dental Bliss 31, Das Plumbing 27, CoolFix 19. Roy Electricals rang back only 60% of theirs.',
+  'pause roy electricals till monday':'Paused. Roy Electricals gets no leads until Monday 9 am; Sparks and Co covers Gariahat meanwhile.',
+};
+function wire(app){
+  app.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>{const card=b.closest('.card');const st=card.querySelector('.st');if(b.dataset.next==='Cooking'){st.textContent='cooking';st.className='st';b.textContent='Ready';b.dataset.next='Ready';}else if(b.dataset.next==='Ready'){st.textContent='ready';st.className='st ok';b.textContent='Collected';b.dataset.next='Done';}else{card.style.opacity=.45;b.disabled=true;b.textContent='Collected ✓';}}));
+  app.querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click',()=>{b.closest('.card').style.opacity=.45;b.disabled=true;b.textContent='Collected ✓'}));
+  app.querySelectorAll('[data-took]').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.card');const st=c.querySelector('.st');st.textContent='with Priya · 0:02';st.className='st ok';b.disabled=true;b.textContent='Priya has it'}));
+  app.querySelectorAll('[data-rang]').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.card');const st=c.querySelector('.st');st.textContent='done';st.className='st ok';c.querySelector('.acts').innerHTML=`<div class="note" style="color:var(--ok)">${esc(b.dataset.rang)}</div>`}));
+  app.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{const th=app.querySelector('[data-thread]');th.appendChild(el(`<div class="m me">${esc(b.dataset.q)}<small>just now ✓✓</small></div>`));b.disabled=true;th.scrollTop=th.scrollHeight;setTimeout(()=>{th.appendChild(el(`<div class="m">${esc(ANS[b.dataset.q.toLowerCase()]||'Noted.')}<small>just now</small></div>`));th.scrollTop=th.scrollHeight},reduced?50:900)}));
+  app.querySelectorAll('[data-yes]').forEach(b=>b.addEventListener('click',()=>{const th=app.querySelector('[data-thread]');const reply=b.dataset.yes;const said=b.textContent;b.parentElement.remove();th.appendChild(el(`<div class="m me">${esc(said)}</div>`));setTimeout(()=>{th.appendChild(el(`<div class="m">${esc(reply)}</div>`));th.scrollTop=th.scrollHeight},reduced?50:800)}));
+  app.querySelectorAll('[data-no]').forEach(b=>b.addEventListener('click',()=>{const th=app.querySelector('[data-thread]');const said=b.textContent;b.parentElement.remove();th.appendChild(el(`<div class="m me">${esc(said)}</div>`));setTimeout(()=>th.appendChild(el('<div class="m">No problem. Noted, and nothing was charged.</div>')),reduced?50:800)}));
+  app.querySelectorAll('[data-learn]').forEach(b=>b.addEventListener('click',()=>{const card=b.closest('.card');card.querySelector('.acts').innerHTML='<span class="st ok">approved</span>';card.appendChild(el(`<div class="note" style="color:var(--ok)">${esc(b.dataset.learn)}</div>`))}));
+}
+const pinApp=document.getElementById('pinApp');let shown=null,weekDom='rest',cio=null,chapters=[];
+function show(name){if(shown===name)return;shown=name;pinApp.innerHTML=SCREENS[name]();pinApp.style.animation='none';void pinApp.offsetWidth;pinApp.style.animation='';wire(pinApp);}
+function renderWeek(dom){weekDom=dom;shown=null;const box=document.getElementById('chapters');
+  box.innerHTML=WEEK[dom].map(([scr,when,title,text,tag],i)=>`<article class="ch" data-screen="${dom}_${scr}"><div class="when"><span class="n">0${i+1}</span>${esc(when)}</div><h3>${esc(title)}</h3><p>${esc(text)}</p><span class="tag ${tag}">${tag==='live'?'Live now':'Coming next'}</span><div class="mob"></div></article>`).join('');
+  chapters=[...box.querySelectorAll('.ch')];
+  chapters.forEach(ch=>{const s=el(`<div class="device"><div class="scr"><div class="app">${SCREENS[ch.dataset.screen]()}</div></div></div>`);ch.querySelector('.mob').appendChild(s);wire(s);});
+  if(cio)cio.disconnect();
+  if('IntersectionObserver' in window){cio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){chapters.forEach(c=>c.classList.toggle('on',c===e.target));show(e.target.dataset.screen);}})},{rootMargin:'-40% 0px -45% 0px'});chapters.forEach(c=>cio.observe(c));}
+  show(`${dom}_${WEEK[dom][0][0]}`);chapters[0].classList.add('on');}
+document.querySelectorAll('#weektabs button').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('#weektabs button').forEach(x=>x.setAttribute('aria-selected',x===t));renderWeek(t.dataset.dom);document.getElementById('weektabs').scrollIntoView({behavior:'smooth',block:'start'});}));
+renderWeek('rest');
+
+/* ================= misc ================= */
+if('IntersectionObserver' in window){let started=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!started){started=true;play(current)}}),{threshold:.2}).observe(phone);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+}else{play(current);document.querySelectorAll('.reveal').forEach(x=>x.classList.add('in'));}
 </script>
 </body>
 </html>
