@@ -653,8 +653,9 @@
 
 <script>
 const CONTACT_EMAIL="phanikumaryadavilli@utter.sh";
-const MAILTO=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Utter — book a demo')}`;
-document.querySelectorAll('[data-book],[data-mail]').forEach(a=>a.href=MAILTO);
+const BOOKING_URL="https://calendly.com/utterdotsh/demo-utter";
+document.querySelectorAll('[data-book]').forEach(a=>{a.href=BOOKING_URL;a.target='_blank';a.rel='noopener'});
+document.querySelectorAll('[data-mail]').forEach(a=>a.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Utter — book a demo')}`);
 document.querySelectorAll('a[href="#say"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const dev=document.querySelector('.device')||document.getElementById('say');dev.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});setTimeout(()=>document.getElementById('sayInput').focus({preventScroll:true}),reduced?0:500)}));
 document.getElementById('yr').textContent=new Date().getFullYear();
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
