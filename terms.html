@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>utter — Terms of service</title>
+<meta name="description" content="The terms for using utter, the voice agent that answers the phone for businesses." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0A0A'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='20' font-weight='800' fill='%234F46E5' text-anchor='middle'%3Eu%3C/text%3E%3C/svg%3E" />
+<link rel="canonical" href="https://utter.sh/terms.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-2:#F8F8F6; --fg:#0B0B0D; --fg-2:#5A5A57; --fg-3:#8E8E8A;
+    --line:#E7E7E3; --line-2:#F0F0ED;
+    --accent:#4F46E5; --accent-wash:#EEEDFC;
+    --warn:#B42318; --warn-wash:#FDECEA;
+    --nav:rgba(255,255,255,.72);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E0E12; --bg-2:#15151B; --fg:#F2F2F0; --fg-2:#A9A9B2; --fg-3:#7E7E88; --line:#26262E; --line-2:#1E1E25;
+    --accent:#8B7FF5; --accent-wash:rgba(139,127,245,.16); --warn:#F08A82; --warn-wash:rgba(240,138,130,.14);
+    --nav:rgba(14,14,18,.72); color-scheme:dark }
+  *{box-sizing:border-box}
+  html{color-scheme:light}
+  body{margin:0;overflow-x:clip;background:var(--bg);color:var(--fg);font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit}
+  h1,h2,h3{font-family:'Schibsted Grotesk','Hanken Grotesk',sans-serif;letter-spacing:-.025em;text-wrap:balance;font-weight:700;margin:0}
+  .wrap{max-width:1140px;margin:0 auto;padding-inline:24px}
+  .nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line-2)}
+  .nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.04em;display:inline-flex;align-items:center;text-decoration:none}
+  .logo i{width:8px;height:20px;background:var(--accent);border-radius:2px;margin-left:3px}
+  .back{font-size:14px;font-weight:500;color:var(--fg-2);text-decoration:none}
+  .back:hover{color:var(--fg)}
+  main.doc{max-width:760px;margin:0 auto;padding:56px 24px 72px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin:0}
+  .doc h1{font-size:clamp(34px,5vw,48px);line-height:1.06;margin-top:14px}
+  .doc .lede{font-size:18px;color:var(--fg-2);margin:18px 0 0}
+  .doc .meta{font-size:14px;color:var(--fg-3);margin:14px 0 0}
+  .doc h2{font-size:24px;line-height:1.2;margin:48px 0 12px;padding-top:24px;border-top:1px solid var(--line)}
+  .doc h3{font-size:18px;margin:28px 0 8px}
+  .doc p{margin:0 0 14px}
+  .doc ul{margin:0 0 14px;padding-left:22px}
+  .doc li{margin:0 0 8px}
+  .doc a{color:var(--accent);text-underline-offset:3px}
+  .doc strong{font-weight:600}
+  .toc{margin:28px 0 0;padding:18px 22px;background:var(--bg-2);border:1px solid var(--line);border-radius:16px;font-size:15px}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px}
+  .toc li{margin:0 0 6px;break-inside:avoid}
+  .toc a{text-decoration:none;color:var(--fg)}
+  .toc a:hover{color:var(--accent)}
+  @media(max-width:640px){.toc ol{columns:1}}
+  .callout{margin:18px 0;padding:16px 20px;border-radius:14px;background:var(--accent-wash);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent)}
+  .callout p:last-child{margin-bottom:0}
+  .todo{background:var(--warn-wash);color:var(--warn);font-weight:600;border-radius:6px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .tbl{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+  .tbl th,.tbl td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .tbl th{font-weight:600;color:var(--fg-2);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .scroll{overflow-x:auto}
+  footer{padding:40px 0 48px;font-size:13.5px;color:var(--fg-3);border-top:1px solid var(--line-2)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+  footer nav{display:flex;gap:20px}
+  footer nav a{text-decoration:none}
+  footer nav a:hover{color:var(--fg)}
+  @media(max-width:360px){.wrap,main.doc{padding-inline:16px}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/" class="logo">utter<i></i></a>
+    <a href="/" class="back">Back to utter.sh</a>
+  </div>
+</header>
+
+<main class="doc">
+  <p class="eyebrow">Legal</p>
+  <h1>Terms of service</h1>
+  <p class="lede">These terms apply when a business uses utter to answer its phone. Please read them with our <a href="/privacy.html">privacy policy</a>.</p>
+  <p class="meta">Last updated: <span class="todo">TODO: date of publication</span></p>
+  <div class="callout"><p><strong>Draft.</strong> These terms are a working draft and have not been reviewed by a lawyer. <span class="todo">TODO: legal review before publishing</span></p></div>
+
+  <h2 id="who">1. Who these terms are with</h2>
+  <p>utter is provided by <span class="todo">TODO: legal entity name</span>, registered at <span class="todo">TODO: registered address</span> (“utter”, “we”, “us”). “You” means the business that signs up for utter and the people it invites to its workspace.</p>
+
+  <h2 id="service">2. The service</h2>
+  <p>utter gives your business a voice agent that answers calls to your phone numbers, answers callers from what you tell it, and takes orders, bookings and messages for you to review in the owner app. You can connect tools such as Google Sheets and Google Calendar so the agent answers from your own records.</p>
+  <p>The agent is an AI. It can misunderstand a caller or give a wrong answer. You are responsible for checking orders and bookings before you act on them, and for keeping the information you give utter correct.</p>
+
+  <h2 id="account">3. Your account</h2>
+  <ul>
+    <li>You must give accurate details and keep your sign-in secure. You are responsible for what happens in your workspace, including by the people you invite.</li>
+    <li>You must be able to enter a contract on behalf of the business. <span class="todo">TODO: minimum age / eligibility</span></li>
+  </ul>
+
+  <h2 id="callers">4. Your callers</h2>
+  <ul>
+    <li>You decide why your calls are handled and what happens to your callers’ details; we process them for you, on your instructions, as our <a href="/privacy.html">privacy policy</a> describes.</li>
+    <li>You are responsible for telling callers what the law requires, including that calls are recorded and transcribed. The agent says this at the start of each call; you must not turn it off where the law requires it.</li>
+    <li>You must have the right to use any phone number you connect to utter, and must not use utter for unsolicited calls, spam, fraud, or anything unlawful.</li>
+  </ul>
+
+  <h2 id="google">5. Google and other connected tools</h2>
+  <ul>
+    <li>When you connect a Google account, you allow utter to access only what the Google sign-in screen lists, for the features you turned on. Our use of that data follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+    <li>You can disconnect at any time in Settings → Integrations, or from your Google Account. Your use of Google’s services remains under Google’s own terms.</li>
+  </ul>
+
+  <h2 id="use">6. Acceptable use</h2>
+  <p>You must not use utter to break the law, to mislead callers about who they are speaking to, to collect data you are not allowed to collect, to interfere with the service or other businesses’ data, or to try to get around usage limits or security.</p>
+
+  <h2 id="money">7. Minutes and payment</h2>
+  <p>utter is paid for by buying minutes in the owner app. Prices are shown before you pay. <span class="todo">TODO: refunds, taxes, what happens to unused minutes, suspension at zero balance</span></p>
+
+  <h2 id="content">8. Your content</h2>
+  <p>Your business information, call records and data from connected tools stay yours. You give us permission to use them only to provide and secure the service for you. We do not use them to train generalized AI models.</p>
+
+  <h2 id="ending">9. Ending</h2>
+  <p>You can stop using utter and ask us to delete your workspace at any time. We may suspend or end access if these terms are broken or if the law requires it, and will tell you why where we can. <span class="todo">TODO: notice period, data export window after closing</span></p>
+
+  <h2 id="liability">10. Warranties and liability</h2>
+  <p><span class="todo">TODO: disclaimer of warranties and limitation of liability — needs legal drafting</span></p>
+
+  <h2 id="law">11. Governing law</h2>
+  <p><span class="todo">TODO: governing law and jurisdiction for disputes</span></p>
+
+  <h2 id="changes">12. Changes</h2>
+  <p>We will post changes to these terms on this page with a new date, and tell workspace owners by email before a significant change takes effect.</p>
+
+  <h2 id="contact">13. Contact</h2>
+  <p><a href="mailto:phanikumaryadavilli@utter.sh">phanikumaryadavilli@utter.sh</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo" style="font-size:18px;color:var(--fg)">utter<i></i></span>
+    <nav><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:phanikumaryadavilli@utter.sh">Contact</a></nav>
+    <span>© <span id="yr">2026</span> utter · utter.sh</span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
