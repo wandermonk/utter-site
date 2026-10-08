@@ -181,7 +181,7 @@
   <h3>Disconnecting and deletion</h3>
   <ul>
     <li>The owner can disconnect Google Sheets or Google Calendar at any time in Settings → Integrations. utter then revokes its access with Google and deletes the stored tokens, the sheet settings, and the calendar choices.</li>
-    <li>Items that came from the sheet stay in the owner’s utter list as the owner’s own, so the agent can keep answering; the owner can delete them at any time. <span class="todo">TODO: decide whether disconnect should also offer to delete them (recommended)</span></li>
+    <li>When disconnecting Google Sheets, the owner chooses whether to also remove the items that came from the sheet. Removing them is selected by default, and removes them from utter along with the record of which sheet row each came from. If the owner chooses to keep them, they stay in the owner’s utter list as the owner’s own, and the owner can delete them at any time.</li>
     <li>Booking events already in the owner’s calendar stay there; they are the owner’s. The record of which event belongs to which booking is deleted with the booking.</li>
     <li>You can also remove utter’s access from your Google Account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. utter then stops reading and writing, and asks the owner to sign in again.</li>
     <li>To have all of a business’s data deleted, write to the address in section 13.</li>
